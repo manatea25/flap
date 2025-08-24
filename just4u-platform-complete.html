@@ -734,9 +734,44 @@
 
 		// Filter by tech stack (quick selection)
 		function filterByStack(stack) {
-			document.getElementById('techQuery').value = stack;
+			// Clear all filters first
+			document.getElementById('budgetFilter').value = '';
+			document.getElementById('experienceFilter').value = '';
+			document.getElementById('techLevelFilter').value = '';
+			document.getElementById('categoryFilter').value = '';
+			document.getElementById('industryFilter').value = '';
+			document.getElementById('techQuery').value = '';
+			
+			// Map quick filter names to categories or technologies
+			switch(stack) {
+				case 'React':
+					document.getElementById('categoryFilter').value = 'React';
+					break;
+				case 'AI':
+					document.getElementById('techQuery').value = 'TensorFlow'; // AI/ML specific tech
+					break;
+				case 'Node':
+					document.getElementById('categoryFilter').value = 'Node.js';
+					break;
+				case 'Mobile':
+					document.getElementById('categoryFilter').value = 'Mobile';
+					break;
+				case 'DevOps':
+					document.getElementById('categoryFilter').value = 'DevOps';
+					break;
+				case 'Python':
+					document.getElementById('categoryFilter').value = 'Python';
+					break;
+				default:
+					document.getElementById('techQuery').value = stack;
+			}
+			
 			applyFilters();
-			document.getElementById('developers').scrollIntoView({ behavior: 'smooth' });
+			
+			// Scroll to developers section with slight delay
+			setTimeout(() => {
+				document.getElementById('developers').scrollIntoView({ behavior: 'smooth' });
+			}, 150);
 		}
 
 		// Apply all filters
