@@ -246,23 +246,18 @@
 						<label>Category</label>
 						<select id="categoryFilter">
 							<option value="">All Categories</option>
-							<option value="React">React/JavaScript</option>
-							<option value="Python">Python</option>
-							<option value="Java">Java</option>
-							<option value="Node.js">Node.js</option>
-							<option value="Angular">Angular</option>
-							<option value="Vue.js">Vue.js</option>
-							<option value="PHP">PHP</option>
-							<option value=".NET">.NET</option>
-							<option value="Mobile">Mobile</option>
-							<option value="DevOps">DevOps</option>
-							<option value="AI/ML">AI/ML</option>
-							<option value="Golang">Golang</option>
-							<option value="Ruby">Ruby</option>
-							<option value="Rust">Rust</option>
-							<option value="Blockchain">Blockchain</option>
-							<option value="Unity">Unity</option>
-							<option value="QA">QA</option>
+							<option value="React">React (15 devs)</option>
+							<option value="Python">Python (14 devs)</option>
+							<option value="Java">Java (13 devs)</option>
+							<option value="Node.js">Node.js (12 devs)</option>
+							<option value="Mobile">Mobile (15 devs)</option>
+							<option value="DevOps">DevOps (14 devs)</option>
+							<option value="C#/.NET">C#/.NET (13 devs)</option>
+							<option value="PHP">PHP (12 devs)</option>
+							<option value="Go">Go (11 devs)</option>
+							<option value="Ruby">Ruby (10 devs)</option>
+							<option value="QA">QA (7 devs)</option>
+							<option value="Other">Other (59 devs)</option>
 						</select>
 					</div>
 					<div class="filter-group">
@@ -865,6 +860,17 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			console.log('Total developers loaded:', allDevelopers.length);
 			console.log('First developer:', allDevelopers[0]);
+			
+			// Add event listeners to filters
+			document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+			document.getElementById('techQuery').addEventListener('input', applyFilters);
+			document.getElementById('budgetFilter').addEventListener('change', applyFilters);
+			document.getElementById('experienceFilter').addEventListener('change', applyFilters);
+			document.getElementById('techLevelFilter').addEventListener('change', applyFilters);
+			document.getElementById('industryFilter').addEventListener('change', applyFilters);
+			
+			console.log('✅ Event listeners added to all filters');
+			
 			renderHotDeals();
 			renderDevelopers();
 		});
