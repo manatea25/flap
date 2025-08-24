@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <div id="test">Loading...</div>
+    
+    <script>
+        // Simple test array
+        const allDevelopers = [
+            {id: 'R001', name: 'Trading Titan', position: 'Senior React Developer', category: 'React', technologies: ['React','TypeScript'], experienceYears: 8, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Fintech', rating: 4.9, techLevel: 142, availability: 'Available now', businessImpact: 'Built trading platform'},
+            {id: 'R002', name: 'Load Killer', position: 'Frontend Tech Lead', category: 'React', technologies: ['React','TypeScript'], experienceYears: 10, salaryUSD: 7000, englishLevel: 'Advanced', industry: 'Enterprise', rating: 5.0, techLevel: 156, availability: '2 weeks notice', businessImpact: 'Architected system'}
+        ];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Total developers:', allDevelopers.length);
+            console.log('First developer:', allDevelopers[0]);
+            document.getElementById('test').innerHTML = `Found ${allDevelopers.length} developers. First one: ${allDevelopers[0].name}`;
+        });
+    </script>
+</body>
+</html>
