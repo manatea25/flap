@@ -207,7 +207,7 @@
 	<section id="hot-deals" style="padding: 40px 0; background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.1));">
 		<div class="container">
 			<h2 class="section-title" style="color: #ef4444;">🔥 just 4 hot devs 4 you</h2>
-			<p class="section-sub">Low price, high skills - grab them fast!</p>
+			<p class="section-sub">just 4 amazing devs with low price + high skills!</p>
 			
 			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 30px;" id="hotDealsGrid">
 				<!-- Hot deals will be populated by JavaScript -->
@@ -380,12 +380,12 @@
 		let itemsPerPage = 18;
 		let filteredDevelopers = [...allDevelopers];
 
-		// Render hot deals (top 5 best value developers)
+		// Render hot deals (top 4 best value developers)
 		function renderHotDeals() {
 			const hotDeals = allDevelopers
 				.filter(dev => dev.salaryUSD <= 5000 && dev.techLevel >= 75)
 				.sort((a, b) => (b.techLevel / b.salaryUSD) - (a.techLevel / a.salaryUSD))
-				.slice(0, 5);
+				.slice(0, 4);
 
 			const hotGrid = document.getElementById('hotDealsGrid');
 			if (hotGrid) {
