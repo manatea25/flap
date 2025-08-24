@@ -734,6 +734,8 @@
 
 		// Filter by tech stack (quick selection)
 		function filterByStack(stack) {
+			console.log('🔥 Popular dev clicked:', stack);
+			
 			// Clear all filters first
 			document.getElementById('budgetFilter').value = '';
 			document.getElementById('experienceFilter').value = '';
@@ -746,32 +748,39 @@
 			switch(stack) {
 				case 'React':
 					document.getElementById('categoryFilter').value = 'React';
+					console.log('✅ Set category filter to React');
 					break;
 				case 'AI':
-					document.getElementById('techQuery').value = 'TensorFlow'; // AI/ML specific tech
+					document.getElementById('techQuery').value = 'TensorFlow';
+					console.log('✅ Set tech query to TensorFlow');
 					break;
 				case 'Node':
 					document.getElementById('categoryFilter').value = 'Node.js';
+					console.log('✅ Set category filter to Node.js');
 					break;
 				case 'Mobile':
 					document.getElementById('categoryFilter').value = 'Mobile';
+					console.log('✅ Set category filter to Mobile');
 					break;
 				case 'DevOps':
 					document.getElementById('categoryFilter').value = 'DevOps';
+					console.log('✅ Set category filter to DevOps');
 					break;
 				case 'Python':
 					document.getElementById('categoryFilter').value = 'Python';
+					console.log('✅ Set category filter to Python');
 					break;
 				default:
 					document.getElementById('techQuery').value = stack;
+					console.log('✅ Set tech query to', stack);
 			}
 			
+			console.log('🔄 Applying filters...');
 			applyFilters();
 			
-			// Scroll to developers section with slight delay
-			setTimeout(() => {
-				document.getElementById('developers').scrollIntoView({ behavior: 'smooth' });
-			}, 150);
+			// Scroll immediately to developers section
+			console.log('📍 Scrolling to developers...');
+			document.getElementById('developers').scrollIntoView({ behavior: 'smooth' });
 		}
 
 		// Apply all filters
@@ -783,7 +792,10 @@
 			const industry = document.getElementById('industryFilter').value;
 			const techQuery = document.getElementById('techQuery').value.toLowerCase();
 
+			console.log('🔍 Filters:', { budget, experience, techLevel, category, industry, techQuery });
+
 			filteredDevelopers = [...allDevelopers];
+			console.log('📊 Starting with', allDevelopers.length, 'developers');
 
 			// Budget filter
 			if (budget) {
@@ -831,6 +843,7 @@
 			}
 
 			currentPage = 1;
+			console.log('✅ Filtered to', filteredDevelopers.length, 'developers');
 			renderDevelopers();
 		}
 
