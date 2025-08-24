@@ -84,29 +84,29 @@
 
 		/* Developers section */
 		.developers-section { padding: 60px 0; }
-		.developer-card { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 24px; transition: all 0.3s ease; }
-		.developer-card:hover { transform: translateY(-4px); border-color: var(--accent); }
-		.dev-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
-		.dev-name { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
-		.dev-title { color: var(--muted); font-size: 14px; }
-		.dev-id { background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; }
-		.dev-tech { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
-		.tech-tag { background: rgba(6, 214, 160, 0.1); border: 1px solid rgba(6, 214, 160, 0.3); color: var(--accent); padding: 4px 8px; border-radius: 6px; font-size: 12px; }
-		.dev-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+		.developer-card { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 12px; padding: 16px; transition: all 0.3s ease; }
+		.developer-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+		.dev-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+		.dev-name { font-size: 16px; font-weight: 700; color: var(--accent); }
+		.dev-title { color: var(--muted); font-size: 12px; margin-top: 2px; }
+		.dev-id { background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 3px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+		.dev-tech { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; max-height: 50px; overflow: hidden; }
+		.tech-tag { background: rgba(6, 214, 160, 0.1); border: 1px solid rgba(6, 214, 160, 0.3); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+		.dev-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
 		.dev-stat { text-align: center; }
-		.dev-stat-value { font-weight: 700; color: var(--accent); }
-		.dev-stat-label { font-size: 12px; color: var(--muted); }
-		.dev-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; font-size: 13px; }
+		.dev-stat-value { font-weight: 700; color: var(--accent); font-size: 14px; }
+		.dev-stat-label { font-size: 10px; color: var(--muted); }
+		.dev-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; font-size: 11px; }
 		.dev-detail { display: flex; justify-content: space-between; }
 		.dev-detail-label { color: var(--muted); }
 		.dev-detail-value { color: var(--text); font-weight: 600; }
-		.dev-impact { background: rgba(99, 102, 241, 0.1); border-radius: 8px; padding: 12px; margin-top: 12px; }
-		.dev-impact-title { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
-		.dev-impact-text { font-size: 14px; color: var(--text); }
-		.dev-actions { display: flex; gap: 8px; margin-top: 16px; }
-		.btn-hire { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+		.dev-impact { background: rgba(99, 102, 241, 0.1); border-radius: 6px; padding: 8px; margin: 8px 0; }
+		.dev-impact-title { font-size: 10px; color: var(--accent); font-weight: 600; margin-bottom: 3px; }
+		.dev-impact-text { font-size: 12px; color: var(--text); line-height: 1.3; }
+		.dev-actions { display: flex; gap: 6px; margin-top: 12px; }
+		.btn-hire { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; flex: 1; text-align: center; }
 		.btn-hire:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
-		.btn-contact { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+		.btn-contact { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; flex: 1; text-align: center; }
 		.btn-contact:hover { background: var(--accent); color: var(--background); }
 
 		/* Pagination */
@@ -313,7 +313,7 @@
 				Showing <span id="resultsCount">202</span> developers
 			</div>
 			
-			<div class="developers-grid" id="developersGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; margin-top: 40px;">
+			<div class="developers-grid" id="developersGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 40px;">
 				<!-- Developers will be populated by JavaScript -->
 			</div>
 
@@ -436,12 +436,29 @@
 			{id: 'N012', name: 'Security Specialist', position: 'Node.js Security Developer', category: 'Node.js', technologies: ['Node.js','Security','JWT','OAuth','Helmet','Rate limiting'], experienceYears: 6, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Security • Backend', rating: 4.8, techLevel: 125, availability: 'Available now', businessImpact: 'Security framework protecting 1M+ API calls daily • Zero breaches'},
 			{id: 'N013', name: 'Data Dynamo', position: 'Node.js Data Engineer', category: 'Node.js', technologies: ['Node.js','ETL','Data pipelines','MongoDB','PostgreSQL','Redis'], experienceYears: 5, salaryUSD: 4700, englishLevel: 'Upper-Intermediate', industry: 'Data • ETL', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Data pipeline processing 100GB+ daily • Real-time data transformation'},
 			{id: 'N014', name: 'CMS Creator', position: 'Node.js CMS Developer', category: 'Node.js', technologies: ['Node.js','CMS','Strapi','Headless CMS','GraphQL','MongoDB'], experienceYears: 4, salaryUSD: 4100, englishLevel: 'Intermediate', industry: 'CMS • Content', rating: 4.7, techLevel: 92, availability: 'Available now', businessImpact: 'Headless CMS powering 100+ websites • Multi-tenant architecture'},
-			{id: 'N015', name: 'DevOps Dominator', position: 'Node.js DevOps Engineer', category: 'Node.js', technologies: ['Node.js','Docker','Kubernetes','CI/CD','AWS','Monitoring'], experienceYears: 5, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'DevOps • Infrastructure', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'DevOps pipeline deploying 100+ releases monthly • Zero-downtime deployments'}
+			{id: 'N015', name: 'DevOps Dominator', position: 'Node.js DevOps Engineer', category: 'Node.js', technologies: ['Node.js','Docker','Kubernetes','CI/CD','AWS','Monitoring'], experienceYears: 5, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'DevOps • Infrastructure', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'DevOps pipeline deploying 100+ releases monthly • Zero-downtime deployments'},
+
+			// Angular Developers (15)
+			{id: 'A001', name: 'Angular Ace', position: 'Senior Angular Developer', category: 'Angular', technologies: ['Angular','TypeScript','RxJS','NgRx','Material Design'], experienceYears: 7, salaryUSD: 5600, englishLevel: 'Upper-Intermediate', industry: 'Enterprise • Web Apps', rating: 4.9, techLevel: 125, availability: 'Available now', businessImpact: 'Enterprise Angular app with 1M+ users • Complex form workflows'},
+			{id: 'A002', name: 'Enterprise Expert', position: 'Angular Enterprise Developer', category: 'Angular', technologies: ['Angular','TypeScript','Enterprise patterns','Microservices','Docker'], experienceYears: 9, salaryUSD: 6800, englishLevel: 'Advanced', industry: 'Enterprise • Corporate', rating: 5.0, techLevel: 148, availability: '1 month notice', businessImpact: 'Fortune 500 Angular platform • Multi-tenant architecture'},
+			{id: 'A003', name: 'Material Master', position: 'Angular UI/UX Developer', category: 'Angular', technologies: ['Angular','Material Design','SCSS','UX Design','Responsive'], experienceYears: 5, salaryUSD: 4400, englishLevel: 'Upper-Intermediate', industry: 'Design • UX', rating: 4.8, techLevel: 102, availability: 'Available now', businessImpact: 'Design system used by 50+ teams • 98% accessibility score'},
+			{id: 'A004', name: 'Progressive Pioneer', position: 'Angular PWA Developer', category: 'Angular', technologies: ['Angular','PWA','Service Workers','Offline support','Push notifications'], experienceYears: 6, salaryUSD: 4900, englishLevel: 'Upper-Intermediate', industry: 'Mobile • PWA', rating: 4.8, techLevel: 115, availability: 'Available now', businessImpact: 'PWA with 70% mobile adoption • Offline-first architecture'},
+			{id: 'A005', name: 'Testing Titan', position: 'Angular Testing Specialist', category: 'Angular', technologies: ['Angular','Jasmine','Karma','Cypress','Test automation'], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'Testing • QA', rating: 4.7, techLevel: 95, availability: 'Available now', businessImpact: 'Test suite with 95% coverage • Automated e2e testing'},
+			{id: 'A006', name: 'Form Fighter', position: 'Angular Forms Developer', category: 'Angular', technologies: ['Angular Reactive Forms','Form validation','Dynamic forms','Custom validators'], experienceYears: 4, salaryUSD: 3800, englishLevel: 'Intermediate', industry: 'Forms • Data Entry', rating: 4.7, techLevel: 88, availability: 'Available now', businessImpact: 'Complex multi-step forms • 40% completion rate increase'},
+			{id: 'A007', name: 'State Sensei', position: 'Angular State Management Expert', category: 'Angular', technologies: ['NgRx','State management','Effects','Selectors','RxJS'], experienceYears: 6, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'State Management • Architecture', rating: 4.8, techLevel: 118, availability: 'Available now', businessImpact: 'State architecture for complex app • Predictable data flow'},
+			{id: 'A008', name: 'Animation Artist', position: 'Angular Animation Developer', category: 'Angular', technologies: ['Angular Animations','CSS animations','GSAP','Motion design'], experienceYears: 4, salaryUSD: 4000, englishLevel: 'Intermediate', industry: 'Animation • Creative', rating: 4.7, techLevel: 92, availability: 'Available now', businessImpact: 'Award-winning animations • 60% user engagement increase'},
+			{id: 'A009', name: 'Performance Pro', position: 'Angular Performance Engineer', category: 'Angular', technologies: ['Angular','Performance optimization','Lazy loading','OnPush','Tree shaking'], experienceYears: 7, salaryUSD: 5500, englishLevel: 'Advanced', industry: 'Performance • Optimization', rating: 4.9, techLevel: 128, availability: 'Available now', businessImpact: 'Performance optimization reducing load time by 50% • Core Web Vitals expert'},
+			{id: 'A010', name: 'Mobile Maverick', position: 'Angular Mobile Developer', category: 'Angular', technologies: ['Angular','Ionic','Capacitor','Mobile apps','Cross-platform'], experienceYears: 5, salaryUSD: 4500, englishLevel: 'Upper-Intermediate', industry: 'Mobile • Cross-platform', rating: 4.8, techLevel: 105, availability: 'Available now', businessImpact: 'Cross-platform app with 500k+ users • Native performance'},
+			{id: 'A011', name: 'Security Sentinel', position: 'Angular Security Developer', category: 'Angular', technologies: ['Angular','Security','JWT','OAuth','Guards','Interceptors'], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Upper-Intermediate', industry: 'Security • Authentication', rating: 4.8, techLevel: 115, availability: 'Available now', businessImpact: 'Security framework protecting sensitive data • Zero vulnerabilities'},
+			{id: 'A012', name: 'Upgrade Warrior', position: 'Angular Migration Specialist', category: 'Angular', technologies: ['AngularJS to Angular','Migration strategies','Hybrid apps','Legacy systems'], experienceYears: 8, salaryUSD: 6200, englishLevel: 'Advanced', industry: 'Legacy • Migration', rating: 4.9, techLevel: 138, availability: '2 weeks notice', businessImpact: 'Migrated 10+ legacy apps • $2M+ cost savings'},
+			{id: 'A013', name: 'i18n Expert', position: 'Angular Internationalization Developer', category: 'Angular', technologies: ['Angular i18n','Localization','Multi-language','Translation'], experienceYears: 5, salaryUSD: 4300, englishLevel: 'Advanced', industry: 'Internationalization • Localization', rating: 4.7, techLevel: 98, availability: 'Available now', businessImpact: 'Multi-language platform supporting 25+ languages • Global market expansion'},
+			{id: 'A014', name: 'Server Renderer', position: 'Angular SSR Developer', category: 'Angular', technologies: ['Angular Universal','Server-side rendering','SEO optimization','Performance'], experienceYears: 6, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'SSR • SEO', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'SSR implementation improving SEO by 80% • First paint optimization'},
+			{id: 'A015', name: 'Component Creator', position: 'Angular Component Library Developer', category: 'Angular', technologies: ['Angular','Component libraries','Design systems','Storybook','NPM packages'], experienceYears: 5, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Components • Design Systems', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Component library used by 100+ projects • Consistent design system'}
 		];
 
 		// Pagination and filtering variables
 		let currentPage = 1;
-		let itemsPerPage = 12;
+		let itemsPerPage = 18;
 		let filteredDevelopers = [...allDevelopers];
 
 		// Render developers with pagination
