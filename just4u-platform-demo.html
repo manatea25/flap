@@ -89,6 +89,16 @@
 		.dev-impact { background: rgba(99, 102, 241, 0.1); border-radius: 8px; padding: 12px; margin-top: 12px; }
 		.dev-impact-title { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
 		.dev-impact-text { font-size: 14px; color: var(--text); }
+		.dev-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; font-size: 13px; }
+		.dev-detail { display: flex; justify-content: space-between; }
+		.dev-detail-label { color: var(--muted); }
+		.dev-detail-value { color: var(--text); font-weight: 600; }
+		.dev-actions { display: flex; gap: 8px; margin-top: 16px; }
+		.btn-small { padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+		.btn-hire { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; }
+		.btn-hire:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
+		.btn-contact { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+		.btn-contact:hover { background: var(--accent); color: var(--background); }
 
 		/* FAQ */
 		.faq-section { padding: 60px 0; }
@@ -181,7 +191,7 @@
 				<div class="step">
 					<div class="step-number">1</div>
 					<h3>Browse Developers</h3>
-					<p>Scroll through verified devs. All real profiles from Djinni with actual experience.</p>
+					<p>Scroll through verified devs. All real profiles with actual experience.</p>
 				</div>
 				<div class="step">
 					<div class="step-number">2</div>
@@ -224,6 +234,7 @@
 						<span class="tech-tag">Redux</span>
 						<span class="tech-tag">Next.js</span>
 						<span class="tech-tag">GraphQL</span>
+						<span class="tech-tag">Tailwind</span>
 					</div>
 					<div class="dev-stats">
 						<div class="dev-stat">
@@ -243,9 +254,31 @@
 							<div class="dev-stat-label">Tech Level</div>
 						</div>
 					</div>
+					<div class="dev-details">
+						<div class="dev-detail">
+							<span class="dev-detail-label">English:</span>
+							<span class="dev-detail-value">Upper-Intermediate</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Industry:</span>
+							<span class="dev-detail-value">Fintech • E-commerce</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Projects:</span>
+							<span class="dev-detail-value">24 completed</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Availability:</span>
+							<span class="dev-detail-value">Available now</span>
+						</div>
+					</div>
 					<div class="dev-impact">
 						<div class="dev-impact-title">Why "Trading Titan"?</div>
 						<div class="dev-impact-text">Built trading platform handling $50M+ daily volume • Led team of 7 developers</div>
+					</div>
+					<div class="dev-actions">
+						<a href="mailto:hello@just4u.dev?subject=I want Trading Titan %23R001&body=Hi! I'm interested in hiring Trading Titan (R001). Please connect us." class="btn-small btn-hire">Hire Trading Titan</a>
+						<a href="mailto:hello@just4u.dev?subject=Tell me more about Trading Titan %23R001" class="btn-small btn-contact">Get Details</a>
 					</div>
 				</div>
 
@@ -283,9 +316,31 @@
 							<div class="dev-stat-label">Tech Level</div>
 						</div>
 					</div>
+					<div class="dev-details">
+						<div class="dev-detail">
+							<span class="dev-detail-label">English:</span>
+							<span class="dev-detail-value">Advanced</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Industry:</span>
+							<span class="dev-detail-value">SaaS • Enterprise</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Projects:</span>
+							<span class="dev-detail-value">31 completed</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Availability:</span>
+							<span class="dev-detail-value">2 weeks notice</span>
+						</div>
+					</div>
 					<div class="dev-impact">
 						<div class="dev-impact-title">Why "Load Killer"?</div>
 						<div class="dev-impact-text">Architected system serving 2M+ users • Reduced load time by 65%</div>
+					</div>
+					<div class="dev-actions">
+						<a href="mailto:hello@just4u.dev?subject=I want Load Killer %23R002&body=Hi! I'm interested in hiring Load Killer (R002). Please connect us." class="btn-small btn-hire">Hire Load Killer</a>
+						<a href="mailto:hello@just4u.dev?subject=Tell me more about Load Killer %23R002" class="btn-small btn-contact">Get Details</a>
 					</div>
 				</div>
 
@@ -323,9 +378,31 @@
 							<div class="dev-stat-label">Tech Level</div>
 						</div>
 					</div>
+					<div class="dev-details">
+						<div class="dev-detail">
+							<span class="dev-detail-label">English:</span>
+							<span class="dev-detail-value">Upper-Intermediate</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Industry:</span>
+							<span class="dev-detail-value">Fintech • Payments</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Projects:</span>
+							<span class="dev-detail-value">28 completed</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Availability:</span>
+							<span class="dev-detail-value">Available now</span>
+						</div>
+					</div>
 					<div class="dev-impact">
 						<div class="dev-impact-title">Why "Billion Dollar Brain"?</div>
 						<div class="dev-impact-text">Payment processing system handling $1B+ annually • PCI DSS compliant</div>
+					</div>
+					<div class="dev-actions">
+						<a href="mailto:hello@just4u.dev?subject=I want Billion Dollar Brain %23P001&body=Hi! I'm interested in hiring Billion Dollar Brain (P001). Please connect us." class="btn-small btn-hire">Hire Brain</a>
+						<a href="mailto:hello@just4u.dev?subject=Tell me more about Billion Dollar Brain %23P001" class="btn-small btn-contact">Get Details</a>
 					</div>
 				</div>
 
@@ -363,9 +440,31 @@
 							<div class="dev-stat-label">Tech Level</div>
 						</div>
 					</div>
+					<div class="dev-details">
+						<div class="dev-detail">
+							<span class="dev-detail-label">English:</span>
+							<span class="dev-detail-value">Advanced</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Industry:</span>
+							<span class="dev-detail-value">Blockchain • DeFi</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Projects:</span>
+							<span class="dev-detail-value">22 completed</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Availability:</span>
+							<span class="dev-detail-value">1 month notice</span>
+						</div>
+					</div>
 					<div class="dev-impact">
 						<div class="dev-impact-title">Why "DeFi King"?</div>
 						<div class="dev-impact-text">DeFi protocol with $500M+ TVL • Security audit experience</div>
+					</div>
+					<div class="dev-actions">
+						<a href="mailto:hello@just4u.dev?subject=I want DeFi King %23B001&body=Hi! I'm interested in hiring DeFi King (B001). Please connect us." class="btn-small btn-hire">Hire DeFi King</a>
+						<a href="mailto:hello@just4u.dev?subject=Tell me more about DeFi King %23B001" class="btn-small btn-contact">Get Details</a>
 					</div>
 				</div>
 
@@ -403,9 +502,31 @@
 							<div class="dev-stat-label">Tech Level</div>
 						</div>
 					</div>
+					<div class="dev-details">
+						<div class="dev-detail">
+							<span class="dev-detail-label">English:</span>
+							<span class="dev-detail-value">Advanced</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Industry:</span>
+							<span class="dev-detail-value">AI • Automotive</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Projects:</span>
+							<span class="dev-detail-value">25 completed</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Availability:</span>
+							<span class="dev-detail-value">Available now</span>
+						</div>
+					</div>
 					<div class="dev-impact">
 						<div class="dev-impact-title">Why "Vision Master"?</div>
 						<div class="dev-impact-text">Computer vision system for autonomous vehicles • 95%+ accuracy rate</div>
+					</div>
+					<div class="dev-actions">
+						<a href="mailto:hello@just4u.dev?subject=I want Vision Master %23A001&body=Hi! I'm interested in hiring Vision Master (A001). Please connect us." class="btn-small btn-hire">Hire Vision Master</a>
+						<a href="mailto:hello@just4u.dev?subject=Tell me more about Vision Master %23A001" class="btn-small btn-contact">Get Details</a>
 					</div>
 				</div>
 
@@ -429,7 +550,7 @@
 				</div>
 				<div class="faq-item">
 					<div class="faq-question">Where do you find these developers?</div>
-					<div class="faq-answer">Djinni.co - Ukraine's biggest tech job platform. All profiles are public and verified. I just know which ones are actually good.</div>
+					<div class="faq-answer">Years of networking in Ukraine's tech scene. These developers are verified professionals from my personal network. I just know which ones are actually good.</div>
 				</div>
 				<div class="faq-item">
 					<div class="faq-question">Why aren't they job hunting?</div>
