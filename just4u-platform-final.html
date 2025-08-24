@@ -133,6 +133,10 @@
 		/* Results info */
 		.results-info { margin: 20px 0; text-align: center; color: var(--muted); font-weight: 600; }
 
+		/* Quick search tags */
+		.search-tag { background: linear-gradient(135deg, #374151, #4b5563); color: #e5e7eb; padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; font-size: 14px; }
+		.search-tag:hover { background: linear-gradient(135deg, #6366f1, #8b5cf6); transform: translateY(-2px); }
+
 		/* Responsive */
 		@media (max-width: 768px) {
 			.nav-links { display: none; }
@@ -162,19 +166,23 @@
 		<div class="container">
 			<h1>Real Developers, Zero BS</h1>
 			<div class="subtitle">No hourly rates. No middleman markup. No project managers.</div>
-			<p>Browse verified developers. Pick your dev. Tell me the number. He's yours.<br>Your developer, your price, zero BS.</p>
+			<p>Browse verified developers. Pick your dev. Tell me the number. He's yours.</p>
 			
 			<div class="hero-ctas">
 				<a href="#developers" class="btn btn-primary">Browse Developers</a>
-				<a href="#how" class="btn btn-secondary">How it works</a>
+				<a href="#hot-deals" class="btn btn-secondary">🔥 Hot Deals</a>
 			</div>
 
-			<div class="trust-section">
-				<div class="trust-logos">
-					<div class="trust-logo">FinTech</div>
-					<div class="trust-logo">E-commerce</div>
-					<div class="trust-logo">Mobility</div>
-					<div class="trust-logo">Banking</div>
+			<!-- Quick category selection -->
+			<div style="background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 20px; margin: 30px 0;">
+				<h3 style="text-align: center; margin-bottom: 16px;">🔥 Popular right now:</h3>
+				<div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+					<div class="search-tag" onclick="filterByStack('React')">Senior React + TypeScript</div>
+					<div class="search-tag" onclick="filterByStack('AI')">AI/ML Expert</div>
+					<div class="search-tag" onclick="filterByStack('Node')">Full-stack Node.js</div>
+					<div class="search-tag" onclick="filterByStack('Mobile')">Mobile Developer</div>
+					<div class="search-tag" onclick="filterByStack('DevOps')">DevOps Engineer</div>
+					<div class="search-tag" onclick="filterByStack('Python')">Python Expert</div>
 				</div>
 			</div>
 
@@ -191,13 +199,6 @@
 					<div class="stat-number">&lt;2h</div>
 					<div class="stat-label">Response time</div>
 				</div>
-			</div>
-
-			<div class="badges">
-				<div class="badge">⚡ Instant Delivery</div>
-				<div class="badge">💰 Direct Contact</div>
-				<div class="badge">🛡️ Verified Profiles</div>
-				<div class="badge">🎯 No Middleman</div>
 			</div>
 		</div>
 	</section>
@@ -232,10 +233,22 @@
 		</div>
 	</section>
 
+	<!-- Hot Deals Section -->
+	<section id="hot-deals" style="padding: 40px 0; background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.1));">
+		<div class="container">
+			<h2 class="section-title" style="color: #ef4444;">🔥 Top 5 Hot Deals</h2>
+			<p class="section-sub">Low price, high skills - grab them fast!</p>
+			
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 30px;" id="hotDealsGrid">
+				<!-- Hot deals will be populated by JavaScript -->
+			</div>
+		</div>
+	</section>
+
 	<section id="developers" class="developers-section">
 		<div class="container">
-			<h2 class="section-title">Meet the Developers</h2>
-			<p class="section-sub">All verified professionals with real project experience</p>
+			<h2 class="section-title">All Developers</h2>
+			<p class="section-sub">Complete list of verified professionals</p>
 			
 			<!-- Filters -->
 			<div class="filters">
@@ -573,11 +586,79 @@
 {id: 'EX200', name: 'Expert 200', position: 'Senior Developer', category: 'Expert', technologies: ['React','Node.js','Python'], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
 {id: 'EX201', name: 'Expert 201', position: 'Senior Developer', category: 'Expert', technologies: ['React','Node.js','Python'], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
 {id: 'EX202', name: 'Expert 202', position: 'Senior Developer', category: 'Expert', technologies: ['React','Node.js','Python'], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'}
+		];
 
 		// Pagination and filtering variables
 		let currentPage = 1;
 		let itemsPerPage = 18;
 		let filteredDevelopers = [...allDevelopers];
+
+		// Render hot deals (top 5 best value developers)
+		function renderHotDeals() {
+			const hotDeals = allDevelopers
+				.filter(dev => dev.salaryUSD <= 4000 && dev.techLevel >= 90)
+				.sort((a, b) => (b.techLevel / b.salaryUSD) - (a.techLevel / a.salaryUSD))
+				.slice(0, 5);
+
+			const hotGrid = document.getElementById('hotDealsGrid');
+			if (hotGrid) {
+				hotGrid.innerHTML = hotDeals.map(dev => `
+					<div class="developer-card" style="border: 2px solid #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));">
+						<div style="background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-bottom: 8px; text-align: center;">🔥 HOT DEAL</div>
+						<div class="dev-header">
+							<div>
+								<div class="dev-name">${dev.name}</div>
+								<div class="dev-title">${dev.position}</div>
+							</div>
+							<div class="dev-id">${dev.id}</div>
+						</div>
+						<div class="dev-tech">
+							${dev.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+						</div>
+						<div class="dev-stats">
+							<div class="dev-stat">
+								<div class="dev-stat-value">${dev.experienceYears}y</div>
+								<div class="dev-stat-label">Experience</div>
+							</div>
+							<div class="dev-stat">
+								<div class="dev-stat-value">$${(dev.salaryUSD/1000).toFixed(1)}K</div>
+								<div class="dev-stat-label">Monthly</div>
+							</div>
+							<div class="dev-stat">
+								<div class="dev-stat-value">${dev.rating}★</div>
+								<div class="dev-stat-label">Rating</div>
+							</div>
+							<div class="dev-stat">
+								<div class="dev-stat-value">${dev.techLevel}</div>
+								<div class="dev-stat-label">Tech Level</div>
+							</div>
+						</div>
+						<div class="dev-details">
+							<div class="dev-detail">
+								<span class="dev-detail-label">English:</span>
+								<span class="dev-detail-value">${dev.englishLevel}</span>
+							</div>
+							<div class="dev-detail">
+								<span class="dev-detail-label">Industry:</span>
+								<span class="dev-detail-value">${dev.industry}</span>
+							</div>
+							<div class="dev-detail">
+								<span class="dev-detail-label">Availability:</span>
+								<span class="dev-detail-value">${dev.availability}</span>
+							</div>
+						</div>
+						<div class="dev-impact">
+							<div class="dev-impact-title">Why "${dev.name}"?</div>
+							<div class="dev-impact-text">${dev.businessImpact}</div>
+						</div>
+						<div class="dev-actions">
+							<a href="mailto:hello@just4u.dev?subject=I want ${encodeURIComponent(dev.name)} %23${dev.id}&body=Hi! I'm interested in hiring ${encodeURIComponent(dev.name)} (${dev.id}). Please connect us." class="btn-hire">Hire ${dev.name}</a>
+							<a href="mailto:hello@just4u.dev?subject=Tell me more about ${encodeURIComponent(dev.name)} %23${dev.id}" class="btn-contact">Get Details</a>
+						</div>
+					</div>
+				`).join('');
+			}
+		}
 
 		// Render developers with pagination
 		function renderDevelopers() {
@@ -742,6 +823,7 @@
 
 		// Initialize on load
 		document.addEventListener('DOMContentLoaded', function() {
+			renderHotDeals();
 			renderDevelopers();
 		});
 	</script>
