@@ -30,62 +30,62 @@
 День 12: М'який згадка платформи
 День 18: Follow-up з цінністю
 
-### ДЕНЬ 1: CONNECTION REQUEST
+### DAY 1: CONNECTION REQUEST
 ```
-Привіт {FirstName}! 👋
+Hi {FirstName}! 👋
 
-Бачу, що ви в {CompanyName} керуєте технічною командою. 
-Колишній CEO IT-компанії, зараз допомагаю з пошуком девелоперів.
+I see you're leading the tech team at {CompanyName}. 
+Former IT company CEO, now helping with developer hiring.
 
-Цікаво обмінятися досвідом! 🤝
-```
-
-### ДЕНЬ 3: ІСТОРІЯ ТА КОНТЕКСТ
-```
-Дякую за коннект, {FirstName}! 
-
-Хочу поділитися: рік тому закрив свою SEO/IT компанію і пішов на фронт. 
-Зараз повертаюся до мирного життя. 
-
-Помітив, що багато моїх колег-девелоперів досі шукають проєкти, 
-а компанії - хороших спеціалістів. 
-
-У вас сейчас складнощі з пошуком розробників? 🤔
+Would love to exchange experiences! 🤝
 ```
 
-### ДЕНЬ 7: ПИТАННЯ-КОНСУЛЬТАЦІЯ
+### DAY 3: STORY & CONTEXT
 ```
-{FirstName}, цікаво ваша думка:
+Thanks for connecting, {FirstName}! 
 
-Найбільша проблема в хірингу девелоперів зараз - що?
-- Довгі інтерв'ю без результату?
-- Завищені очікування кандидатів?
-- Невідповідність скілів?
+Want to share: a year ago I closed my SEO/IT company and went to the front lines. 
+Now returning to civilian life. 
 
-Я зараз досліджую цю тему, ваш інсайт був би дуже цінним 🎯
-```
+I noticed many of my developer colleagues are still looking for projects, 
+while companies struggle to find good specialists. 
 
-### ДЕНЬ 12: М'ЯКИЙ ЗГАДКА ПЛАТФОРМИ
-```
-До речі, {FirstName}, 
-
-Через ці проблеми з хірингом почав робити невеличку платформу just🔗4u.
-Ідея проста: перевірені розробники з реальними проєктами та прозорими рейтингами.
-
-Не продаю поки що нічого 😅 просто збираю фідбек від експертів.
-
-Якщо буде 5 хвилин - глянули б demo? Ваша думка дуже важлива.
+Are you currently facing challenges with developer hiring? 🤔
 ```
 
-### ДЕНЬ 18: FOLLOW-UP З ЦІННІСТЮ
+### DAY 7: CONSULTATION QUESTION
 ```
-{FirstName}, знайшов класну статтю про тренди в technical hiring 2025.
+{FirstName}, curious about your thoughts:
 
-[Лінк на релевантну статтю]
+What's the biggest problem in developer hiring right now?
+- Long interviews without results?
+- Inflated candidate expectations?
+- Skills mismatch?
 
-А як у вас справи з командою? Все ще шукаєте когось?
+I'm researching this topic now, your insight would be very valuable 🎯
+```
 
-P.S. Якщо потрібен хтось терміново - маю кілька перевірених девів на зв'язку 👨‍💻
+### DAY 12: SOFT PLATFORM MENTION
+```
+By the way, {FirstName}, 
+
+Due to these hiring problems, I started building a small platform just🔗4u.
+Simple idea: verified developers with real projects and transparent ratings.
+
+Not selling anything yet 😅 just collecting feedback from experts.
+
+If you have 5 minutes - would you check out the demo? Your opinion is very important.
+```
+
+### DAY 18: VALUE-DRIVEN FOLLOW-UP
+```
+{FirstName}, found a great article about technical hiring trends 2025.
+
+[Link to relevant article]
+
+How are things with your team? Still looking for someone?
+
+P.S. If you need someone urgently - I have a few verified devs on standby 👨‍💻
 ```
 
 ═════════════════════════════════════════════════════════════════
@@ -93,40 +93,40 @@ P.S. Якщо потрібен хтось терміново - маю кільк
 # КАМПАНІЯ 2: "ЕКС-КОЛЕГИ ТА IT СПІЛЬНОТА" (Warm audience)
 Таргет: Екс-колеги, SEO/IT комьюніті, люди зі спільних проєктів
 
-### ДЕНЬ 1: RECONNECTION
+### DAY 1: RECONNECTION
 ```
-{FirstName}! Довго не спілкувалися 😊
+{FirstName}! Long time no talk 😊
 
-Пригадую наші {SharedExperience/Project}. 
-Повернувся з армії, починаю щось нове в IT.
+I remember our {SharedExperience/Project}. 
+Just returned from the army, starting something new in IT.
 
-Як справи? Все ще в {Company/Field}?
-```
-
-### ДЕНЬ 4: АПДЕЙТ ТА ЦІЛЬ
-```
-Хочу поділитися апдейтом:
-
-Після армії вирішив не відновлювати SEO-агенство, 
-а зосередитися на тому, що знаю найкраще - IT hiring.
-
-Роблю just🔗4u - платформу для швидкого підбору девелоперів.
-Ідея: без довгих інтерв'ю, з прозорими рейтингами.
-
-Можливо, знаєте компанії, які страждають від hiring pain? 🤔
+How are things? Still in {Company/Field}?
 ```
 
-### ДЕНЬ 9: ЗАПРОШЕННЯ НА ТЕСТ
+### DAY 4: UPDATE & GOAL
 ```
-{FirstName}, у мене до вас прохання.
+Want to share an update:
 
-Зробив MVP платформи для хірингу девелоперів.
-Потрібно 202 профіля перевірених спеціалістів.
+After the army, I decided not to restore my SEO agency, 
+but focus on what I know best - IT hiring.
 
-Могли б 10 хвилин подивитися та сказати, чи зрозуміло все?
-Ваш фідбек критично важливий для мене 🙏
+Building just🔗4u - a platform for fast developer matching.
+Idea: no long interviews, transparent ratings.
 
-Demo: [лінк]
+Maybe you know companies suffering from hiring pain? 🤔
+```
+
+### DAY 9: TEST INVITATION
+```
+{FirstName}, I have a request for you.
+
+Built an MVP platform for developer hiring.
+Need feedback on 202 verified specialist profiles.
+
+Could you take 10 minutes to look and tell me if everything is clear?
+Your feedback is critically important to me 🙏
+
+Demo: [link]
 ```
 
 ═════════════════════════════════════════════════════════════════
@@ -134,31 +134,31 @@ Demo: [лінк]
 # КАМПАНІЯ 3: "ЕКСПЕРТНЕ ПИТАННЯ" (Industry leaders)
 Таргет: Tech influencers, відомі СТО, автори блогів
 
-### ДЕНЬ 1: COMPLIMENT + QUESTION
+### DAY 1: COMPLIMENT + QUESTION
 ```
-{FirstName}, читав ваші думки про {RecentPost/Article}.
+{FirstName}, read your thoughts on {RecentPost/Article}.
 
-Фіг з ним з комплімент 😅
+Skip the compliment part 😅
 
-Питання від практика: ви б довірили хірингу девелоперів 
-платформі, де рейтинг базується на реальних проєктах, 
-а не тестових завданнях?
+Question from a practitioner: would you trust developer hiring 
+to a platform where ratings are based on real projects, 
+not test assignments?
 
-Просто цікаво експертна думка 🤓
+Just curious about expert opinion 🤓
 ```
 
-### ДЕНЬ 6: КОНТЕКСТ ТА ІСТОРІЯ
+### DAY 6: CONTEXT & STORY
 ```
-Дякую за відповідь! 
+Thanks for the response! 
 
-Тепер контекст: 
-- Рік тому - CEO SEO-компанії
-- Зараз - ex-армійський, роблю платформу хірингу
-- Проблема: купа девелоперів шукають проєкти, компанії - девелоперів
+Now for context: 
+- A year ago - CEO of SEO company
+- Now - ex-military, building hiring platform
+- Problem: tons of developers looking for projects, companies looking for developers
 
-Робота схожа на Upwork, але для найму в команду, а не freelance.
+Similar to Upwork, but for team hiring, not freelance.
 
-Цікаво чи є потреба в такому? 🎯
+Curious if there's a need for this? 🎯
 ```
 
 ═════════════════════════════════════════════════════════════════
@@ -166,25 +166,25 @@ Demo: [лінк]
 # КАМПАНІЯ 4: "ПРЯМО В ЛОБ - БЕЗКОШТОВНА ДОПОМОГА" (Direct approach)
 Таргет: Компанії, які активно хірять
 
-### ДЕНЬ 1: DIRECT VALUE
+### DAY 1: DIRECT VALUE
 ```
-{FirstName}, бачу що ви в {CompanyName} хіріте {JobPosition}.
+{FirstName}, I see you're hiring for {JobPosition} at {CompanyName}.
 
-Я екс-CEO IT-компанії, зараз допомагаю з пошуком девелоперів.
+I'm an ex-CEO of an IT company, now helping with developer search.
 
-У мене є 3-4 хороших кандидати на {JobPosition}.
-Можу безкоштовно познайомити, без зобов'язань.
+I have 3-4 good candidates for {JobPosition}.
+Can introduce you for free, no obligations.
 
-Цікаво? 5 хвилин call щоб розповісти деталі? 📞
+Interested? 5-minute call to share details? 📞
 ```
 
-### ДЕНЬ 5: FOLLOW UP
+### DAY 5: FOLLOW UP
 ```
-{FirstName}, як справи з пошуком {JobPosition}?
+{FirstName}, how's the search for {JobPosition} going?
 
-Пропозиція все ще актуальна - можу познайомити з перевіреними кандидатами.
+Offer still stands - can introduce you to verified candidates.
 
-Нічого не продаю, просто хочу допомогти 🤝
+Not selling anything, just want to help 🤝
 ```
 
 ═════════════════════════════════════════════════════════════════
@@ -192,16 +192,16 @@ Demo: [лінк]
 # КАМПАНІЯ 5: "60 ХВИЛИН MATCHING" (Premium service test)
 Таргет: Компанії середнього розміру з нагальними потребами
 
-### ДЕНЬ 1: КОНЦЕПЦІЯ
+### DAY 1: CONCEPT
 ```
-{FirstName}, тестую нову послугу: "60 хвилин matching".
+{FirstName}, testing a new service: "60-minute matching".
 
-Ідея: за 1 годину онлайн знаходжу 3 ідеальних кандидати + швидке інтерв'ю.
+Idea: in 1 hour online I find 3 ideal candidates + quick interview.
 
-Звучить як фантастика? 😅
+Sounds like fantasy? 😅
 
-У мене база 202 девелоперів всіх рівнів.
-Хочете спробувати безкоштовно? Є вакансії?
+I have a database of 202 developers of all levels.
+Want to try it for free? Any open positions?
 ```
 
 ═════════════════════════════════════════════════════════════════
@@ -243,36 +243,36 @@ Demo: [лінк]
 
 ## ПРИКЛАДИ ПОСТІВ:
 
-### ПОСТ 1: ОСОБИСТА ІСТОРІЯ
+### POST 1: PERSONAL STORY
 ```
-Рік тому закрив SEO-компанію і пішов на фронт. 
+A year ago I closed my SEO company and went to the front lines. 
 
-Зараз повертаюся і бачу - IT-ринок кардинально змінився.
-Хто шукає девелоперів - кучугуру наймайте.
-Хто готовий працювати - немає нормальних пропозицій.
+Now returning and see - the IT market has changed dramatically.
+Those looking for developers - struggling to hire.
+Those ready to work - no decent offers.
 
-Вирішив робити міст між ними. just🔗4u - платформа для швидкого хірингу.
+Decided to build a bridge between them. just🔗4u - a platform for fast hiring.
 
-Ідея: замість 20 інтерв'ю за місяць - 3 ідеальних кандидати за день.
+Idea: instead of 20 interviews per month - 3 perfect candidates per day.
 
-П.С. Хто займається хірингом - дуже цікаво ваше бачення проблеми 🤝
+P.S. Anyone in hiring - really curious about your view on the problem 🤝
 ```
 
-### ПОСТ 2: ПРОФЕСІЙНИЙ ІНСАЙТ
+### POST 2: PROFESSIONAL INSIGHT
 ```
-Після 15+ років в IT помітив:
+After 15+ years in IT I noticed:
 
-Найкращих девелоперів НЕ знаходять через:
-❌ Складні технічні тести
-❌ 5-6 кіл інтерв'ю
-❌ HR-боти зі стандартними питаннями
+The best developers are NOT found through:
+❌ Complex technical tests
+❌ 5-6 rounds of interviews
+❌ HR bots with standard questions
 
-Найкращих знаходять через:
-✅ Рекомендації колег
-✅ Перевірені проєкти
-✅ Швидкі практичні завдання
+The best are found through:
+✅ Colleague recommendations
+✅ Verified projects
+✅ Quick practical tasks
 
-Ваш досвід? В коментарях цікаво почитати 👇
+Your experience? Curious to read in comments 👇
 ```
 
 ═════════════════════════════════════════════════════════════════
