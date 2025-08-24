@@ -246,18 +246,18 @@
 						<label>Category</label>
 						<select id="categoryFilter">
 							<option value="">All Categories</option>
-							<option value="React">React (15 devs)</option>
-							<option value="Python">Python (14 devs)</option>
-							<option value="Java">Java (13 devs)</option>
-							<option value="Node.js">Node.js (12 devs)</option>
-							<option value="Mobile">Mobile (15 devs)</option>
-							<option value="DevOps">DevOps (14 devs)</option>
-							<option value="C#/.NET">C#/.NET (13 devs)</option>
-							<option value="PHP">PHP (12 devs)</option>
-							<option value="Go">Go (11 devs)</option>
-							<option value="Ruby">Ruby (10 devs)</option>
-							<option value="QA">QA (7 devs)</option>
-							<option value="Other">Other (59 devs)</option>
+							<option value="React">React</option>
+							<option value="Python">Python</option>
+							<option value="Java">Java</option>
+							<option value="Node.js">Node.js</option>
+							<option value="Mobile">Mobile</option>
+							<option value="DevOps">DevOps</option>
+							<option value="C#/.NET">C#/.NET</option>
+							<option value="PHP">PHP</option>
+							<option value="Go">Go</option>
+							<option value="Ruby">Ruby</option>
+							<option value="QA">QA</option>
+							<option value="Other">Other</option>
 						</select>
 					</div>
 					<div class="filter-group">
@@ -283,7 +283,7 @@
 				</div>
 				<div class="filter-actions">
 					<button class="btn btn-primary btn-small" onclick="applyFilters()">Apply Filters</button>
-					<button class="btn btn-secondary btn-small" onclick="resetFilters()">Reset</button>
+					<button class="btn btn-secondary btn-small" onclick="clearFilters()">Reset</button>
 				</div>
 			</div>
 
@@ -775,9 +775,9 @@
 			console.log('🔄 Applying filters...');
 			applyFilters();
 			
-			// Scroll immediately to developers section
-			console.log('📍 Scrolling to developers...');
-			document.getElementById('developers').scrollIntoView({ behavior: 'smooth' });
+			// Scroll immediately to filtered developers
+			console.log('📍 Scrolling to filtered developers...');
+			document.getElementById('developersGrid').scrollIntoView({ behavior: 'smooth' });
 		}
 
 		// Apply all filters
@@ -839,17 +839,20 @@
 
 		// Clear all filters
 		function clearFilters() {
-			document.getElementById('budgetFilter').value = '';
-			document.getElementById('experienceFilter').value = '';
-			document.getElementById('techLevelFilter').value = '';
+			document.getElementById('salaryMin').value = '1000';
+			document.getElementById('salaryMax').value = '10000';
+			document.getElementById('expMin').value = '0';
+			document.getElementById('expMax').value = '20';
+			document.getElementById('techLevel').value = '0';
 			document.getElementById('categoryFilter').value = '';
 			document.getElementById('industryFilter').value = '';
 			document.getElementById('techQuery').value = '';
 			
-			filteredDevelopers = [...allDevelopers];
-			currentPage = 1;
-			renderDevelopers();
+			console.log('🧹 All filters cleared');
+			applyFilters();
 		}
+
+
 
 		// Initialize on load
 		document.addEventListener('DOMContentLoaded', function() {
