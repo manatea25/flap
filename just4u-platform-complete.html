@@ -729,7 +729,6 @@
 
 		// Filter by tech stack (quick selection)
 		function filterByStack(stack) {
-			console.log('🔥 Popular dev clicked:', stack);
 			
 			// Clear all filters first
 			document.getElementById('salaryMin').value = '1000';
@@ -745,39 +744,35 @@
 			switch(stack) {
 				case 'React':
 					document.getElementById('categoryFilter').value = 'React';
-					console.log('✅ Set category filter to React');
 					break;
 				case 'AI':
 					document.getElementById('techQuery').value = 'TensorFlow';
-					console.log('✅ Set tech query to TensorFlow');
 					break;
 				case 'Node':
 					document.getElementById('categoryFilter').value = 'Node.js';
-					console.log('✅ Set category filter to Node.js');
 					break;
 				case 'Mobile':
 					document.getElementById('categoryFilter').value = 'Mobile';
-					console.log('✅ Set category filter to Mobile');
 					break;
 				case 'DevOps':
 					document.getElementById('categoryFilter').value = 'DevOps';
-					console.log('✅ Set category filter to DevOps');
 					break;
 				case 'Python':
 					document.getElementById('categoryFilter').value = 'Python';
-					console.log('✅ Set category filter to Python');
 					break;
 				default:
 					document.getElementById('techQuery').value = stack;
-					console.log('✅ Set tech query to', stack);
 			}
 			
-			console.log('🔄 Applying filters...');
 			applyFilters();
 			
-			// Scroll immediately to filtered developers
-			console.log('📍 Scrolling to filtered developers...');
-			document.getElementById('developersGrid').scrollIntoView({ behavior: 'smooth' });
+			// Scroll to filtered developers with offset to show cards properly
+			setTimeout(() => {
+				const developersGrid = document.getElementById('developersGrid');
+				const yOffset = -100; // Scroll 100px higher to see cards better
+				const y = developersGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+				window.scrollTo({top: y, behavior: 'smooth'});
+			}, 100);
 		}
 
 		// Apply all filters
@@ -791,27 +786,20 @@
 			const industry = document.getElementById('industryFilter').value;
 			const techQuery = document.getElementById('techQuery').value.toLowerCase();
 
-			console.log('🔍 Filters:', { salaryMin, salaryMax, expMin, expMax, techLevel, category, industry, techQuery });
-
 			filteredDevelopers = [...allDevelopers];
-			console.log('📊 Starting with', allDevelopers.length, 'developers');
 
 			// Salary filter
 			filteredDevelopers = filteredDevelopers.filter(dev => 
 				dev.salaryUSD >= salaryMin && dev.salaryUSD <= salaryMax
 			);
-			console.log('💰 After salary filter:', filteredDevelopers.length);
-
 			// Experience filter
 			filteredDevelopers = filteredDevelopers.filter(dev => 
 				dev.experienceYears >= expMin && dev.experienceYears <= expMax
 			);
-			console.log('⏰ After experience filter:', filteredDevelopers.length);
 
 			// Tech Level filter
 			if (techLevel > 0) {
 				filteredDevelopers = filteredDevelopers.filter(dev => dev.techLevel >= techLevel);
-				console.log('🚀 After tech level filter:', filteredDevelopers.length);
 			}
 
 			// Category filter
@@ -833,7 +821,10 @@
 			}
 
 			currentPage = 1;
-			console.log('✅ Filtered to', filteredDevelopers.length, 'developers');
+			
+			// Update results count display
+			document.getElementById('resultsCount').textContent = filteredDevelopers.length;
+			
 			renderDevelopers();
 		}
 
@@ -848,7 +839,6 @@
 			document.getElementById('industryFilter').value = '';
 			document.getElementById('techQuery').value = '';
 			
-			console.log('🧹 All filters cleared');
 			applyFilters();
 		}
 
