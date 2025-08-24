@@ -165,17 +165,17 @@
 	<section class="hero">
 		<div class="container">
 			<h1>Real Developers, Zero BS</h1>
-			<div class="subtitle">No hourly rates. No middleman markup. No project managers.</div>
-			<p>Browse verified developers. Pick your dev. Tell me the number. He's yours.</p>
+			<div class="subtitle">just 4 you • No hourly rates • No middleman markup</div>
+			<p>Browse verified devs 4 you. Pick your dev. Tell me the number. He's yours.</p>
 			
 			<div class="hero-ctas">
-				<a href="#developers" class="btn btn-primary">Browse Developers</a>
-				<a href="#hot-deals" class="btn btn-secondary">🔥 Hot Deals</a>
+				<a href="#hot-deals" class="btn btn-primary">🔥 Hot Devs 4 You</a>
+				<a href="#developers" class="btn btn-secondary">All Devs 4 You</a>
 			</div>
 
 			<!-- Quick category selection -->
 			<div style="background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 20px; margin: 30px 0;">
-				<h3 style="text-align: center; margin-bottom: 16px;">🔥 Popular right now:</h3>
+				<h3 style="text-align: center; margin-bottom: 16px;">🔥 Popular devs 4 you right now:</h3>
 				<div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
 					<div class="search-tag" onclick="filterByStack('React')">Senior React + TypeScript</div>
 					<div class="search-tag" onclick="filterByStack('AI')">AI/ML Expert</div>
@@ -189,45 +189,15 @@
 			<div class="stats">
 				<div class="stat">
 					<div class="stat-number">202</div>
-					<div class="stat-label">Verified developers</div>
+					<div class="stat-label">devs 4 you</div>
 				</div>
 				<div class="stat">
 					<div class="stat-number">89%</div>
-					<div class="stat-label">Hire success rate</div>
+					<div class="stat-label">hire success rate</div>
 				</div>
 				<div class="stat">
 					<div class="stat-number">&lt;2h</div>
-					<div class="stat-label">Response time</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="how" class="how-section">
-		<div class="container">
-			<h2 class="section-title">How it Works</h2>
-			<p class="section-sub">Seriously, it's stupidly simple</p>
-			
-			<div class="how-steps">
-				<div class="step">
-					<div class="step-number">1</div>
-					<h3>Browse Developers</h3>
-					<p>Scroll through verified devs. All real profiles with actual experience.</p>
-				</div>
-				<div class="step">
-					<div class="step-number">2</div>
-					<h3>Pick Your Dev</h3>
-					<p>See someone you like? Copy their ID (like "Trading Titan #R001").</p>
-				</div>
-				<div class="step">
-					<div class="step-number">3</div>
-					<h3>Tell Me the Number</h3>
-					<p>Send me a message with the dev ID. That's it.</p>
-				</div>
-				<div class="step">
-					<div class="step-number">4</div>
-					<h3>He's Yours</h3>
-					<p>Direct contact, fair price, zero BS. Your developer, your way.</p>
+					<div class="stat-label">response time</div>
 				</div>
 			</div>
 		</div>
@@ -236,7 +206,7 @@
 	<!-- Hot Deals Section -->
 	<section id="hot-deals" style="padding: 40px 0; background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.1));">
 		<div class="container">
-			<h2 class="section-title" style="color: #ef4444;">🔥 Top 5 Hot Deals</h2>
+			<h2 class="section-title" style="color: #ef4444;">🔥 just 4 hot devs 4 you</h2>
 			<p class="section-sub">Low price, high skills - grab them fast!</p>
 			
 			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 30px;" id="hotDealsGrid">
@@ -247,8 +217,8 @@
 
 	<section id="developers" class="developers-section">
 		<div class="container">
-			<h2 class="section-title">All Developers</h2>
-			<p class="section-sub">Complete list of verified professionals</p>
+			<h2 class="section-title">more devs 4 you</h2>
+			<p class="section-sub">Your perfect developer is just 4 clicks away</p>
 			
 			<!-- Filters -->
 			<div class="filters">
@@ -381,9 +351,8 @@
 	</footer>
 
 	<script>
-		// Complete database of 202 developers from Djinni with unique names
+				// Complete database of 202 developers from Djinni with unique names
 		const allDevelopers = [
-        ];
 {id: 'R001', name: 'Trading Titan', position: 'Senior React Developer', category: 'React', technologies: ['React','TypeScript','Redux','Next.js','Node.js'], experienceYears: 8, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Fintech • E-commerce', rating: 4.9, techLevel: 142, availability: 'Available now', businessImpact: 'Built trading platform handling $50M+ daily volume • Led team of 7'},
 {id: 'R002', name: 'Load Killer', position: 'Frontend Tech Lead', category: 'React', technologies: ['React','TypeScript','Micro-frontends','Webpack','Docker'], experienceYears: 10, salaryUSD: 7000, englishLevel: 'Advanced', industry: 'Enterprise • SaaS', rating: 5.0, techLevel: 156, availability: '2 weeks notice', businessImpact: 'Architected system serving 2M+ users • Reduced load time by 65%'},
 {id: 'R003', name: 'Load Killer 1', position: 'React Native Developer', category: 'React', technologies: ['React Native','TypeScript','Redux','Firebase','iOS'], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Upper-Intermediate', industry: 'Social Media • Dating Apps', rating: 4.8, techLevel: 98, availability: 'Available now', businessImpact: 'Dating app with 500k+ downloads • 40% user retention rate'},
@@ -823,6 +792,8 @@
 
 		// Initialize on load
 		document.addEventListener('DOMContentLoaded', function() {
+			console.log('Total developers loaded:', allDevelopers.length);
+			console.log('First developer:', allDevelopers[0]);
 			renderHotDeals();
 			renderDevelopers();
 		});
