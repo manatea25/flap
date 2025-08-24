@@ -732,9 +732,11 @@
 			console.log('🔥 Popular dev clicked:', stack);
 			
 			// Clear all filters first
-			document.getElementById('budgetFilter').value = '';
-			document.getElementById('experienceFilter').value = '';
-			document.getElementById('techLevelFilter').value = '';
+			document.getElementById('salaryMin').value = '1000';
+			document.getElementById('salaryMax').value = '10000';
+			document.getElementById('expMin').value = '0';
+			document.getElementById('expMax').value = '20';
+			document.getElementById('techLevel').value = '0';
 			document.getElementById('categoryFilter').value = '';
 			document.getElementById('industryFilter').value = '';
 			document.getElementById('techQuery').value = '';
@@ -780,43 +782,36 @@
 
 		// Apply all filters
 		function applyFilters() {
-			const budget = document.getElementById('budgetFilter').value;
-			const experience = document.getElementById('experienceFilter').value;
-			const techLevel = document.getElementById('techLevelFilter').value;
+			const salaryMin = parseInt(document.getElementById('salaryMin').value) || 0;
+			const salaryMax = parseInt(document.getElementById('salaryMax').value) || 999999;
+			const expMin = parseInt(document.getElementById('expMin').value) || 0;
+			const expMax = parseInt(document.getElementById('expMax').value) || 999;
+			const techLevel = parseInt(document.getElementById('techLevel').value) || 0;
 			const category = document.getElementById('categoryFilter').value;
 			const industry = document.getElementById('industryFilter').value;
 			const techQuery = document.getElementById('techQuery').value.toLowerCase();
 
-			console.log('🔍 Filters:', { budget, experience, techLevel, category, industry, techQuery });
+			console.log('🔍 Filters:', { salaryMin, salaryMax, expMin, expMax, techLevel, category, industry, techQuery });
 
 			filteredDevelopers = [...allDevelopers];
 			console.log('📊 Starting with', allDevelopers.length, 'developers');
 
-			// Budget filter
-			if (budget) {
-				const [min, max] = budget.split('-').map(Number);
-				filteredDevelopers = filteredDevelopers.filter(dev => {
-					if (max) return dev.salaryUSD >= min && dev.salaryUSD <= max;
-					return dev.salaryUSD >= min;
-				});
-			}
+			// Salary filter
+			filteredDevelopers = filteredDevelopers.filter(dev => 
+				dev.salaryUSD >= salaryMin && dev.salaryUSD <= salaryMax
+			);
+			console.log('💰 After salary filter:', filteredDevelopers.length);
 
 			// Experience filter
-			if (experience) {
-				const [min, max] = experience.split('-').map(Number);
-				filteredDevelopers = filteredDevelopers.filter(dev => {
-					if (max) return dev.experienceYears >= min && dev.experienceYears <= max;
-					return dev.experienceYears >= min;
-				});
-			}
+			filteredDevelopers = filteredDevelopers.filter(dev => 
+				dev.experienceYears >= expMin && dev.experienceYears <= expMax
+			);
+			console.log('⏰ After experience filter:', filteredDevelopers.length);
 
 			// Tech Level filter
-			if (techLevel) {
-				const [min, max] = techLevel.split('-').map(Number);
-				filteredDevelopers = filteredDevelopers.filter(dev => {
-					if (max) return dev.techLevel >= min && dev.techLevel <= max;
-					return dev.techLevel >= min;
-				});
+			if (techLevel > 0) {
+				filteredDevelopers = filteredDevelopers.filter(dev => dev.techLevel >= techLevel);
+				console.log('🚀 After tech level filter:', filteredDevelopers.length);
 			}
 
 			// Category filter
@@ -864,9 +859,11 @@
 			// Add event listeners to filters
 			document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 			document.getElementById('techQuery').addEventListener('input', applyFilters);
-			document.getElementById('budgetFilter').addEventListener('change', applyFilters);
-			document.getElementById('experienceFilter').addEventListener('change', applyFilters);
-			document.getElementById('techLevelFilter').addEventListener('change', applyFilters);
+			document.getElementById('salaryMin').addEventListener('change', applyFilters);
+			document.getElementById('salaryMax').addEventListener('change', applyFilters);
+			document.getElementById('expMin').addEventListener('change', applyFilters);
+			document.getElementById('expMax').addEventListener('change', applyFilters);
+			document.getElementById('techLevel').addEventListener('change', applyFilters);
 			document.getElementById('industryFilter').addEventListener('change', applyFilters);
 			
 			console.log('✅ Event listeners added to all filters');
