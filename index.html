@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>just🔗4u - Real Developers, Zero BS</title>
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		
+		:root {
+			--primary: #6366f1;
+			--primary-hover: #5855eb;
+			--accent: #06d6a0;
+			--background: #0a0e1a;
+			--card-bg: #151b2e;
+			--card-stroke: #1f2937;
+			--text: #e5e7eb;
+			--muted: #9ca3af;
+		}
+
+		body { 
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+			background: var(--background);
+			color: var(--text);
+			line-height: 1.6;
+		}
+
+		.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+		
+		/* Header */
+		header { background: rgba(10, 14, 26, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--card-stroke); position: sticky; top: 0; z-index: 100; }
+		nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+		.logo { font-size: 24px; font-weight: 900; color: var(--accent); }
+		.nav-links { display: flex; gap: 32px; list-style: none; }
+		.nav-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+		.nav-links a:hover { color: var(--accent); }
+
+		/* Hero */
+		.hero { padding: 80px 0; text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 214, 160, 0.1)); }
+		.hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin-bottom: 16px; background: linear-gradient(135deg, #6366f1, #06d6a0); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+		.hero .subtitle { color: var(--accent); font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 700; margin-bottom: 16px; }
+		.hero p { color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); margin: 0 auto 24px; max-width: 740px; }
+		.hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+
+		/* Buttons */
+		.btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; }
+		.btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; }
+		.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); }
+		.btn-secondary { background: transparent; color: var(--text); border: 2px solid var(--card-stroke); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+		/* Trust section */
+		.trust-section { margin: 32px 0; }
+		.trust-logos { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 20px; opacity: 0.7; }
+		.trust-logo { font-size: 24px; font-weight: 700; color: var(--muted); }
+		.badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 24px; }
+		.badge { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 12px; padding: 12px 14px; text-align: center; font-weight: 700; color: #cbd5e1; }
+
+		/* Stats */
+		.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 32px 0; }
+		.stat { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 20px; text-align: center; }
+		.stat-number { font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px; }
+		.stat-label { color: var(--muted); font-size: 14px; }
+
+		/* How it works */
+		.how-section { padding: 60px 0; }
+		.section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; text-align: center; margin-bottom: 20px; }
+		.section-sub { text-align: center; color: var(--muted); font-size: 18px; margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; }
+		.how-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 40px; }
+		.step { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 24px; text-align: center; }
+		.step-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; margin: 0 auto 16px; }
+		.step h3 { font-size: 18px; margin-bottom: 12px; }
+		.step p { color: var(--muted); font-size: 14px; }
+
+		/* Filters */
+		.filters { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 24px; margin: 40px 0; }
+		.filters h3 { margin-bottom: 20px; text-align: center; }
+		.filter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+		.filter-group { display: flex; flex-direction: column; gap: 8px; }
+		.filter-group label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+		.filter-group input, .filter-group select { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--card-stroke); border-radius: 8px; padding: 8px 12px; font-weight: 600; }
+		.filter-actions { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+		.btn-small { padding: 8px 16px; font-size: 14px; }
+
+		/* Developers section */
+		.developers-section { padding: 60px 0; }
+		.developer-card { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 12px; padding: 16px; transition: all 0.3s ease; }
+		.developer-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+		.dev-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+		.dev-name { font-size: 16px; font-weight: 700; color: var(--accent); }
+		.dev-title { color: var(--muted); font-size: 12px; margin-top: 2px; }
+		.dev-id { background: rgba(99, 102, 241, 0.2); color: var(--accent); padding: 3px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+		.dev-tech { display: flex; flex-wrap: wrap; gap: 4px; margin: 8px 0; max-height: 50px; overflow: hidden; }
+		.tech-tag { background: rgba(6, 214, 160, 0.1); border: 1px solid rgba(6, 214, 160, 0.3); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-size: 10px; }
+		.dev-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+		.dev-stat { text-align: center; }
+		.dev-stat-value { font-weight: 700; color: var(--accent); font-size: 14px; }
+		.dev-stat-label { font-size: 10px; color: var(--muted); }
+		.dev-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0; font-size: 11px; }
+		.dev-detail { display: flex; justify-content: space-between; }
+		.dev-detail-label { color: var(--muted); }
+		.dev-detail-value { color: var(--text); font-weight: 600; }
+		.dev-impact { background: rgba(99, 102, 241, 0.1); border-radius: 6px; padding: 8px; margin: 8px 0; }
+		.dev-impact-title { font-size: 10px; color: var(--accent); font-weight: 600; margin-bottom: 3px; }
+		.dev-impact-text { font-size: 12px; color: var(--text); line-height: 1.3; }
+		.dev-actions { display: flex; gap: 6px; margin-top: 12px; }
+		.btn-hire { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; flex: 1; text-align: center; }
+		.btn-hire:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); }
+		.btn-contact { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; flex: 1; text-align: center; }
+		.btn-contact:hover { background: var(--accent); color: var(--background); }
+
+		/* Pagination */
+		.pagination { display: flex; justify-content: center; gap: 12px; margin: 40px 0; }
+		.page-btn { padding: 8px 12px; background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 8px; color: var(--text); text-decoration: none; font-weight: 600; transition: all 0.3s ease; cursor: pointer; }
+		.page-btn:hover, .page-btn.active { background: var(--primary); color: white; }
+
+		/* FAQ */
+		.faq-section { padding: 60px 0; }
+		.faq-grid { display: grid; gap: 16px; margin-top: 40px; }
+		.faq-item { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 12px; padding: 20px; }
+		.faq-question { font-weight: 700; margin-bottom: 8px; color: var(--accent); }
+		.faq-answer { color: var(--muted); font-size: 14px; }
+
+		/* CTA */
+		.cta-section { padding: 80px 0; text-align: center; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 214, 160, 0.1)); }
+		.cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px; }
+		.cta-section p { color: var(--muted); font-size: 18px; margin-bottom: 24px; }
+
+		/* Footer */
+		footer { background: var(--card-bg); border-top: 1px solid var(--card-stroke); padding: 32px 0; text-align: center; }
+		footer p { color: var(--muted); font-size: 14px; }
+
+		/* Results info */
+		.results-info { margin: 20px 0; text-align: center; color: var(--muted); font-weight: 600; }
+
+		/* Quick search tags */
+		.search-tag { background: linear-gradient(135deg, #374151, #4b5563); color: #e5e7eb; padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; font-size: 14px; }
+		.search-tag:hover { background: linear-gradient(135deg, #6366f1, #8b5cf6); transform: translateY(-2px); }
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			.nav-links { display: none; }
+			.hero-ctas { flex-direction: column; align-items: center; }
+			.trust-logos { gap: 16px; }
+			.how-steps { grid-template-columns: 1fr; }
+			.filter-grid { grid-template-columns: 1fr; }
+			.dev-stats { grid-template-columns: repeat(2, 1fr); }
+			.developer-card { padding: 16px; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="container">
+			<div class="logo">just🔗4u</div>
+			<ul class="nav-links">
+				<li><a href="#developers">Developers</a></li>
+				<li><a href="#how">How it Works</a></li>
+				<li><a href="#faq">FAQ</a></li>
+				<li><a href="mailto:hello@just4u.dev" class="btn btn-primary">Get Started</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<section class="hero">
+		<div class="container">
+			<h1>Real Developers, Zero BS</h1>
+			<div class="subtitle">just 4 you • No hourly rates • No middleman markup</div>
+			<p>Browse verified devs 4 you. Pick your dev. Tell me the number. He's yours.</p>
+			
+			<div class="hero-ctas">
+				<a href="#hot-deals" class="btn btn-primary">🔥 Hot Devs 4 You</a>
+				<a href="#developers" class="btn btn-secondary">All Devs 4 You</a>
+			</div>
+
+			<!-- Quick category selection -->
+			<div style="background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 20px; margin: 30px 0;">
+				<h3 style="text-align: center; margin-bottom: 16px;">🔥 Popular devs 4 you right now:</h3>
+				<div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+					<div class="search-tag" onclick="filterByStack('React')">Senior React + TypeScript</div>
+					<div class="search-tag" onclick="filterByStack('AI')">AI/ML Expert</div>
+					<div class="search-tag" onclick="filterByStack('Node')">Full-stack Node.js</div>
+					<div class="search-tag" onclick="filterByStack('Mobile')">Mobile Developer</div>
+					<div class="search-tag" onclick="filterByStack('DevOps')">DevOps Engineer</div>
+					<div class="search-tag" onclick="filterByStack('Python')">Python Expert</div>
+				</div>
+			</div>
+
+			<div class="stats">
+				<div class="stat">
+					<div class="stat-number">202</div>
+					<div class="stat-label">devs 4 you</div>
+				</div>
+				<div class="stat">
+					<div class="stat-number">89%</div>
+					<div class="stat-label">hire success rate</div>
+				</div>
+				<div class="stat">
+					<div class="stat-number">&lt;2h</div>
+					<div class="stat-label">response time</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Hot Deals Section -->
+	<section id="hot-deals" style="padding: 40px 0; background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.1));">
+		<div class="container">
+			<h2 class="section-title" style="color: #ef4444;">🔥 just 4 hot devs 4 you</h2>
+			<p class="section-sub">just 4 amazing devs with low price + high skills!</p>
+			
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 30px;" id="hotDealsGrid">
+				<!-- Hot deals will be populated by JavaScript -->
+			</div>
+		</div>
+	</section>
+
+	<section id="developers" class="developers-section">
+		<div class="container">
+			<h2 class="section-title">more devs 4 you</h2>
+			<p class="section-sub">Your perfect developer is just 4 clicks away</p>
+			
+			<!-- Filters -->
+			<div class="filters">
+				<h3>🔍 Find Your Perfect Developer</h3>
+				<div class="filter-grid">
+					<div class="filter-group">
+						<label>Monthly Budget (USD)</label>
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+							<input type="number" id="salaryMin" placeholder="Min" min="1000" max="10000" value="1000">
+							<input type="number" id="salaryMax" placeholder="Max" min="1000" max="10000" value="10000">
+						</div>
+					</div>
+					<div class="filter-group">
+						<label>Experience (Years)</label>
+						<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+							<input type="number" id="expMin" placeholder="Min" min="0" max="20" value="0">
+							<input type="number" id="expMax" placeholder="Max" min="0" max="20" value="20">
+						</div>
+					</div>
+					<div class="filter-group">
+						<label>Tech Level (Min)</label>
+						<input type="number" id="techLevel" placeholder="e.g. 100" min="0" value="0">
+					</div>
+					<div class="filter-group">
+						<label>Category</label>
+						<select id="categoryFilter">
+							<option value="">All Categories</option>
+							<option value="React">React</option>
+							<option value="Python">Python</option>
+							<option value="Java">Java</option>
+							<option value="Node.js">Node.js</option>
+							<option value="Mobile">Mobile</option>
+							<option value="DevOps">DevOps</option>
+							<option value="C#/.NET">C#/.NET</option>
+							<option value="PHP">PHP</option>
+							<option value="Go">Go</option>
+							<option value="Ruby">Ruby</option>
+							<option value="QA">QA</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+					<div class="filter-group">
+						<label>Industry</label>
+						<select id="industryFilter">
+							<option value="">All Industries</option>
+							<option value="Fintech">Fintech</option>
+							<option value="E-commerce">E-commerce</option>
+							<option value="Healthcare">Healthcare</option>
+							<option value="Education">Education</option>
+							<option value="Gaming">Gaming</option>
+							<option value="Social Media">Social Media</option>
+							<option value="Enterprise">Enterprise</option>
+							<option value="SaaS">SaaS</option>
+							<option value="Blockchain">Blockchain</option>
+							<option value="AI">AI</option>
+						</select>
+					</div>
+					<div class="filter-group">
+						<label>Tech Search</label>
+						<input type="text" id="techQuery" placeholder="e.g. React, Node.js">
+					</div>
+				</div>
+				<div class="filter-actions">
+					<button class="btn btn-primary btn-small" onclick="applyFilters()">Apply Filters</button>
+					<button class="btn btn-secondary btn-small" onclick="clearFilters()">Reset</button>
+				</div>
+			</div>
+
+			<div class="results-info" id="resultsInfo">
+				Showing <span id="resultsCount">202</span> developers
+			</div>
+			
+			<div class="developers-grid" id="developersGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 40px;">
+				<!-- Developers will be populated by JavaScript -->
+			</div>
+
+			<div class="pagination" id="pagination">
+				<!-- Pagination will be populated by JavaScript -->
+			</div>
+		</div>
+	</section>
+
+	<section id="faq" class="faq-section">
+		<div class="container">
+			<h2 class="section-title">FAQ</h2>
+			<p class="section-sub">Questions you probably have</p>
+			
+			<div class="faq-grid">
+				<div class="faq-item">
+					<div class="faq-question">What's Tech Level?</div>
+					<div class="faq-answer">Think of it like a developer's "power level." It's calculated based on experience, technologies mastered, project complexity, and real results. Higher number = more badass developer.</div>
+				</div>
+				<div class="faq-item">
+					<div class="faq-question">Why not freelance platforms?</div>
+					<div class="faq-answer">Because you're not hiring them for a project. You're hiring them for your team. These developers want full-time positions, not gig work.</div>
+				</div>
+				<div class="faq-item">
+					<div class="faq-question">Where do you find these developers?</div>
+					<div class="faq-answer">Years of networking in Ukraine's tech scene. These developers are verified professionals from my personal network. I just know which ones are actually good.</div>
+				</div>
+				<div class="faq-item">
+					<div class="faq-question">Why aren't they job hunting?</div>
+					<div class="faq-answer">They are! But they're picky. They want the right company, right culture, right project. Not just any job that pays.</div>
+				</div>
+				<div class="faq-item">
+					<div class="faq-question">How do I contact them?</div>
+					<div class="faq-answer">Send me their ID (like "Trading Titan #R001") and I'll connect you directly. No middleman, no markup, no BS.</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="cta-section">
+		<div class="container">
+			<h2>Found Your Developer?</h2>
+			<p>Send me their ID and let's make it happen</p>
+			<a href="mailto:hello@just4u.dev?subject=I want to hire a developer" class="btn btn-primary">Get Started</a>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">
+			<p>&copy; 2025 just🔗4u. Real developers, zero BS.</p>
+		</div>
+	</footer>
+
+	<script>
+				// Working version with 20 developers with cool names
+		// Complete database of 202 developers with cool names
+		const allDevelopers = [
+			{id: 'R001', name: 'Trading Titan', position: 'Senior React Developer', category: 'React', technologies: ["React", "TypeScript", "Redux", "Next.js", "Node.js", "GraphQL", "Tailwind"], experienceYears: 8, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Fintech • E-commerce', rating: 4.9, techLevel: 142, availability: 'Available now', businessImpact: 'Built trading platform handling $50M+ daily volume • Led team of 7'},
+			{id: 'R002', name: 'Load Killer', position: 'Frontend Tech Lead', category: 'React', technologies: ["React", "TypeScript", "Micro-frontends", "Webpack", "Docker", "Kubernetes"], experienceYears: 10, salaryUSD: 7000, englishLevel: 'Advanced', industry: 'Enterprise • SaaS', rating: 5.0, techLevel: 156, availability: '2 weeks notice', businessImpact: 'Architected system serving 2M+ users • Reduced load time by 65%'},
+			{id: 'R003', name: 'Performance Pro', position: 'React Native Developer', category: 'React', technologies: ["React Native", "TypeScript", "Redux", "Firebase", "iOS", "Android"], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Upper-Intermediate', industry: 'Social Media • Dating Apps', rating: 4.8, techLevel: 98, availability: 'Available now', businessImpact: 'Dating app with 500k+ downloads • 40% user retention rate'},
+			{id: 'R004', name: 'Healthcare Hacker', position: 'Mid React Developer', category: 'React', technologies: ["React", "JavaScript", "Redux Toolkit", "Material-UI", "Jest"], experienceYears: 4, salaryUSD: 3100, englishLevel: 'Intermediate', industry: 'Healthcare • EduTech', rating: 4.7, techLevel: 76, availability: 'Available now', businessImpact: 'Patient portal used by 200+ hospitals • HIPAA compliant'},
+			{id: 'R005', name: 'Fresh Fury', position: 'Junior React Developer', category: 'React', technologies: ["React", "JavaScript", "HTML5", "CSS3", "Git"], experienceYears: 2, salaryUSD: 2200, englishLevel: 'Pre-Intermediate', industry: 'Startups • Corporate', rating: 4.6, techLevel: 52, availability: 'Available now', businessImpact: 'Corporate dashboard for HR processes • Clean, responsive design'},
+			{id: 'R006', name: 'DeFi Destroyer', position: 'Full Stack React Engineer', category: 'React', technologies: ["React", "Next.js", "Node.js", "PostgreSQL", "AWS", "Docker"], experienceYears: 6, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'Banking • Insurance', rating: 4.9, techLevel: 118, availability: '1 month notice', businessImpact: 'Banking app with 300k+ active users • 99.8% uptime SLA'},
+			{id: 'R007', name: 'Speed Master', position: 'React Specialist', category: 'React', technologies: ["React", "TypeScript", "GraphQL", "Apollo", "Storybook", "Cypress"], experienceYears: 7, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Media • Entertainment', rating: 4.9, techLevel: 125, availability: 'Available now', businessImpact: 'Streaming platform with 1M+ concurrent users • CDN optimization'},
+			{id: 'R008', name: 'Cart Killer', position: 'Frontend Developer', category: 'React', technologies: ["React", "Vue.js", "JavaScript", "Sass", "Webpack"], experienceYears: 3, salaryUSD: 2800, englishLevel: 'Intermediate', industry: 'E-commerce • Retail', rating: 4.7, techLevel: 67, availability: 'Available now', businessImpact: 'E-commerce platform with $5M+ annual GMV • Mobile conversion +45%'},
+			{id: 'R009', name: 'AI Architect', position: 'React Developer', category: 'React', technologies: ["React", "TypeScript", "Redux", "REST APIs", "Firebase"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'Travel • Hospitality', rating: 4.8, techLevel: 81, availability: 'Available now', businessImpact: 'Booking platform for 500+ hotels • Real-time availability system'},
+			{id: 'R010', name: 'Finance Fighter', position: 'Senior Frontend Engineer', category: 'React', technologies: ["React", "Next.js", "TypeScript", "Tailwind", "Vercel", "Prisma"], experienceYears: 9, salaryUSD: 6800, englishLevel: 'Advanced', industry: 'Crypto • Blockchain', rating: 5.0, techLevel: 148, availability: '3 weeks notice', businessImpact: 'DeFi platform with $100M+ TVL • Advanced trading algorithms'},
+			{id: 'R011', name: 'Pixel Prince', position: 'React Team Lead', category: 'React', technologies: ["React", "TypeScript", "Team Management", "Architecture", "CI/CD"], experienceYears: 8, salaryUSD: 6000, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Entertainment', rating: 4.9, techLevel: 138, availability: '1 month notice', businessImpact: 'Gaming platform with 2M+ players • Scalable multiplayer infrastructure'},
+			{id: 'R012', name: 'Security Sage', position: 'Frontend Architect', category: 'React', technologies: ["React", "TypeScript", "System Design", "Performance", "Security"], experienceYears: 12, salaryUSD: 8500, englishLevel: 'Advanced', industry: 'Enterprise • Government', rating: 5.0, techLevel: 168, availability: '2 months notice', businessImpact: 'Government portal serving 10M+ citizens • Security compliance SOC2'},
+			{id: 'R013', name: 'Quick Quasar', position: 'React Developer', category: 'React', technologies: ["React", "JavaScript", "Redux", "Bootstrap", "jQuery"], experienceYears: 3, salaryUSD: 2600, englishLevel: 'Intermediate', industry: 'News • Media', rating: 4.6, techLevel: 58, availability: 'Available now', businessImpact: 'News portal with 1M+ monthly visitors • SEO optimization +120%'},
+			{id: 'R014', name: 'ML Maverick', position: 'Mid-Level React Engineer', category: 'React', technologies: ["React", "TypeScript", "Next.js", "Strapi", "GraphQL"], experienceYears: 5, salaryUSD: 4000, englishLevel: 'Intermediate', industry: 'Real Estate • PropTech', rating: 4.8, techLevel: 92, availability: 'Available now', businessImpact: 'Property platform with 50k+ listings • Advanced search algorithms'},
+			{id: 'R015', name: 'Delivery Duke', position: 'Senior React Native Engineer', category: 'React', technologies: ["React Native", "TypeScript", "Expo", "Push Notifications", "App Store"], experienceYears: 7, salaryUSD: 5200, englishLevel: 'Upper-Intermediate', industry: 'Food Delivery • Logistics', rating: 4.9, techLevel: 121, availability: 'Available now', businessImpact: 'Food delivery app in 15+ cities • 25 min average delivery time'},
+			{id: 'P001', name: 'Trading Titan', position: 'Senior Python Developer', category: 'Python', technologies: ["Python", "Django", "FastAPI", "PostgreSQL", "Redis", "Docker", "AWS"], experienceYears: 9, salaryUSD: 6500, englishLevel: 'Upper-Intermediate', industry: 'Fintech • Banking', rating: 4.9, techLevel: 145, availability: '2 weeks notice', businessImpact: 'Payment processing system handling $1B+ annually • PCI DSS compliant'},
+			{id: 'P002', name: 'Sales Slayer', position: 'ML Python Engineer', category: 'Python', technologies: ["Python", "TensorFlow", "PyTorch", "Pandas", "AWS SageMaker", "MLOps"], experienceYears: 6, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'AI/ML • Data Science', rating: 4.9, techLevel: 124, availability: 'Available now', businessImpact: 'Recommendation engine increasing sales by 35% • 500M+ predictions daily'},
+			{id: 'P003', name: 'Performance Pro', position: 'Django Developer', category: 'Python', technologies: ["Python", "Django", "REST API", "PostgreSQL", "Celery", "Redis"], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'E-commerce • Retail', rating: 4.8, techLevel: 89, availability: 'Available now', businessImpact: 'E-commerce backend serving 100k+ orders monthly • API optimization'},
+			{id: 'P004', name: 'User Whisperer', position: 'Python Backend Engineer', category: 'Python', technologies: ["Python", "Flask", "SQLAlchemy", "MongoDB", "RabbitMQ"], experienceYears: 4, salaryUSD: 3800, englishLevel: 'Intermediate', industry: 'Social Media • Content', rating: 4.7, techLevel: 78, availability: 'Available now', businessImpact: 'Social platform with 200k+ active users • Real-time messaging system'},
+			{id: 'P005', name: 'Data Detective', position: 'Data Engineer', category: 'Python', technologies: ["Python", "Apache Spark", "Kafka", "Airflow", "BigQuery", "Snowflake"], experienceYears: 7, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Analytics • AdTech', rating: 4.9, techLevel: 118, availability: '1 month notice', businessImpact: 'Data pipeline processing 100TB+ daily • Real-time analytics dashboard'},
+			{id: 'P006', name: 'Health Guardian', position: 'Senior Django Engineer', category: 'Python', technologies: ["Python", "Django", "GraphQL", "PostgreSQL", "Docker", "Kubernetes"], experienceYears: 8, salaryUSD: 5900, englishLevel: 'Advanced', industry: 'Healthcare • MedTech', rating: 5.0, techLevel: 139, availability: '3 weeks notice', businessImpact: 'Medical records system for 500+ clinics • GDPR/HIPAA compliant'},
+			{id: 'P007', name: 'Prediction Pro', position: 'Python Full Stack', category: 'Python', technologies: ["Python", "Django", "React", "PostgreSQL", "AWS", "CI/CD"], experienceYears: 5, salaryUSD: 4400, englishLevel: 'Intermediate', industry: 'Education • EduTech', rating: 4.8, techLevel: 96, availability: 'Available now', businessImpact: 'Learning platform with 50k+ students • Adaptive learning algorithms'},
+			{id: 'P008', name: 'Dev Duke', position: 'FastAPI Developer', category: 'Python', technologies: ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "Docker"], experienceYears: 3, salaryUSD: 3200, englishLevel: 'Intermediate', industry: 'Startups • MVP Development', rating: 4.7, techLevel: 69, availability: 'Available now', businessImpact: '5 successful MVP launches • Average development time 8 weeks'},
+			{id: 'P009', name: 'Cloud Conqueror', position: 'Python DevOps Engineer', category: 'Python', technologies: ["Python", "Django", "Docker", "Kubernetes", "Jenkins", "Terraform"], experienceYears: 6, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'Cloud • Infrastructure', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'Infrastructure serving 1M+ requests/hour • 99.9% uptime achievement'},
+			{id: 'P010', name: 'Rising Rex', position: 'Junior Python Developer', category: 'Python', technologies: ["Python", "Flask", "SQLite", "HTML", "CSS", "Git"], experienceYears: 2, salaryUSD: 2400, englishLevel: 'Pre-Intermediate', industry: 'Agencies • Small Business', rating: 4.6, techLevel: 48, availability: 'Available now', businessImpact: '10+ small business websites • Custom CRM solutions'},
+			{id: 'P011', name: 'Neural Ninja', position: 'Data Scientist', category: 'Python', technologies: ["Python", "Pandas", "Scikit-learn", "Jupyter", "Tableau", "SQL"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Upper-Intermediate', industry: 'Insurance • Risk Analysis', rating: 4.8, techLevel: 106, availability: 'Available now', businessImpact: 'Risk models reducing claims by 22% • Fraud detection system'},
+			{id: 'P012', name: 'Acceleration Ace', position: 'Python Automation Engineer', category: 'Python', technologies: ["Python", "Selenium", "pytest", "Jenkins", "Docker"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'QA • Testing', rating: 4.7, techLevel: 82, availability: 'Available now', businessImpact: 'Test automation reducing manual testing by 80% • CI/CD pipeline optimization'},
+			{id: 'P013', name: 'Social Spider', position: 'Senior Python Engineer', category: 'Python', technologies: ["Python", "Django", "Microservices", "PostgreSQL", "Redis", "RabbitMQ"], experienceYears: 10, salaryUSD: 7200, englishLevel: 'Advanced', industry: 'Enterprise • Large Scale', rating: 5.0, techLevel: 158, availability: '2 months notice', businessImpact: 'Microservices architecture serving 5M+ users • Event-driven design'},
+			{id: 'P014', name: 'Binary Boss', position: 'Python API Developer', category: 'Python', technologies: ["Python", "Flask", "REST API", "MongoDB", "JWT"], experienceYears: 3, salaryUSD: 2900, englishLevel: 'Intermediate', industry: 'IoT • Hardware', rating: 4.6, techLevel: 62, availability: 'Available now', businessImpact: 'IoT platform managing 10k+ devices • Real-time telemetry processing'},
+			{id: 'J001', name: 'Trading Titan', position: 'Senior Java Developer', category: 'Java', technologies: ["Java", "Spring Boot", "Microservices", "PostgreSQL", "Kafka", "Docker"], experienceYears: 11, salaryUSD: 7000, englishLevel: 'Advanced', industry: 'Banking • Financial Services', rating: 5.0, techLevel: 162, availability: '1 month notice', businessImpact: 'Core banking system serving 2M+ customers • 24/7 high availability'},
+			{id: 'J002', name: 'Lead Legend', position: 'Java Team Lead', category: 'Java', technologies: ["Java", "Spring", "Team Management", "Architecture", "AWS"], experienceYears: 9, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Insurance • Risk Management', rating: 4.9, techLevel: 141, availability: '3 weeks notice', businessImpact: 'Insurance platform processing $500M+ annually • Team of 12 developers'},
+			{id: 'J003', name: 'Payment Pro', position: 'Java Backend Engineer', category: 'Java', technologies: ["Java", "Spring Boot", "Hibernate", "MySQL", "Redis"], experienceYears: 6, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Marketplace', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Marketplace backend with 50k+ merchants • Payment gateway integration'},
+			{id: 'J004', name: 'Healthcare Hacker', position: 'Full Stack Java Developer', category: 'Java', technologies: ["Java", "Spring", "Angular", "PostgreSQL", "Docker"], experienceYears: 7, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Digital Health', rating: 4.9, techLevel: 126, availability: '2 weeks notice', businessImpact: 'EHR system for 200+ medical practices • HL7 FHIR compliance'},
+			{id: 'J005', name: 'Digital Dragon', position: 'Java Architect', category: 'Java', technologies: ["Java", "Spring", "System Design", "Microservices", "Event Sourcing"], experienceYears: 13, salaryUSD: 8200, englishLevel: 'Advanced', industry: 'Telecom • Large Enterprise', rating: 5.0, techLevel: 176, availability: '3 months notice', businessImpact: 'Telecom billing system for 10M+ subscribers • 99.99% SLA achievement'},
+			{id: 'J006', name: 'Protection Pro', position: 'Mid Java Developer', category: 'Java', technologies: ["Java", "Spring Boot", "Maven", "JUnit", "Git"], experienceYears: 5, salaryUSD: 3900, englishLevel: 'Intermediate', industry: 'Government • Public Sector', rating: 4.7, techLevel: 86, availability: 'Available now', businessImpact: 'Government portal serving 500k+ citizens • Security clearance eligible'},
+			{id: 'J007', name: 'Prediction Pro', position: 'Enterprise Java Developer', category: 'Java', technologies: ["Java", "Spring", "JPA", "Oracle", "WebLogic"], experienceYears: 8, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'Manufacturing • Supply Chain', rating: 4.9, techLevel: 132, availability: '1 month notice', businessImpact: 'Supply chain system for global manufacturer • SAP integration'},
+			{id: 'J008', name: 'Dev Duke', position: 'Java Microservices Developer', category: 'Java', technologies: ["Java", "Spring Boot", "Docker", "Kubernetes", "MongoDB"], experienceYears: 6, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'Logistics • Transportation', rating: 4.8, techLevel: 115, availability: 'Available now', businessImpact: 'Logistics platform tracking 1M+ shipments • Real-time GPS integration'},
+			{id: 'J009', name: 'Mobile Monarch', position: 'Junior Java Developer', category: 'Java', technologies: ["Java", "Spring Boot", "MySQL", "HTML", "JavaScript"], experienceYears: 3, salaryUSD: 2800, englishLevel: 'Pre-Intermediate', industry: 'Startups • Web Development', rating: 4.6, techLevel: 56, availability: 'Available now', businessImpact: '5 web applications for local businesses • REST API development'},
+			{id: 'J010', name: 'Game Guardian', position: 'Senior Java Engineer', category: 'Java', technologies: ["Java", "Spring", "PostgreSQL", "Redis", "AWS"], experienceYears: 10, salaryUSD: 6800, englishLevel: 'Advanced', industry: 'Gaming • Online Entertainment', rating: 5.0, techLevel: 154, availability: '2 months notice', businessImpact: 'Gaming backend supporting 500k+ concurrent players • Anti-cheat systems'},
+			{id: 'J011', name: 'Boost Baron', position: 'Java Cloud Engineer', category: 'Java', technologies: ["Java", "Spring Boot", "AWS", "Lambda", "DynamoDB"], experienceYears: 7, salaryUSD: 5600, englishLevel: 'Upper-Intermediate', industry: 'Cloud Services • SaaS', rating: 4.9, techLevel: 129, availability: 'Available now', businessImpact: 'Serverless architecture serving 100M+ API calls monthly • Cost optimization'},
+			{id: 'J012', name: 'Property Prince', position: 'Java Software Engineer', category: 'Java', technologies: ["Java", "Spring Boot", "PostgreSQL", "Gradle", "Docker"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'Real Estate • PropTech', rating: 4.7, techLevel: 79, availability: 'Available now', businessImpact: 'Property management system for 1000+ units • Automated rent collection'},
+			{id: 'J013', name: 'Syntax Sultan', position: 'Java Developer', category: 'Java', technologies: ["Java", "Spring", "Hibernate", "Oracle", "Jenkins"], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'Retail • Point of Sale', rating: 4.8, techLevel: 93, availability: 'Available now', businessImpact: 'POS system deployed in 500+ stores • Inventory management integration'},
+			{id: 'N001', name: 'Trading Titan', position: 'Senior Node.js Developer', category: 'Node.js', technologies: ["Node.js", "TypeScript", "NestJS", "PostgreSQL", "Redis", "AWS"], experienceYears: 8, salaryUSD: 6100, englishLevel: 'Upper-Intermediate', industry: 'Fintech • Payments', rating: 4.9, techLevel: 136, availability: 'Available now', businessImpact: 'Payment gateway processing $2B+ annually • 99.9% uptime'},
+			{id: 'N002', name: 'Dating Destroyer', position: 'Full Stack Node Developer', category: 'Node.js', technologies: ["Node.js", "React", "Express", "MongoDB", "Socket.io"], experienceYears: 6, salaryUSD: 4700, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Real-time', rating: 4.8, techLevel: 111, availability: '2 weeks notice', businessImpact: 'Multiplayer gaming platform with 200k+ active users • Real-time chat system'},
+			{id: 'N003', name: 'Tech Titan', position: 'Node.js Backend Engineer', category: 'Node.js', technologies: ["Node.js", "Express", "PostgreSQL", "RabbitMQ", "Docker"], experienceYears: 5, salaryUSD: 4100, englishLevel: 'Intermediate', industry: 'E-commerce • Subscription', rating: 4.8, techLevel: 92, availability: 'Available now', businessImpact: 'Subscription platform with 50k+ recurring customers • Billing automation'},
+			{id: 'N004', name: 'Turbo Developer', position: 'Node.js Team Lead', category: 'Node.js', technologies: ["Node.js", "TypeScript", "Microservices", "Kubernetes", "GraphQL"], experienceYears: 7, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'SaaS • B2B Tools', rating: 4.9, techLevel: 128, availability: '1 month notice', businessImpact: 'B2B SaaS serving 1000+ companies • API rate limiting optimization'},
+			{id: 'N005', name: 'Media Maverick', position: 'JavaScript Full Stack', category: 'Node.js', technologies: ["Node.js", "React", "Express", "MongoDB", "AWS"], experienceYears: 4, salaryUSD: 3500, englishLevel: 'Intermediate', industry: 'Social Media • Community', rating: 4.7, techLevel: 81, availability: 'Available now', businessImpact: 'Community platform with 100k+ members • Content moderation system'},
+			{id: 'N006', name: 'Health Guardian', position: 'NestJS Developer', category: 'Node.js', technologies: ["Node.js", "NestJS", "TypeScript", "PostgreSQL", "GraphQL"], experienceYears: 5, salaryUSD: 4400, englishLevel: 'Intermediate', industry: 'Healthcare • Telemedicine', rating: 4.8, techLevel: 98, availability: 'Available now', businessImpact: 'Telemedicine platform serving 10k+ patients • HIPAA compliance'},
+			{id: 'N007', name: 'Code Captain', position: 'Express.js Developer', category: 'Node.js', technologies: ["Node.js", "Express", "MongoDB", "JWT", "REST APIs"], experienceYears: 3, salaryUSD: 2900, englishLevel: 'Intermediate', industry: 'Startups • MVP', rating: 4.6, techLevel: 64, availability: 'Available now', businessImpact: '8 successful startup MVPs • Rapid prototyping specialist'},
+			{id: 'N008', name: 'Fast Track', position: 'Senior Backend Node', category: 'Node.js', technologies: ["Node.js", "TypeScript", "PostgreSQL", "Redis", "Kubernetes"], experienceYears: 9, salaryUSD: 6500, englishLevel: 'Advanced', industry: 'Media • Streaming', rating: 5.0, techLevel: 149, availability: '3 weeks notice', businessImpact: 'Video streaming platform with 1M+ viewers • CDN optimization'},
+			{id: 'N009', name: 'Velocity Victor', position: 'Node.js Developer', category: 'Node.js', technologies: ["Node.js", "Express", "MySQL", "REST API", "Git"], experienceYears: 4, salaryUSD: 3300, englishLevel: 'Intermediate', industry: 'Food • Restaurant Tech', rating: 4.7, techLevel: 73, availability: 'Available now', businessImpact: 'Restaurant ordering system for 200+ locations • Kitchen workflow optimization'},
+			{id: 'N010', name: 'Data Destroyer', position: 'Junior Node.js Developer', category: 'Node.js', technologies: ["Node.js", "Express", "MongoDB", "Basic APIs"], experienceYears: 2, salaryUSD: 2300, englishLevel: 'Pre-Intermediate', industry: 'Agencies • Small Projects', rating: 4.5, techLevel: 45, availability: 'Available now', businessImpact: '12 small business APIs • Database design basics'},
+			{id: 'N011', name: 'Pixel Prince', position: 'Node.js API Specialist', category: 'Node.js', technologies: ["Node.js", "Fastify", "PostgreSQL", "Redis", "OpenAPI"], experienceYears: 6, salaryUSD: 4900, englishLevel: 'Upper-Intermediate', industry: 'Logistics • Supply Chain', rating: 4.8, techLevel: 114, availability: 'Available now', businessImpact: 'Logistics API serving 500+ partners • Rate limiting and caching'},
+			{id: 'N012', name: 'Acceleration Ace', position: 'Node.js Cloud Engineer', category: 'Node.js', technologies: ["Node.js", "Serverless", "AWS Lambda", "DynamoDB"], experienceYears: 7, salaryUSD: 5500, englishLevel: 'Upper-Intermediate', industry: 'Cloud • Serverless', rating: 4.9, techLevel: 122, availability: 'Available now', businessImpact: 'Serverless architecture handling 50M+ requests/month • Cost optimization'},
+			{id: 'O001', name: 'Security Shield', position: 'Senior Angular Developer', category: 'Other', technologies: ["Angular", "TypeScript", "RxJS", "NgRx", "Material Design"], experienceYears: 8, salaryUSD: 5900, englishLevel: 'Upper-Intermediate', industry: 'Enterprise • Large Corp', rating: 4.9, techLevel: 133, availability: '2 weeks notice', businessImpact: 'Enterprise portal for 10k+ employees • Complex workflow automation'},
+			{id: 'O002', name: 'Enterprise Emperor', position: 'Angular Team Lead', category: 'Other', technologies: ["Angular", "TypeScript", "Team Management", "Architecture", "Testing"], experienceYears: 9, salaryUSD: 6400, englishLevel: 'Advanced', industry: 'Government • Public Services', rating: 5.0, techLevel: 144, availability: '1 month notice', businessImpact: 'Government system serving 1M+ citizens • Security clearance required'},
+			{id: 'O003', name: 'Patient Pro', position: 'Angular Developer', category: 'Other', technologies: ["Angular", "TypeScript", "REST APIs", "Bootstrap", "Karma"], experienceYears: 5, salaryUSD: 4000, englishLevel: 'Intermediate', industry: 'Healthcare • Medical Records', rating: 4.8, techLevel: 89, availability: 'Available now', businessImpact: 'Medical records system for 300+ doctors • Patient data security'},
+			{id: 'O004', name: 'Code Commander', position: 'Full Stack Angular Engineer', category: 'Other', technologies: ["Angular", ".NET Core", "SQL Server", "Azure"], experienceYears: 6, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Manufacturing • Industry 4.0', rating: 4.8, techLevel: 107, availability: 'Available now', businessImpact: 'Manufacturing execution system • IoT sensors integration'},
+			{id: 'O005', name: 'Banking Boss', position: 'Angular Specialist', category: 'Other', technologies: ["Angular", "TypeScript", "NgRx", "PWA", "Performance"], experienceYears: 7, salaryUSD: 5200, englishLevel: 'Upper-Intermediate', industry: 'Banking • Financial Tech', rating: 4.9, techLevel: 121, availability: '3 weeks notice', businessImpact: 'Online banking for 500k+ customers • Progressive Web App optimization'},
+			{id: 'O006', name: 'Byte Baron', position: 'Mid Angular Developer', category: 'Other', technologies: ["Angular", "TypeScript", "Angular Material", "Firebase"], experienceYears: 4, salaryUSD: 3400, englishLevel: 'Intermediate', industry: 'Education • LMS', rating: 4.7, techLevel: 76, availability: 'Available now', businessImpact: 'Learning management system for 20k+ students • Real-time collaboration'},
+			{id: 'O007', name: 'Prediction Pro', position: 'Angular Frontend Engineer', category: 'Other', technologies: ["Angular", "TypeScript", "Sass", "Jest", "Cypress"], experienceYears: 6, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'Insurance • Claims Processing', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'Claims processing system • 50% reduction in processing time'},
+			{id: 'O008', name: 'Tech Tornado', position: 'Junior Angular Developer', category: 'Other', technologies: ["Angular", "TypeScript", "HTML5", "CSS3", "Git"], experienceYears: 3, salaryUSD: 2700, englishLevel: 'Pre-Intermediate', industry: 'Agencies • Web Development', rating: 4.6, techLevel: 58, availability: 'Available now', businessImpact: '10 corporate websites • Responsive design specialist'},
+			{id: 'O009', name: 'Tech Terminator', position: 'Angular Architect', category: 'Other', technologies: ["Angular", "System Design", "Micro-frontends", "Performance"], experienceYears: 11, salaryUSD: 7100, englishLevel: 'Advanced', industry: 'Telecom • Communications', rating: 5.0, techLevel: 161, availability: '2 months notice', businessImpact: 'Telecom management system • Micro-frontend architecture'},
+			{id: 'O010', name: 'Estate Emperor', position: 'Angular Developer', category: 'Other', technologies: ["Angular", "TypeScript", "RxJS", "Angular CLI"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'Real Estate • Property Management', rating: 4.7, techLevel: 82, availability: 'Available now', businessImpact: 'Property management portal for 500+ properties • Tenant communication system'},
+			{id: 'O011', name: 'Store Sultan', position: 'Senior Angular Engineer', category: 'Other', technologies: ["Angular", "TypeScript", "NgRx", "Testing", "CI/CD"], experienceYears: 8, salaryUSD: 5700, englishLevel: 'Upper-Intermediate', industry: 'Retail • E-commerce', rating: 4.9, techLevel: 129, availability: 'Available now', businessImpact: 'E-commerce platform with $10M+ annual revenue • Inventory management'},
+			{id: 'O012', name: 'Master Monarch', position: 'Senior Vue.js Developer', category: 'Other', technologies: ["Vue.js", "Nuxt.js", "TypeScript", "Vuex", "Quasar"], experienceYears: 7, salaryUSD: 5300, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Marketplace', rating: 4.9, techLevel: 119, availability: 'Available now', businessImpact: 'Marketplace with 20k+ merchants • Real-time order tracking'},
+			{id: 'O013', name: 'Hotel Hunter', position: 'Vue.js Full Stack', category: 'Other', technologies: ["Vue.js", "Nuxt.js", "Node.js", "MongoDB", "AWS"], experienceYears: 5, salaryUSD: 4100, englishLevel: 'Intermediate', industry: 'Travel • Booking Systems', rating: 4.8, techLevel: 94, availability: 'Available now', businessImpact: 'Travel booking platform • 100k+ bookings processed'},
+			{id: 'O014', name: 'News Noble', position: 'Vue Developer', category: 'Other', technologies: ["Vue.js", "JavaScript", "Vuex", "Element UI"], experienceYears: 4, salaryUSD: 3300, englishLevel: 'Intermediate', industry: 'Media • Content Management', rating: 4.7, techLevel: 74, availability: 'Available now', businessImpact: 'Content management system for news portal • 1M+ articles managed'},
+			{id: 'O015', name: 'Zoom Zealot', position: 'Vue.js Team Lead', category: 'Other', technologies: ["Vue.js", "TypeScript", "Team Management", "Architecture"], experienceYears: 8, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'Fintech • Investment', rating: 4.9, techLevel: 135, availability: '1 month notice', businessImpact: 'Investment platform managing $100M+ AUM • Portfolio optimization tools'},
+			{id: 'O016', name: 'Social Sultan 16', position: 'Vue Specialist', category: 'Other', technologies: ["Vue.js", "Nuxt.js", "TypeScript", "Composition API"], experienceYears: 6, salaryUSD: 4500, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Entertainment', rating: 4.8, techLevel: 104, availability: 'Available now', businessImpact: 'Gaming portal with 500k+ registered users • Tournament management system'},
+			{id: 'O017', name: 'Health Hero 17', position: 'Mid Vue Developer', category: 'Other', technologies: ["Vue.js", "JavaScript", "Vuex", "Bootstrap Vue"], experienceYears: 3, salaryUSD: 2800, englishLevel: 'Intermediate', industry: 'Healthcare • Patient Care', rating: 4.6, techLevel: 62, availability: 'Available now', businessImpact: 'Patient portal for 50+ clinics • Appointment scheduling system'},
+			{id: 'O018', name: 'Data Dragon 18', position: 'Vue.js Frontend Engineer', category: 'Other', technologies: ["Vue.js", "TypeScript", "Pinia", "Vite", "Testing"], experienceYears: 5, salaryUSD: 4000, englishLevel: 'Intermediate', industry: 'SaaS • Business Tools', rating: 4.8, techLevel: 88, availability: 'Available now', businessImpact: 'Business dashboard for 1000+ companies • Data visualization'},
+			{id: 'O019', name: 'Junior Genius 19', position: 'Junior Vue Developer', category: 'Other', technologies: ["Vue.js", "JavaScript", "HTML5", "CSS3"], experienceYears: 2, salaryUSD: 2200, englishLevel: 'Pre-Intermediate', industry: 'Startups • Small Business', rating: 4.5, techLevel: 44, availability: 'Available now', businessImpact: '8 small business websites • Custom components library'},
+			{id: 'O020', name: 'Code Crusader 20', position: 'Vue.js Engineer', category: 'Other', technologies: ["Vue.js", "Nuxt.js", "Sass", "Jest"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'Education • Online Learning', rating: 4.7, techLevel: 79, availability: 'Available now', businessImpact: 'Online learning platform • 30k+ course completions'},
+			{id: 'O021', name: 'Speed Demon 21', position: 'Senior Vue.js Engineer', category: 'Other', technologies: ["Vue.js", "TypeScript", "Nuxt.js", "Performance"], experienceYears: 7, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'Logistics • Fleet Management', rating: 4.9, techLevel: 115, availability: 'Available now', businessImpact: 'Fleet management system tracking 5k+ vehicles • Route optimization'},
+			{id: 'PH001', name: 'Trading Titan', position: 'Senior PHP Developer', category: 'PHP', technologies: ["PHP", "Laravel", "Symfony", "MySQL", "Redis", "Docker"], experienceYears: 9, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Online Retail', rating: 4.9, techLevel: 127, availability: 'Available now', businessImpact: 'E-commerce platform with $5M+ annual sales • Payment gateway integration'},
+			{id: 'PH002', name: 'Dev Destroyer', position: 'Laravel Developer', category: 'PHP', technologies: ["PHP", "Laravel", "Vue.js", "MySQL", "Redis"], experienceYears: 6, salaryUSD: 3900, englishLevel: 'Intermediate', industry: 'SaaS • Business Management', rating: 4.8, techLevel: 96, availability: 'Available now', businessImpact: 'Business management suite for 500+ companies • CRM and invoicing'},
+			{id: 'PH003', name: 'Tech Titan', position: 'WordPress Developer', category: 'PHP', technologies: ["PHP", "WordPress", "WooCommerce", "MySQL", "JavaScript"], experienceYears: 5, salaryUSD: 3200, englishLevel: 'Intermediate', industry: 'Agency • Small Business', rating: 4.7, techLevel: 74, availability: 'Available now', businessImpact: '50+ WordPress sites • Custom themes and plugins'},
+			{id: 'PH004', name: 'Healthcare Hacker', position: 'PHP Full Stack Developer', category: 'PHP', technologies: ["PHP", "Symfony", "React", "PostgreSQL", "Docker"], experienceYears: 7, salaryUSD: 4300, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Medical Software', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Medical practice management • HIPAA compliant system'},
+			{id: 'PH005', name: 'Banking Boss', position: 'Symfony Developer', category: 'PHP', technologies: ["PHP", "Symfony", "Doctrine", "PostgreSQL", "RabbitMQ"], experienceYears: 6, salaryUSD: 4100, englishLevel: 'Upper-Intermediate', industry: 'Banking • Financial Services', rating: 4.8, techLevel: 102, availability: '2 weeks notice', businessImpact: 'Banking API serving 200+ partners • PCI DSS compliance'},
+			{id: 'PH006', name: 'Connection King', position: 'PHP Backend Engineer', category: 'PHP', technologies: ["PHP", "Laravel", "MySQL", "Redis", "AWS"], experienceYears: 5, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'Social Media • Community', rating: 4.7, techLevel: 84, availability: 'Available now', businessImpact: 'Community platform with 100k+ active users • Content moderation'},
+			{id: 'PH007', name: 'Real Estate Rocket', position: 'Senior Laravel Developer', category: 'PHP', technologies: ["PHP", "Laravel", "MySQL", "Redis", "Elasticsearch"], experienceYears: 8, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'Real Estate • Property Tech', rating: 4.9, techLevel: 118, availability: 'Available now', businessImpact: 'Property listing platform • 500k+ properties indexed'},
+			{id: 'PH008', name: 'Dev Duke', position: 'PHP Developer', category: 'PHP', technologies: ["PHP", "CodeIgniter", "MySQL", "HTML", "JavaScript"], experienceYears: 4, salaryUSD: 2900, englishLevel: 'Intermediate', industry: 'Manufacturing • ERP', rating: 4.6, techLevel: 68, availability: 'Available now', businessImpact: 'ERP system for manufacturing company • Inventory tracking'},
+			{id: 'PH009', name: 'Purchase Pro', position: 'Magento Developer', category: 'PHP', technologies: ["PHP", "Magento", "MySQL", "JavaScript", "Elasticsearch"], experienceYears: 6, salaryUSD: 3800, englishLevel: 'Intermediate', industry: 'E-commerce • B2B', rating: 4.7, techLevel: 91, availability: 'Available now', businessImpact: 'B2B e-commerce platform • Custom module development'},
+			{id: 'PH010', name: 'Rising Rex', position: 'Junior PHP Developer', category: 'PHP', technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"], experienceYears: 3, salaryUSD: 2400, englishLevel: 'Pre-Intermediate', industry: 'Web Development • Agencies', rating: 4.5, techLevel: 52, availability: 'Available now', businessImpact: '15 small business websites • Basic CMS development'},
+			{id: 'PH011', name: 'Cuisine Captain', position: 'PHP API Developer', category: 'PHP', technologies: ["PHP", "Slim Framework", "MySQL", "JWT", "REST APIs"], experienceYears: 5, salaryUSD: 3700, englishLevel: 'Intermediate', industry: 'Logistics • Delivery', rating: 4.7, techLevel: 82, availability: 'Available now', businessImpact: 'Delivery API serving 100+ restaurants • Real-time tracking'},
+			{id: 'PH012', name: 'Console Captain', position: 'Full Stack PHP Engineer', category: 'PHP', technologies: ["PHP", "Laravel", "Vue.js", "MySQL", "Docker"], experienceYears: 7, salaryUSD: 4500, englishLevel: 'Upper-Intermediate', industry: 'Education • EdTech', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'Educational platform for 50k+ students • Video streaming integration'},
+			{id: 'CS001', name: 'Security Shield', position: 'Senior .NET Developer', category: 'C#/.NET', technologies: ["C#", ".NET Core", "ASP.NET", "SQL Server", "Azure"], experienceYears: 10, salaryUSD: 6800, englishLevel: 'Advanced', industry: 'Enterprise • Large Corporation', rating: 5.0, techLevel: 152, availability: '1 month notice', businessImpact: 'Enterprise system serving 50k+ employees • Microservices architecture'},
+			{id: 'CS002', name: 'Crypto King', position: '.NET Architect', category: 'C#/.NET', technologies: ["C#", ".NET", "Architecture", "Design Patterns", "Azure"], experienceYears: 12, salaryUSD: 7500, englishLevel: 'Advanced', industry: 'Banking • Financial Services', rating: 5.0, techLevel: 168, availability: '2 months notice', businessImpact: 'Core banking system • Event-driven architecture'},
+			{id: 'CS003', name: 'Patient Pro', position: 'C# Backend Engineer', category: 'C#/.NET', technologies: ["C#", ".NET Core", "Web API", "PostgreSQL", "Docker"], experienceYears: 6, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Digital Health', rating: 4.8, techLevel: 106, availability: 'Available now', businessImpact: 'Health records system for 200+ clinics • HL7 integration'},
+			{id: 'CS004', name: 'Code Commander', position: '.NET Full Stack Developer', category: 'C#/.NET', technologies: ["C#", "ASP.NET", "React", "SQL Server", "Azure"], experienceYears: 7, salaryUSD: 5200, englishLevel: 'Upper-Intermediate', industry: 'Manufacturing • Industry Solutions', rating: 4.9, techLevel: 123, availability: 'Available now', businessImpact: 'Manufacturing execution system • Real-time monitoring'},
+			{id: 'CS005', name: 'Lightning Coder', position: 'Xamarin Developer', category: 'C#/.NET', technologies: ["C#", "Xamarin", ".NET MAUI", "Azure", "Mobile"], experienceYears: 5, salaryUSD: 4100, englishLevel: 'Intermediate', industry: 'Retail • Mobile Commerce', rating: 4.8, techLevel: 92, availability: 'Available now', businessImpact: 'Mobile commerce app with 100k+ downloads • Cross-platform solution'},
+			{id: 'CS006', name: 'Byte Baron', position: 'WPF Developer', category: 'C#/.NET', technologies: ["C#", "WPF", "XAML", "MVVM", "SQL Server"], experienceYears: 8, salaryUSD: 5000, englishLevel: 'Upper-Intermediate', industry: 'Engineering • CAD Software', rating: 4.9, techLevel: 117, availability: '3 weeks notice', businessImpact: 'CAD software for engineering firms • 3D modeling capabilities'},
+			{id: 'CS007', name: 'Security Sultan', position: 'ASP.NET Developer', category: 'C#/.NET', technologies: ["C#", "ASP.NET MVC", "Entity Framework", "SQL Server"], experienceYears: 5, salaryUSD: 3800, englishLevel: 'Intermediate', industry: 'Government • Public Services', rating: 4.7, techLevel: 85, availability: 'Available now', businessImpact: 'Government portal serving 300k+ citizens • Document management'},
+			{id: 'CS008', name: 'Infrastructure Overlord', position: '.NET Cloud Engineer', category: 'C#/.NET', technologies: ["C#", ".NET", "Azure", "Kubernetes", "Microservices"], experienceYears: 6, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'SaaS • Cloud Services', rating: 4.8, techLevel: 113, availability: 'Available now', businessImpact: 'Cloud platform serving 1000+ customers • Auto-scaling implementation'},
+			{id: 'CS009', name: 'Fun Factory', position: 'Unity Developer', category: 'C#/.NET', technologies: ["C#", "Unity", "Game Development", "Mobile", "VR"], experienceYears: 4, salaryUSD: 3700, englishLevel: 'Intermediate', industry: 'Gaming • Entertainment', rating: 4.7, techLevel: 78, availability: 'Available now', businessImpact: '5 published mobile games • VR training applications'},
+			{id: 'CS010', name: 'App Admiral', position: 'Junior .NET Developer', category: 'C#/.NET', technologies: ["C#", "ASP.NET", "SQL Server", "HTML", "CSS"], experienceYears: 3, salaryUSD: 2600, englishLevel: 'Pre-Intermediate', industry: 'Small Business • Web Development', rating: 4.6, techLevel: 56, availability: 'Available now', businessImpact: '10 business websites • Basic CRUD applications'},
+			{id: 'CS011', name: 'House Hunter', position: 'Blazor Developer', category: 'C#/.NET', technologies: ["C#", "Blazor", "ASP.NET Core", "SignalR", "Azure"], experienceYears: 4, salaryUSD: 3900, englishLevel: 'Intermediate', industry: 'Real Estate • Property Management', rating: 4.7, techLevel: 81, availability: 'Available now', businessImpact: 'Property management system • Real-time notifications'},
+			{id: 'CS012', name: 'Cloud Crusader', position: '.NET DevOps Engineer', category: 'C#/.NET', technologies: ["C#", ".NET", "Azure DevOps", "Docker", "Kubernetes"], experienceYears: 7, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Cloud • Infrastructure', rating: 4.8, techLevel: 119, availability: 'Available now', businessImpact: 'CI/CD pipelines for 50+ applications • Infrastructure automation'},
+			{id: 'CS013', name: 'Data Demon', position: 'Senior C# Engineer', category: 'C#/.NET', technologies: ["C#", ".NET", "PostgreSQL", "Redis", "Microservices"], experienceYears: 9, salaryUSD: 6200, englishLevel: 'Advanced', industry: 'Logistics • Supply Chain', rating: 4.9, techLevel: 141, availability: '2 weeks notice', businessImpact: 'Supply chain platform for global companies • Real-time tracking'},
+			{id: 'M001', name: 'Trading Titan', position: 'Senior iOS Developer', category: 'Mobile', technologies: ["Swift", "iOS", "UIKit", "SwiftUI", "Core Data"], experienceYears: 9, salaryUSD: 7200, englishLevel: 'Advanced', industry: 'Banking • Financial Apps', rating: 5.0, techLevel: 159, availability: '1 month notice', businessImpact: 'Banking app with 1M+ users • Biometric authentication'},
+			{id: 'M002', name: 'Load Killer', position: 'Senior Android Developer', category: 'Mobile', technologies: ["Kotlin", "Android SDK", "MVVM", "Room", "Coroutines"], experienceYears: 8, salaryUSD: 6100, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Shopping', rating: 4.9, techLevel: 138, availability: 'Available now', businessImpact: 'Shopping app with 500k+ downloads • AR product visualization'},
+			{id: 'M003', name: 'Patient Pro', position: 'Flutter Developer', category: 'Mobile', technologies: ["Flutter", "Dart", "Firebase", "State Management", "BLoC"], experienceYears: 6, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Telemedicine', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'Telemedicine app serving 50k+ patients • Video consultation'},
+			{id: 'M004', name: 'User Whisperer', position: 'React Native Engineer', category: 'Mobile', technologies: ["React Native", "JavaScript", "Redux", "Firebase"], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'Social Media • Dating', rating: 4.8, techLevel: 95, availability: 'Available now', businessImpact: 'Dating app with 200k+ matches • Real-time messaging'},
+			{id: 'M005', name: 'Travel Tiger', position: 'iOS Team Lead', category: 'Mobile', technologies: ["Swift", "iOS", "Team Management", "Architecture"], experienceYears: 10, salaryUSD: 8000, englishLevel: 'Advanced', industry: 'Travel • Booking', rating: 5.0, techLevel: 172, availability: '2 months notice', businessImpact: 'Travel app with $50M+ bookings annually • Team of 8 developers'},
+			{id: 'M006', name: 'Gaming Giant', position: 'Android Team Lead', category: 'Mobile', technologies: ["Kotlin", "Android", "Architecture", "Team Leadership"], experienceYears: 9, salaryUSD: 6800, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Mobile Games', rating: 4.9, techLevel: 148, availability: '1 month notice', businessImpact: 'Gaming ecosystem with 2M+ players • Live ops implementation'},
+			{id: 'M007', name: 'Money Master', position: 'Cross-platform Developer', category: 'Mobile', technologies: ["Flutter", "React Native", "Dart", "JavaScript"], experienceYears: 6, salaryUSD: 4500, englishLevel: 'Upper-Intermediate', industry: 'Fintech • Payments', rating: 4.8, techLevel: 105, availability: 'Available now', businessImpact: 'Payment app processing $100M+ annually • Multi-currency support'},
+			{id: 'M008', name: 'Stream Slayer', position: 'Mobile iOS Engineer', category: 'Mobile', technologies: ["Swift", "iOS", "UIKit", "Core Graphics", "StoreKit"], experienceYears: 5, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'Media • Streaming', rating: 4.8, techLevel: 102, availability: 'Available now', businessImpact: 'Media streaming app with 300k+ subscribers • Offline content support'},
+			{id: 'M009', name: 'Kitchen Killer', position: 'Mobile Android Engineer', category: 'Mobile', technologies: ["Kotlin", "Java", "Android SDK", "Firebase"], experienceYears: 6, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Food • Delivery', rating: 4.8, techLevel: 109, availability: 'Available now', businessImpact: 'Food delivery app in 10+ cities • Real-time order tracking'},
+			{id: 'M010', name: 'App Admiral', position: 'Flutter Mobile Engineer', category: 'Mobile', technologies: ["Flutter", "Dart", "Provider", "SQLite"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'Education • Learning Apps', rating: 4.7, techLevel: 82, availability: 'Available now', businessImpact: 'Educational app with 100k+ students • Gamification features'},
+			{id: 'M011', name: 'Mobile Militia', position: 'Swift Developer', category: 'Mobile', technologies: ["Swift", "iOS", "MapKit", "Core Location", "Push Notifications"], experienceYears: 7, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'Transportation • Ride Sharing', rating: 4.9, techLevel: 127, availability: 'Available now', businessImpact: 'Ride-sharing app with 50k+ rides monthly • Dynamic pricing'},
+			{id: 'M012', name: 'Match Maker', position: 'Kotlin Developer', category: 'Mobile', technologies: ["Kotlin", "Android", "Material Design", "Firebase"], experienceYears: 5, salaryUSD: 4400, englishLevel: 'Intermediate', industry: 'Health • Fitness', rating: 4.7, techLevel: 88, availability: 'Available now', businessImpact: 'Fitness app with 200k+ active users • Wearable integration'},
+			{id: 'M013', name: 'Mobile Mystic', position: 'Junior iOS Developer', category: 'Mobile', technologies: ["Swift", "iOS", "UIKit", "Core Data"], experienceYears: 3, salaryUSD: 3200, englishLevel: 'Pre-Intermediate', industry: 'Startups • MVP Development', rating: 4.6, techLevel: 64, availability: 'Available now', businessImpact: '5 MVP apps for startups • Clean architecture principles'},
+			{id: 'M014', name: 'Rush Ruler', position: 'Junior Android Developer', category: 'Mobile', technologies: ["Kotlin", "Android", "Material Design"], experienceYears: 3, salaryUSD: 2900, englishLevel: 'Pre-Intermediate', industry: 'Local Business • Utility Apps', rating: 4.5, techLevel: 58, availability: 'Available now', businessImpact: '8 utility apps for local businesses • Google Play Store optimization'},
+			{id: 'M015', name: 'Security Sentinel', position: 'Senior Flutter Developer', category: 'Mobile', technologies: ["Flutter", "Dart", "BLoC", "Firebase", "CI/CD"], experienceYears: 8, salaryUSD: 5900, englishLevel: 'Upper-Intermediate', industry: 'Enterprise • B2B Apps', rating: 4.9, techLevel: 134, availability: '3 weeks notice', businessImpact: 'Enterprise mobile suite for 10k+ employees • MDM integration'},
+			{id: 'D001', name: 'Data Dragon', position: 'Senior DevOps Engineer', category: 'DevOps', technologies: ["Docker", "Kubernetes", "AWS", "Terraform", "Jenkins"], experienceYears: 8, salaryUSD: 6800, englishLevel: 'Advanced', industry: 'Fintech • Cloud Infrastructure', rating: 4.9, techLevel: 142, availability: 'Available now', businessImpact: 'Cloud infrastructure serving 1M+ transactions daily • 99.99% uptime'},
+			{id: 'D002', name: 'DevOps Destroyer', position: 'Cloud Architect', category: 'DevOps', technologies: ["AWS", "Azure", "GCP", "Terraform", "Architecture"], experienceYears: 10, salaryUSD: 7900, englishLevel: 'Advanced', industry: 'Enterprise • Multi-cloud', rating: 5.0, techLevel: 164, availability: '2 months notice', businessImpact: 'Multi-cloud architecture for Fortune 500 • $2M+ annual cost savings'},
+			{id: 'D003', name: 'Performance Pro', position: 'Site Reliability Engineer', category: 'DevOps', technologies: ["Linux", "Kubernetes", "Prometheus", "Grafana", "Python"], experienceYears: 7, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Media • Streaming', rating: 4.9, techLevel: 129, availability: 'Available now', businessImpact: 'Streaming platform serving 5M+ users • Incident response optimization'},
+			{id: 'D004', name: 'FinTech Beast', position: 'DevOps Team Lead', category: 'DevOps', technologies: ["Kubernetes", "AWS", "Team Management", "Security"], experienceYears: 9, salaryUSD: 7200, englishLevel: 'Advanced', industry: 'Banking • Financial Services', rating: 5.0, techLevel: 151, availability: '1 month notice', businessImpact: 'Banking infrastructure with zero security incidents • Team of 10 engineers'},
+			{id: 'D005', name: 'Commerce Crusher', position: 'Infrastructure Engineer', category: 'DevOps', technologies: ["Docker", "Kubernetes", "AWS", "Linux", "Bash"], experienceYears: 5, salaryUSD: 4700, englishLevel: 'Intermediate', industry: 'E-commerce • Retail', rating: 4.8, techLevel: 98, availability: 'Available now', businessImpact: 'E-commerce platform handling 100k+ orders daily • Auto-scaling implementation'},
+			{id: 'D006', name: 'Health Guardian', position: 'Cloud Solutions Architect', category: 'DevOps', technologies: ["AWS", "Azure", "Terraform", "Architecture Design"], experienceYears: 8, salaryUSD: 6900, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Compliance', rating: 4.9, techLevel: 145, availability: '3 weeks notice', businessImpact: 'HIPAA-compliant cloud infrastructure • Multi-region deployment'},
+			{id: 'D007', name: 'Code Captain', position: 'DevOps Engineer', category: 'DevOps', technologies: ["Docker", "Jenkins", "AWS", "Linux", "Python"], experienceYears: 6, salaryUSD: 5100, englishLevel: 'Upper-Intermediate', industry: 'SaaS • B2B Software', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'CI/CD pipelines for 20+ microservices • Deployment automation'},
+			{id: 'D008', name: 'Stream Slayer', position: 'Kubernetes Engineer', category: 'DevOps', technologies: ["Kubernetes", "Docker", "Helm", "Monitoring"], experienceYears: 6, salaryUSD: 5500, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Online Games', rating: 4.8, techLevel: 118, availability: 'Available now', businessImpact: 'Gaming infrastructure supporting 1M+ concurrent players • Container orchestration'},
+			{id: 'D009', name: 'Velocity Victor', position: 'AWS Engineer', category: 'DevOps', technologies: ["AWS", "Lambda", "S3", "RDS", "CloudFormation"], experienceYears: 5, salaryUSD: 4900, englishLevel: 'Intermediate', industry: 'Startup • Scaling Solutions', rating: 4.7, techLevel: 94, availability: 'Available now', businessImpact: 'Serverless architecture for 10+ startups • Cost optimization specialist'},
+			{id: 'D010', name: 'Code Conqueror', position: 'Cloud Engineer', category: 'DevOps', technologies: ["Azure", "Docker", "Kubernetes", "PowerShell"], experienceYears: 4, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'Manufacturing • Industrial IoT', rating: 4.7, techLevel: 86, availability: 'Available now', businessImpact: 'IoT platform managing 50k+ sensors • Edge computing deployment'},
+			{id: 'D011', name: 'Container Captain', position: 'DevOps Consultant', category: 'DevOps', technologies: ["Multi-cloud", "Terraform", "Kubernetes", "Consulting"], experienceYears: 7, salaryUSD: 6000, englishLevel: 'Upper-Intermediate', industry: 'Consulting • Multiple Industries', rating: 4.9, techLevel: 125, availability: 'Available now', businessImpact: 'DevOps transformation for 30+ companies • Best practices implementation'},
+			{id: 'D012', name: 'Security Sage', position: 'Linux System Administrator', category: 'DevOps', technologies: ["Linux", "Bash", "Docker", "Monitoring", "Networking"], experienceYears: 6, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Government • Public Infrastructure', rating: 4.8, techLevel: 104, availability: 'Available now', businessImpact: 'Government infrastructure serving 500k+ citizens • Security hardening'},
+			{id: 'D013', name: 'DevOps Demon', position: 'Junior DevOps Engineer', category: 'DevOps', technologies: ["Docker", "Linux", "Git", "Basic CI/CD", "AWS"], experienceYears: 3, salaryUSD: 3100, englishLevel: 'Pre-Intermediate', industry: 'Agencies • Small Projects', rating: 4.6, techLevel: 68, availability: 'Available now', businessImpact: 'DevOps setup for 15+ small projects • Learning-focused approach'},
+			{id: 'D014', name: 'Quality Quest', position: 'CI/CD Engineer', category: 'DevOps', technologies: ["Jenkins", "GitLab CI", "Docker", "Kubernetes"], experienceYears: 5, salaryUSD: 4800, englishLevel: 'Intermediate', industry: 'Software Development • Tools', rating: 4.7, techLevel: 91, availability: 'Available now', businessImpact: 'CI/CD pipelines reducing deployment time by 70% • Quality gates implementation'},
+			{id: 'O022', name: 'Senior Sage 22', position: 'Senior AI Engineer', category: 'Other', technologies: ["Python", "TensorFlow", "PyTorch", "AWS SageMaker", "MLOps"], experienceYears: 8, salaryUSD: 7500, englishLevel: 'Advanced', industry: 'AI Research • Computer Vision', rating: 5.0, techLevel: 156, availability: '2 weeks notice', businessImpact: 'Computer vision system for autonomous vehicles • 95%+ accuracy rate'},
+			{id: 'O023', name: 'E-com Emperor 23', position: 'ML Engineer', category: 'Other', technologies: ["Python", "Scikit-learn", "Kubernetes", "MLflow", "Airflow"], experienceYears: 6, salaryUSD: 5900, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Recommendation', rating: 4.9, techLevel: 124, availability: 'Available now', businessImpact: 'Recommendation engine increasing sales by 40% • Real-time personalization'},
+			{id: 'O024', name: 'Security Shield 24', position: 'Data Scientist', category: 'Other', technologies: ["Python", "Pandas", "R", "Tableau", "SQL"], experienceYears: 7, salaryUSD: 5600, englishLevel: 'Upper-Intermediate', industry: 'Finance • Risk Analytics', rating: 4.9, techLevel: 118, availability: 'Available now', businessImpact: 'Risk models reducing losses by 30% • Regulatory compliance reporting'},
+			{id: 'O025', name: 'Code Crusader 25', position: 'AI Research Engineer', category: 'Other', technologies: ["Python", "PyTorch", "Research", "Publications", "NLP"], experienceYears: 9, salaryUSD: 8200, englishLevel: 'Advanced', industry: 'Research • Academic', rating: 5.0, techLevel: 168, availability: '3 months notice', businessImpact: '15+ published papers • NLP models for 10+ languages'},
+			{id: 'O026', name: 'Health Hero 26', position: 'Computer Vision Engineer', category: 'Other', technologies: ["Python", "OpenCV", "TensorFlow", "CUDA", "Docker"], experienceYears: 6, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Medical Imaging', rating: 4.9, techLevel: 132, availability: 'Available now', businessImpact: 'Medical imaging system for cancer detection • FDA approval process'},
+			{id: 'O027', name: 'Code Crusader 27', position: 'NLP Engineer', category: 'Other', technologies: ["Python", "Transformers", "spaCy", "NLTK", "FastAPI"], experienceYears: 5, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Legal Tech • Document Analysis', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Legal document analysis processing 1M+ documents • 90% accuracy'},
+			{id: 'O028', name: 'Data Dragon 28', position: 'Machine Learning Engineer', category: 'Other', technologies: ["Python", "TensorFlow", "Kubernetes", "GCP", "MLOps"], experienceYears: 7, salaryUSD: 6100, englishLevel: 'Upper-Intermediate', industry: 'Automotive • Predictive Maintenance', rating: 4.9, techLevel: 128, availability: 'Available now', businessImpact: 'Predictive maintenance reducing downtime by 50% • IoT integration'},
+			{id: 'O029', name: 'Gaming Guru 29', position: 'Deep Learning Specialist', category: 'Other', technologies: ["Python", "PyTorch", "GANs", "Computer Vision"], experienceYears: 6, salaryUSD: 6400, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Content Generation', rating: 4.9, techLevel: 135, availability: 'Available now', businessImpact: 'AI-generated content for gaming industry • Procedural generation'},
+			{id: 'O030', name: 'Data Dragon 30', position: 'AI Product Manager', category: 'Other', technologies: ["Python", "ML Strategy", "Product Management", "Analytics"], experienceYears: 8, salaryUSD: 7000, englishLevel: 'Advanced', industry: 'Product • AI Products', rating: 4.9, techLevel: 147, availability: '1 month notice', businessImpact: 'AI product suite generating $10M+ ARR • Go-to-market strategy'},
+			{id: 'O031', name: 'Data Dragon 31', position: 'MLOps Engineer', category: 'Other', technologies: ["Python", "MLflow", "Kubeflow", "Docker", "Monitoring"], experienceYears: 5, salaryUSD: 5200, englishLevel: 'Intermediate', industry: 'Cloud • ML Infrastructure', rating: 4.8, techLevel: 102, availability: 'Available now', businessImpact: 'ML infrastructure serving 100+ models • Automated retraining pipelines'},
+			{id: 'O032', name: 'Social Sultan 32', position: 'Generative AI Developer', category: 'Other', technologies: ["Python", "OpenAI", "LangChain", "Vector DBs", "FastAPI"], experienceYears: 4, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'AI Applications • Chatbots', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'AI chatbot platform serving 50k+ users • RAG implementation'},
+			{id: 'O033', name: 'Data Dragon 33', position: 'Data Engineer', category: 'Other', technologies: ["Python", "Spark", "Kafka", "Airflow", "SQL"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Upper-Intermediate', industry: 'Analytics • Big Data', rating: 4.8, techLevel: 114, availability: 'Available now', businessImpact: 'Big data platform processing 1TB+ daily • Real-time analytics'},
+			{id: 'O034', name: 'Data Dragon 34', position: 'Junior AI Developer', category: 'Other', technologies: ["Python", "TensorFlow", "Pandas", "Jupyter"], experienceYears: 3, salaryUSD: 3800, englishLevel: 'Pre-Intermediate', industry: 'Startups • Proof of Concepts', rating: 4.6, techLevel: 72, availability: 'Available now', businessImpact: '5 AI proof of concepts • Academic background in ML'},
+			{id: 'G001', name: 'Speed Demon', position: 'Senior Go Developer', category: 'Go', technologies: ["Go", "Docker", "Kubernetes", "PostgreSQL", "gRPC"], experienceYears: 7, salaryUSD: 6400, englishLevel: 'Upper-Intermediate', industry: 'Microservices • Cloud Native', rating: 4.9, techLevel: 134, availability: 'Available now', businessImpact: 'Microservices architecture serving 10M+ requests daily • High-performance systems'},
+			{id: 'G002', name: 'Crypto King', position: 'Go Backend Engineer', category: 'Go', technologies: ["Go", "Gin", "PostgreSQL", "Redis", "Docker"], experienceYears: 5, salaryUSD: 4600, englishLevel: 'Intermediate', industry: 'Fintech • Payment Processing', rating: 4.8, techLevel: 102, availability: 'Available now', businessImpact: 'Payment processing system handling $500M+ monthly • Real-time transactions'},
+			{id: 'G003', name: 'Revenue Rocket', position: 'Go Microservices Developer', category: 'Go', technologies: ["Go", "gRPC", "Kubernetes", "Consul", "Prometheus"], experienceYears: 6, salaryUSD: 5200, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Scalable Systems', rating: 4.8, techLevel: 118, availability: 'Available now', businessImpact: 'E-commerce backend supporting 1M+ products • Service mesh implementation'},
+			{id: 'G004', name: 'Turbo Developer', position: 'Cloud Go Engineer', category: 'Go', technologies: ["Go", "AWS", "Docker", "Terraform", "Serverless"], experienceYears: 8, salaryUSD: 6100, englishLevel: 'Upper-Intermediate', industry: 'Cloud • Infrastructure', rating: 4.9, techLevel: 141, availability: '2 weeks notice', businessImpact: 'Cloud-native applications for enterprise clients • Cost optimization'},
+			{id: 'G005', name: 'Digital Dragon', position: 'Go Full Stack Developer', category: 'Go', technologies: ["Go", "React", "PostgreSQL", "Docker", "GraphQL"], experienceYears: 5, salaryUSD: 4800, englishLevel: 'Intermediate', industry: 'SaaS • Business Tools', rating: 4.8, techLevel: 95, availability: 'Available now', businessImpact: 'Business intelligence platform for 500+ companies • Real-time dashboards'},
+			{id: 'G006', name: 'Cloud Commander', position: 'DevOps Go Engineer', category: 'Go', technologies: ["Go", "Kubernetes", "Docker", "Monitoring Tools"], experienceYears: 6, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Infrastructure • Tooling', rating: 4.8, techLevel: 124, availability: 'Available now', businessImpact: 'Infrastructure tools used by 100+ engineering teams • Automation specialist'},
+			{id: 'G007', name: 'Speed Master', position: 'Go API Developer', category: 'Go', technologies: ["Go", "REST API", "PostgreSQL", "Redis", "Docker"], experienceYears: 4, salaryUSD: 3900, englishLevel: 'Intermediate', industry: 'Social Media • API Services', rating: 4.7, techLevel: 84, availability: 'Available now', businessImpact: 'Social media API serving 50M+ requests daily • Rate limiting optimization'},
+			{id: 'G008', name: 'Community Captain', position: 'Senior Go Architect', category: 'Go', technologies: ["Go", "System Design", "Microservices", "Performance"], experienceYears: 9, salaryUSD: 7200, englishLevel: 'Advanced', industry: 'Gaming • High Performance', rating: 5.0, techLevel: 158, availability: '1 month notice', businessImpact: 'Gaming backend supporting 2M+ concurrent users • Ultra-low latency systems'},
+			{id: 'G009', name: 'Velocity Victor', position: 'Go Developer', category: 'Go', technologies: ["Go", "Echo", "MySQL", "Docker", "Git"], experienceYears: 4, salaryUSD: 4100, englishLevel: 'Intermediate', industry: 'Logistics • Transportation', rating: 4.7, techLevel: 88, availability: 'Available now', businessImpact: 'Logistics platform tracking 100k+ shipments • Route optimization algorithms'},
+			{id: 'G010', name: 'Rising Rex', position: 'Junior Go Developer', category: 'Go', technologies: ["Go", "Basic Web Development", "PostgreSQL"], experienceYears: 3, salaryUSD: 3200, englishLevel: 'Pre-Intermediate', industry: 'Startups • Learning Projects', rating: 4.6, techLevel: 62, availability: 'Available now', businessImpact: '5 Go microservices for startups • Clean architecture focus'},
+			{id: 'G011', name: 'Coin Commander', position: 'Go Blockchain Developer', category: 'Go', technologies: ["Go", "Blockchain", "Ethereum", "Smart Contracts"], experienceYears: 5, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'Blockchain • DeFi', rating: 4.8, techLevel: 115, availability: 'Available now', businessImpact: 'DeFi protocol with $50M+ TVL • Cross-chain bridge development'},
+			{id: 'RB001', name: 'Trading Titan', position: 'Senior Ruby Developer', category: 'Ruby', technologies: ["Ruby", "Rails", "PostgreSQL", "Redis", "Sidekiq"], experienceYears: 8, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'E-commerce • Marketplace', rating: 4.9, techLevel: 131, availability: 'Available now', businessImpact: 'Marketplace platform with $20M+ GMV annually • Payment system integration'},
+			{id: 'RB002', name: 'Dev Destroyer', position: 'Ruby on Rails Engineer', category: 'Ruby', technologies: ["Ruby", "Rails", "MySQL", "Redis", "Docker"], experienceYears: 6, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'SaaS • Business Software', rating: 4.8, techLevel: 98, availability: 'Available now', businessImpact: 'Business software serving 1000+ companies • CRM and billing systems'},
+			{id: 'RB003', name: 'Patient Pro', position: 'Full Stack Ruby Developer', category: 'Ruby', technologies: ["Ruby", "Rails", "React", "PostgreSQL", "AWS"], experienceYears: 7, salaryUSD: 4900, englishLevel: 'Upper-Intermediate', industry: 'Healthcare • Patient Management', rating: 4.9, techLevel: 116, availability: 'Available now', businessImpact: 'Patient management system for 200+ practices • HIPAA compliance'},
+			{id: 'RB004', name: 'Game Changer', position: 'Ruby Backend Engineer', category: 'Ruby', technologies: ["Ruby", "Rails", "API Development", "PostgreSQL"], experienceYears: 5, salaryUSD: 3800, englishLevel: 'Intermediate', industry: 'Media • Content Management', rating: 4.7, techLevel: 87, availability: 'Available now', businessImpact: 'Content management for media companies • Video streaming backend'},
+			{id: 'RB005', name: 'Senior Sultan', position: 'Senior Rails Developer', category: 'Ruby', technologies: ["Ruby", "Rails", "PostgreSQL", "Elasticsearch", "TDD"], experienceYears: 9, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Publishing • Digital Media', rating: 4.9, techLevel: 128, availability: '2 weeks notice', businessImpact: 'Digital publishing platform • Search and recommendation engine'},
+			{id: 'RB006', name: 'Cloud Commander', position: 'Ruby DevOps Engineer', category: 'Ruby', technologies: ["Ruby", "Rails", "Docker", "Kubernetes", "CI/CD"], experienceYears: 6, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Cloud • Deployment', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Ruby application deployment for 50+ projects • Infrastructure automation'},
+			{id: 'RB007', name: 'Code Captain', position: 'Ruby Developer', category: 'Ruby', technologies: ["Ruby", "Rails", "PostgreSQL", "Bootstrap"], experienceYears: 4, salaryUSD: 3400, englishLevel: 'Intermediate', industry: 'Education • Online Learning', rating: 4.7, techLevel: 78, availability: 'Available now', businessImpact: 'Online learning platform for 20k+ students • Course management system'},
+			{id: 'RB008', name: 'Data Dynamo', position: 'Junior Ruby Developer', category: 'Ruby', technologies: ["Ruby", "Rails", "PostgreSQL", "Basic Web Dev"], experienceYears: 3, salaryUSD: 2800, englishLevel: 'Pre-Intermediate', industry: 'Agencies • Web Development', rating: 4.6, techLevel: 58, availability: 'Available now', businessImpact: '12 Ruby on Rails websites • RESTful API development'},
+			{id: 'RB009', name: 'Transaction Tiger', position: 'Ruby API Specialist', category: 'Ruby', technologies: ["Ruby", "Rails API", "GraphQL", "PostgreSQL"], experienceYears: 5, salaryUSD: 4000, englishLevel: 'Intermediate', industry: 'Fintech • API Services', rating: 4.7, techLevel: 91, availability: 'Available now', businessImpact: 'Fintech API serving 200+ partner integrations • OAuth and security'},
+			{id: 'RB010', name: 'Data Destroyer', position: 'Rails Consultant', category: 'Ruby', technologies: ["Ruby", "Rails", "Consulting", "Architecture"], experienceYears: 8, salaryUSD: 5600, englishLevel: 'Upper-Intermediate', industry: 'Consulting • Multiple Industries', rating: 4.9, techLevel: 125, availability: 'Available now', businessImpact: 'Rails consulting for 40+ companies • Legacy system modernization'},
+			{id: 'O035', name: 'Trading Titan 35', position: 'Senior Rust Developer', category: 'Other', technologies: ["Rust", "Actix-web", "PostgreSQL", "Docker", "WebAssembly"], experienceYears: 6, salaryUSD: 6800, englishLevel: 'Upper-Intermediate', industry: 'Systems • High Performance', rating: 4.9, techLevel: 142, availability: 'Available now', businessImpact: 'High-performance trading system processing 1M+ trades daily • Microsecond latency'},
+			{id: 'O036', name: 'Speed Demon 36', position: 'Rust Systems Engineer', category: 'Other', technologies: ["Rust", "System Programming", "Linux", "Performance"], experienceYears: 7, salaryUSD: 6500, englishLevel: 'Upper-Intermediate', industry: 'Infrastructure • Low-level', rating: 4.9, techLevel: 135, availability: '2 weeks notice', businessImpact: 'System-level software for data centers • Memory safety optimization'},
+			{id: 'O037', name: 'Trading Titan 37', position: 'Rust Backend Engineer', category: 'Other', technologies: ["Rust", "Tokio", "PostgreSQL", "gRPC", "Microservices"], experienceYears: 5, salaryUSD: 5200, englishLevel: 'Intermediate', industry: 'Fintech • Payments', rating: 4.8, techLevel: 108, availability: 'Available now', businessImpact: 'Payment processing system • Concurrent transaction handling'},
+			{id: 'O038', name: 'Trading Titan 38', position: 'Blockchain Rust Developer', category: 'Other', technologies: ["Rust", "Blockchain", "Solana", "Smart Contracts"], experienceYears: 5, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'Blockchain • DeFi', rating: 4.8, techLevel: 124, availability: 'Available now', businessImpact: 'DeFi protocol on Solana • $100M+ total value locked'},
+			{id: 'O039', name: 'Speed Demon 39', position: 'Rust Web Developer', category: 'Other', technologies: ["Rust", "Actix", "Rocket", "PostgreSQL", "Redis"], experienceYears: 4, salaryUSD: 4800, englishLevel: 'Intermediate', industry: 'Web Services • APIs', rating: 4.7, techLevel: 94, availability: 'Available now', businessImpact: 'High-performance web services • API gateway implementation'},
+			{id: 'O040', name: 'Speed Demon 40', position: 'Rust Engineer', category: 'Other', technologies: ["Rust", "WebAssembly", "JavaScript", "Performance"], experienceYears: 4, salaryUSD: 5000, englishLevel: 'Intermediate', industry: 'Gaming • Web Performance', rating: 4.8, techLevel: 102, availability: 'Available now', businessImpact: 'WebAssembly modules for gaming • Browser performance optimization'},
+			{id: 'O041', name: 'Junior Genius 41', position: 'Junior Rust Developer', category: 'Other', technologies: ["Rust", "Basic Web Development", "PostgreSQL"], experienceYears: 3, salaryUSD: 3800, englishLevel: 'Pre-Intermediate', industry: 'Systems • Learning Focus', rating: 4.6, techLevel: 72, availability: 'Available now', businessImpact: '3 Rust systems projects • Memory management expertise'},
+			{id: 'O042', name: 'Speed Demon 42', position: 'Rust DevOps Engineer', category: 'Other', technologies: ["Rust", "Kubernetes", "Docker", "Infrastructure Tools"], experienceYears: 6, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'DevOps • Tooling', rating: 4.8, techLevel: 118, availability: 'Available now', businessImpact: 'Infrastructure tools written in Rust • Performance monitoring systems'},
+			{id: 'O043', name: 'Trading Titan 43', position: 'Senior Blockchain Developer', category: 'Other', technologies: ["Solidity", "Ethereum", "Web3.js", "Smart Contracts", "DeFi"], experienceYears: 7, salaryUSD: 7800, englishLevel: 'Advanced', industry: 'Blockchain • DeFi Protocols', rating: 5.0, techLevel: 148, availability: 'Available now', businessImpact: 'DeFi protocol with $500M+ TVL • Security audit experience'},
+			{id: 'O044', name: 'Speed Demon 44', position: 'Smart Contract Developer', category: 'Other', technologies: ["Solidity", "Ethereum", "Hardhat", "OpenZeppelin"], experienceYears: 5, salaryUSD: 6200, englishLevel: 'Upper-Intermediate', industry: 'DeFi • Smart Contracts', rating: 4.9, techLevel: 118, availability: 'Available now', businessImpact: '50+ smart contracts deployed • Gas optimization specialist'},
+			{id: 'O045', name: 'Social Sultan 45', position: 'Web3 Full Stack Developer', category: 'Other', technologies: ["Solidity", "React", "Web3.js", "IPFS", "MetaMask"], experienceYears: 6, salaryUSD: 6800, englishLevel: 'Upper-Intermediate', industry: 'DApp Development • Frontend', rating: 4.9, techLevel: 132, availability: 'Available now', businessImpact: '10+ DApps with 100k+ users • NFT marketplace development'},
+			{id: 'O046', name: 'Speed Demon 46', position: 'DeFi Developer', category: 'Other', technologies: ["Solidity", "DeFi Protocols", "Yield Farming", "AMM"], experienceYears: 5, salaryUSD: 6500, englishLevel: 'Upper-Intermediate', industry: 'DeFi • Protocol Development', rating: 4.8, techLevel: 125, availability: 'Available now', businessImpact: 'Yield farming protocol with $200M+ TVL • Liquidity mining optimization'},
+			{id: 'O047', name: 'Trading Titan 47', position: 'Blockchain Backend Engineer', category: 'Other', technologies: ["Node.js", "Blockchain APIs", "Cryptocurrency"], experienceYears: 6, salaryUSD: 5400, englishLevel: 'Upper-Intermediate', industry: 'Crypto • Payment Systems', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: 'Crypto payment gateway processing $100M+ monthly • Multi-chain support'},
+			{id: 'O048', name: 'Trading Titan 48', position: 'NFT Developer', category: 'Other', technologies: ["Solidity", "ERC-721", "ERC-1155", "IPFS"], experienceYears: 4, salaryUSD: 5200, englishLevel: 'Intermediate', industry: 'NFT • Digital Art', rating: 4.7, techLevel: 98, availability: 'Available now', businessImpact: 'NFT marketplace with $10M+ trading volume • Royalty system implementation'},
+			{id: 'O049', name: 'Trading Titan 49', position: 'Crypto Trading Bot Developer', category: 'Other', technologies: ["Python", "Trading Algorithms", "Binance API"], experienceYears: 5, salaryUSD: 5800, englishLevel: 'Upper-Intermediate', industry: 'Trading • Quantitative', rating: 4.8, techLevel: 115, availability: 'Available now', businessImpact: 'Trading bots managing $50M+ AUM • Risk management algorithms'},
+			{id: 'O050', name: 'Junior Genius 50', position: 'Junior Blockchain Developer', category: 'Other', technologies: ["Solidity", "Basic Smart Contracts", "Web3.js"], experienceYears: 3, salaryUSD: 4200, englishLevel: 'Pre-Intermediate', industry: 'Learning • Entry Level', rating: 4.6, techLevel: 76, availability: 'Available now', businessImpact: '5 learning projects • Smart contract basics'},
+			{id: 'O051', name: 'Security Shield 51', position: 'Web3 Security Engineer', category: 'Other', technologies: ["Solidity", "Security Audits", "Penetration Testing"], experienceYears: 6, salaryUSD: 7200, englishLevel: 'Upper-Intermediate', industry: 'Security • Auditing', rating: 4.9, techLevel: 138, availability: 'Available now', businessImpact: '100+ smart contract audits • Security vulnerability research'},
+			{id: 'O052', name: 'Speed Demon 52', position: 'Senior Unity Developer', category: 'Other', technologies: ["C#", "Unity", "Mobile Games", "Monetization"], experienceYears: 8, salaryUSD: 6100, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Mobile', rating: 4.9, techLevel: 134, availability: 'Available now', businessImpact: 'Mobile games with 10M+ downloads • $5M+ revenue generated'},
+			{id: 'O053', name: 'Gaming Guru 53', position: 'Game Backend Developer', category: 'Other', technologies: ["Node.js", "Multiplayer", "WebSocket", "Game Analytics"], experienceYears: 6, salaryUSD: 5200, englishLevel: 'Upper-Intermediate', industry: 'Gaming • Backend Systems', rating: 4.8, techLevel: 115, availability: 'Available now', businessImpact: 'Multiplayer backend supporting 1M+ players • Real-time leaderboards'},
+			{id: 'O054', name: 'Gaming Guru 54', position: 'Unity Mobile Developer', category: 'Other', technologies: ["Unity", "C#", "iOS", "Android", "In-App Purchases"], experienceYears: 5, salaryUSD: 4400, englishLevel: 'Intermediate', industry: 'Mobile Gaming • Casual Games', rating: 4.8, techLevel: 95, availability: 'Available now', businessImpact: '8 published mobile games • Casual gaming specialist'},
+			{id: 'O055', name: 'Data Dragon 55', position: 'VR Game Developer', category: 'Other', technologies: ["Unity", "C#", "VR SDKs", "Oculus", "HTC Vive"], experienceYears: 5, salaryUSD: 5600, englishLevel: 'Upper-Intermediate', industry: 'VR • Immersive Experiences', rating: 4.8, techLevel: 112, availability: 'Available now', businessImpact: '5 VR experiences for training • Enterprise VR solutions'},
+			{id: 'O056', name: 'Gaming Guru 56', position: 'Indie Game Developer', category: 'Other', technologies: ["Unity", "C#", "Steam", "Game Design"], experienceYears: 6, salaryUSD: 4000, englishLevel: 'Intermediate', industry: 'Indie Gaming • Solo Development', rating: 4.7, techLevel: 88, availability: 'Available now', businessImpact: '3 successful Steam releases • Complete game development cycle'},
+			{id: 'O057', name: 'Data Dragon 57', position: 'Unity AR Developer', category: 'Other', technologies: ["Unity", "C#", "ARKit", "ARCore", "Computer Vision"], experienceYears: 4, salaryUSD: 4800, englishLevel: 'Intermediate', industry: 'AR • Marketing', rating: 4.7, techLevel: 102, availability: 'Available now', businessImpact: 'AR marketing campaigns for major brands • Interactive advertising'},
+			{id: 'O058', name: 'Speed Demon 58', position: 'Game UI/UX Developer', category: 'Other', technologies: ["Unity", "C#", "UI/UX Design", "Player Psychology"], experienceYears: 5, salaryUSD: 4200, englishLevel: 'Intermediate', industry: 'Gaming • User Experience', rating: 4.8, techLevel: 91, availability: 'Available now', businessImpact: 'UI/UX for games with 50M+ plays • Player retention optimization'},
+			{id: 'O059', name: 'Gaming Guru 59', position: 'Junior Game Developer', category: 'Other', technologies: ["Unity", "C#", "Basic Game Development"], experienceYears: 3, salaryUSD: 3200, englishLevel: 'Pre-Intermediate', industry: 'Learning • Small Projects', rating: 4.6, techLevel: 68, availability: 'Available now', businessImpact: '5 small indie games • Game mechanics implementation'},
+			{id: 'Q001', name: 'Social Sultan', position: 'Senior QA Engineer', category: 'QA', technologies: ["Selenium", "Appium", "TestNG", "CI/CD", "API Testing"], experienceYears: 8, salaryUSD: 4800, englishLevel: 'Upper-Intermediate', industry: 'Enterprise • Quality Assurance', rating: 4.9, techLevel: 108, availability: 'Available now', businessImpact: 'QA for enterprise software serving 100k+ users • Test automation framework'},
+			{id: 'Q002', name: 'Test Titan', position: 'Test Automation Engineer', category: 'QA', technologies: ["Cypress", "Jest", "Playwright", "JavaScript", "Python"], experienceYears: 6, salaryUSD: 4200, englishLevel: 'Upper-Intermediate', industry: 'Web Testing • Automation', rating: 4.8, techLevel: 96, availability: 'Available now', businessImpact: 'Test automation reducing manual testing by 85% • CI/CD integration'},
+			{id: 'Q003', name: 'Bug Buster', position: 'QA Team Lead', category: 'QA', technologies: ["Testing Strategy", "Team Management", "Automation"], experienceYears: 9, salaryUSD: 5400, englishLevel: 'Advanced', industry: 'Quality Management • Leadership', rating: 4.9, techLevel: 122, availability: '1 month notice', businessImpact: 'QA team of 15 engineers • Quality processes for Fortune 500'},
+			{id: 'Q004', name: 'Turbo Developer', position: 'Mobile QA Engineer', category: 'QA', technologies: ["Mobile Testing", "Appium", "TestFlight", "Firebase"], experienceYears: 5, salaryUSD: 3800, englishLevel: 'Intermediate', industry: 'Mobile • Cross-platform', rating: 4.8, techLevel: 84, availability: 'Available now', businessImpact: 'Mobile testing for apps with 1M+ downloads • Device compatibility testing'},
+			{id: 'Q005', name: 'Lightning Coder', position: 'Performance Test Engineer', category: 'QA', technologies: ["JMeter", "LoadRunner", "Performance Testing"], experienceYears: 6, salaryUSD: 4600, englishLevel: 'Upper-Intermediate', industry: 'Performance • Load Testing', rating: 4.8, techLevel: 102, availability: 'Available now', businessImpact: 'Performance testing for high-load systems • Bottleneck identification'},
+			{id: 'Q006', name: 'QA Champion', position: 'API Test Engineer', category: 'QA', technologies: ["Postman", "REST Assured", "API Testing", "JSON"], experienceYears: 4, salaryUSD: 3600, englishLevel: 'Intermediate', industry: 'API • Backend Testing', rating: 4.7, techLevel: 78, availability: 'Available now', businessImpact: 'API testing for 50+ microservices • Contract testing implementation'},
+			{id: 'Q007', name: 'Bug Hunter', position: 'Junior QA Engineer', category: 'QA', technologies: ["Manual Testing", "Basic Automation", "Selenium"], experienceYears: 3, salaryUSD: 2800, englishLevel: 'Pre-Intermediate', industry: 'Web Testing • Learning', rating: 4.6, techLevel: 58, availability: 'Available now', businessImpact: 'Manual and automated testing for 20+ projects • Bug tracking expertise'},
+			{id: 'E196', name: 'Expert Elite 196', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
+			{id: 'E197', name: 'Expert Elite 197', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
+			{id: 'E198', name: 'Expert Elite 198', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
+			{id: 'E199', name: 'Expert Elite 199', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
+			{id: 'E200', name: 'Expert Elite 200', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
+			{id: 'E201', name: 'Expert Elite 201', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'},
+			{id: 'E202', name: 'Expert Elite 202', position: 'Senior Developer', category: 'Expert', technologies: ["React", "Node.js", "Python"], experienceYears: 6, salaryUSD: 5000, englishLevel: 'Advanced', industry: 'Technology', rating: 4.8, techLevel: 120, availability: 'Available now', businessImpact: 'Expert level development and consulting'}
+		];
+
+		// Pagination and filtering variables
+		let currentPage = 1;
+		let itemsPerPage = 18;
+		let filteredDevelopers = [...allDevelopers];
+
+		// Render hot deals (top 4 best value developers)
+		function renderHotDeals() {
+			const hotDeals = allDevelopers
+				.filter(dev => dev.salaryUSD <= 5000 && dev.techLevel >= 75)
+				.sort((a, b) => (b.techLevel / b.salaryUSD) - (a.techLevel / a.salaryUSD))
+				.slice(0, 4);
+
+			const hotGrid = document.getElementById('hotDealsGrid');
+			if (hotGrid) {
+				hotGrid.innerHTML = hotDeals.map(dev => `
+					<div class="developer-card" style="border: 2px solid #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));">
+						<div style="background: #ef4444; color: white; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; margin-bottom: 8px; text-align: center;">🔥 HOT DEAL</div>
+						<div class="dev-header">
+							<div>
+								<div class="dev-name">${dev.name}</div>
+								<div class="dev-title">${dev.position}</div>
+							</div>
+							<div class="dev-id">${dev.id}</div>
+						</div>
+						<div class="dev-tech">
+							${dev.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+						</div>
+						<div class="dev-stats">
+							<div class="dev-stat">
+								<div class="dev-stat-value">${dev.experienceYears}y</div>
+								<div class="dev-stat-label">Experience</div>
+							</div>
+							<div class="dev-stat">
+								<div class="dev-stat-value">$${(dev.salaryUSD/1000).toFixed(1)}K</div>
+								<div class="dev-stat-label">Monthly</div>
+							</div>
+							<div class="dev-stat">
+								<div class="dev-stat-value">${dev.rating}★</div>
+								<div class="dev-stat-label">Rating</div>
+							</div>
+							<div class="dev-stat">
+								<div class="dev-stat-value">${dev.techLevel}</div>
+								<div class="dev-stat-label">Tech Level</div>
+							</div>
+						</div>
+						<div class="dev-details">
+							<div class="dev-detail">
+								<span class="dev-detail-label">English:</span>
+								<span class="dev-detail-value">${dev.englishLevel}</span>
+							</div>
+							<div class="dev-detail">
+								<span class="dev-detail-label">Industry:</span>
+								<span class="dev-detail-value">${dev.industry}</span>
+							</div>
+							<div class="dev-detail">
+								<span class="dev-detail-label">Availability:</span>
+								<span class="dev-detail-value">${dev.availability}</span>
+							</div>
+						</div>
+						<div class="dev-impact">
+							<div class="dev-impact-title">Why "${dev.name}"?</div>
+							<div class="dev-impact-text">${dev.businessImpact}</div>
+						</div>
+						<div class="dev-actions">
+							<a href="mailto:hello@just4u.dev?subject=I want ${encodeURIComponent(dev.name)} %23${dev.id}&body=Hi! I'm interested in hiring ${encodeURIComponent(dev.name)} (${dev.id}). Please connect us." class="btn-hire">Hire ${dev.name}</a>
+							<a href="mailto:hello@just4u.dev?subject=Tell me more about ${encodeURIComponent(dev.name)} %23${dev.id}" class="btn-contact">Get Details</a>
+						</div>
+					</div>
+				`).join('');
+			}
+		}
+
+		// Render developers with pagination
+		function renderDevelopers() {
+			const grid = document.getElementById('developersGrid');
+			if (!grid) return;
+
+			const startIndex = (currentPage - 1) * itemsPerPage;
+			const endIndex = startIndex + itemsPerPage;
+			const developersToShow = filteredDevelopers.slice(startIndex, endIndex);
+
+			grid.innerHTML = developersToShow.map(dev => `
+				<div class="developer-card">
+					<div class="dev-header">
+						<div>
+							<div class="dev-name">${dev.name}</div>
+							<div class="dev-title">${dev.position}</div>
+						</div>
+						<div class="dev-id">${dev.id}</div>
+					</div>
+					<div class="dev-tech">
+						${dev.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+					</div>
+					<div class="dev-stats">
+						<div class="dev-stat">
+							<div class="dev-stat-value">${dev.experienceYears}y</div>
+							<div class="dev-stat-label">Experience</div>
+						</div>
+						<div class="dev-stat">
+							<div class="dev-stat-value">$${(dev.salaryUSD/1000).toFixed(1)}K</div>
+							<div class="dev-stat-label">Monthly</div>
+						</div>
+						<div class="dev-stat">
+							<div class="dev-stat-value">${dev.rating}★</div>
+							<div class="dev-stat-label">Rating</div>
+						</div>
+						<div class="dev-stat">
+							<div class="dev-stat-value">${dev.techLevel}</div>
+							<div class="dev-stat-label">Tech Level</div>
+						</div>
+					</div>
+					<div class="dev-details">
+						<div class="dev-detail">
+							<span class="dev-detail-label">English:</span>
+							<span class="dev-detail-value">${dev.englishLevel}</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Industry:</span>
+							<span class="dev-detail-value">${dev.industry}</span>
+						</div>
+						<div class="dev-detail">
+							<span class="dev-detail-label">Availability:</span>
+							<span class="dev-detail-value">${dev.availability}</span>
+						</div>
+					</div>
+					<div class="dev-impact">
+						<div class="dev-impact-title">Why "${dev.name}"?</div>
+						<div class="dev-impact-text">${dev.businessImpact}</div>
+					</div>
+					<div class="dev-actions">
+						<a href="mailto:hello@just4u.dev?subject=I want ${encodeURIComponent(dev.name)} %23${dev.id}&body=Hi! I'm interested in hiring ${encodeURIComponent(dev.name)} (${dev.id}). Please connect us." class="btn-hire">Hire ${dev.name}</a>
+						<a href="mailto:hello@just4u.dev?subject=Tell me more about ${encodeURIComponent(dev.name)} %23${dev.id}" class="btn-contact">Get Details</a>
+					</div>
+				</div>
+			`).join('');
+
+			// Update pagination
+			updatePagination();
+		}
+
+		// Update pagination controls
+		function updatePagination() {
+			const totalPages = Math.ceil(filteredDevelopers.length / itemsPerPage);
+			const pagination = document.getElementById('pagination');
+			
+			if (pagination) {
+				pagination.innerHTML = '';
+				
+				// Previous button
+				if (currentPage > 1) {
+					pagination.innerHTML += `<button onclick="goToPage(${currentPage - 1})" class="pagination-btn">Previous</button>`;
+				}
+				
+				// Page numbers
+				for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+					const pageNum = currentPage <= 3 ? i : currentPage - 3 + i;
+					if (pageNum <= totalPages) {
+						pagination.innerHTML += `<button onclick="goToPage(${pageNum})" class="pagination-btn ${pageNum === currentPage ? 'active' : ''}">${pageNum}</button>`;
+					}
+				}
+				
+				// Next button
+				if (currentPage < totalPages) {
+					pagination.innerHTML += `<button onclick="goToPage(${currentPage + 1})" class="pagination-btn">Next</button>`;
+				}
+			}
+		}
+
+		// Go to specific page
+		function goToPage(page) {
+			currentPage = page;
+			renderDevelopers();
+		}
+
+		// Filter by tech stack (quick selection)
+		function filterByStack(stack) {
+			
+			// Clear all filters first
+			document.getElementById('salaryMin').value = '1000';
+			document.getElementById('salaryMax').value = '10000';
+			document.getElementById('expMin').value = '0';
+			document.getElementById('expMax').value = '20';
+			document.getElementById('techLevel').value = '0';
+			document.getElementById('categoryFilter').value = '';
+			document.getElementById('industryFilter').value = '';
+			document.getElementById('techQuery').value = '';
+			
+			// Map quick filter names to categories or technologies
+			switch(stack) {
+				case 'React':
+					document.getElementById('categoryFilter').value = 'React';
+					break;
+				case 'AI':
+					document.getElementById('techQuery').value = 'TensorFlow';
+					break;
+				case 'Node':
+					document.getElementById('categoryFilter').value = 'Node.js';
+					break;
+				case 'Mobile':
+					document.getElementById('categoryFilter').value = 'Mobile';
+					break;
+				case 'DevOps':
+					document.getElementById('categoryFilter').value = 'DevOps';
+					break;
+				case 'Python':
+					document.getElementById('categoryFilter').value = 'Python';
+					break;
+				default:
+					document.getElementById('techQuery').value = stack;
+			}
+			
+			applyFilters();
+			
+			// Scroll to filtered developers with offset to show cards properly
+			setTimeout(() => {
+				const developersGrid = document.getElementById('developersGrid');
+				const yOffset = -100; // Scroll 100px higher to see cards better
+				const y = developersGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+				window.scrollTo({top: y, behavior: 'smooth'});
+			}, 100);
+		}
+
+		// Apply all filters
+		function applyFilters() {
+			const salaryMin = parseInt(document.getElementById('salaryMin').value) || 0;
+			const salaryMax = parseInt(document.getElementById('salaryMax').value) || 999999;
+			const expMin = parseInt(document.getElementById('expMin').value) || 0;
+			const expMax = parseInt(document.getElementById('expMax').value) || 999;
+			const techLevel = parseInt(document.getElementById('techLevel').value) || 0;
+			const category = document.getElementById('categoryFilter').value;
+			const industry = document.getElementById('industryFilter').value;
+			const techQuery = document.getElementById('techQuery').value.toLowerCase();
+
+			filteredDevelopers = [...allDevelopers];
+
+			// Salary filter
+			filteredDevelopers = filteredDevelopers.filter(dev => 
+				dev.salaryUSD >= salaryMin && dev.salaryUSD <= salaryMax
+			);
+			// Experience filter
+			filteredDevelopers = filteredDevelopers.filter(dev => 
+				dev.experienceYears >= expMin && dev.experienceYears <= expMax
+			);
+
+			// Tech Level filter
+			if (techLevel > 0) {
+				filteredDevelopers = filteredDevelopers.filter(dev => dev.techLevel >= techLevel);
+			}
+
+			// Category filter
+			if (category) {
+				filteredDevelopers = filteredDevelopers.filter(dev => dev.category === category);
+			}
+
+			// Industry filter
+			if (industry) {
+				filteredDevelopers = filteredDevelopers.filter(dev => dev.industry.toLowerCase().includes(industry.toLowerCase()));
+			}
+
+			// Tech query filter
+			if (techQuery) {
+				filteredDevelopers = filteredDevelopers.filter(dev => 
+					dev.technologies.some(tech => tech.toLowerCase().includes(techQuery)) ||
+					dev.position.toLowerCase().includes(techQuery)
+				);
+			}
+
+			currentPage = 1;
+			
+			// Update results count display
+			document.getElementById('resultsCount').textContent = filteredDevelopers.length;
+			
+			renderDevelopers();
+		}
+
+		// Clear all filters
+		function clearFilters() {
+			document.getElementById('salaryMin').value = '1000';
+			document.getElementById('salaryMax').value = '10000';
+			document.getElementById('expMin').value = '0';
+			document.getElementById('expMax').value = '20';
+			document.getElementById('techLevel').value = '0';
+			document.getElementById('categoryFilter').value = '';
+			document.getElementById('industryFilter').value = '';
+			document.getElementById('techQuery').value = '';
+			
+			applyFilters();
+		}
+
+
+
+		// Initialize on load
+		document.addEventListener('DOMContentLoaded', function() {
+			console.log('Total developers loaded:', allDevelopers.length);
+			console.log('First developer:', allDevelopers[0]);
+			
+			// Add event listeners to filters
+			document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+			document.getElementById('techQuery').addEventListener('input', applyFilters);
+			document.getElementById('salaryMin').addEventListener('change', applyFilters);
+			document.getElementById('salaryMax').addEventListener('change', applyFilters);
+			document.getElementById('expMin').addEventListener('change', applyFilters);
+			document.getElementById('expMax').addEventListener('change', applyFilters);
+			document.getElementById('techLevel').addEventListener('change', applyFilters);
+			document.getElementById('industryFilter').addEventListener('change', applyFilters);
+			
+			console.log('✅ Event listeners added to all filters');
+			
+			renderHotDeals();
+			renderDevelopers();
+		});
+	</script>
+</body>
+</html>
