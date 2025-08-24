@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Tech Level Calculator - just🔗4u</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #e6fffa, #f0fff4);
+            border: 2px solid #38a169;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-banner h3 {
+            color: #234e52;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .info-banner p {
+            color: #2d5a27;
+            font-size: 1rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-section {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            position: sticky;
+            top: 20px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .result-section .section-title {
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .tech-category {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border-left: 4px solid;
+        }
+
+        .category-tier1 { border-left-color: #e53e3e; }
+        .category-tier2 { border-left-color: #d69e2e; }
+        .category-tier3 { border-left-color: #38a169; }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .category-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .category-points {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px;
+        }
+
+        .tech-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tech-checkbox:hover {
+            background: #edf2f7;
+        }
+
+        .tech-checkbox.selected {
+            background: #667eea;
+            color: white;
+        }
+
+        .tech-checkbox input {
+            display: none;
+        }
+
+        .level-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .level-option {
+            padding: 12px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .level-option:hover {
+            border-color: #667eea;
+        }
+
+        .level-option.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .rating-display {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .rating-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .breakdown {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .breakdown-item:last-child {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 8px;
+            margin-top: 12px;
+            font-weight: 700;
+        }
+
+        .example-box {
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: #234e52;
+            margin-bottom: 10px;
+        }
+
+        .market-comparison {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .comparison-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .result-section {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Developer Tech Level Calculator</h1>
+            <p>Calculate <strong>unlimited Tech Level</strong> and understand market positioning</p>
+        </div>
+
+        <div class="info-banner">
+            <h3>🚀 Tech Level is UNLIMITED (uncapped)</h3>
+            <p>Unlike traditional 1-5 ratings, our Tech Level can go beyond 100+ for true experts. See where you stand in the global market!</p>
+        </div>
+
+        <div class="calculator-grid">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2 class="section-title">📊 Developer Information</h2>
+                
+                <!-- Basic Info -->
+                <div class="form-group">
+                    <label class="form-label">👨‍💻 Developer Name (optional)</label>
+                    <input type="text" class="form-input" id="developerName" placeholder="e.g. Senior React Developer">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">🎓 Years of Experience</label>
+                    <input type="number" class="form-input" id="experience" placeholder="e.g. 8" min="0" max="20" oninput="calculateRating()">
+                </div>
+
+                <!-- Seniority Level -->
+                <div class="form-group">
+                    <label class="form-label">⭐ Seniority Level</label>
+                    <div class="level-selector">
+                        <div class="level-option" data-level="junior" data-bonus="5" onclick="selectLevel(this)">
+                            <div>Junior</div>
+                            <small>+5-10 points</small>
+                        </div>
+                        <div class="level-option" data-level="middle" data-bonus="15" onclick="selectLevel(this)">
+                            <div>Middle</div>
+                            <small>+15-20 points</small>
+                        </div>
+                        <div class="level-option" data-level="senior" data-bonus="25" onclick="selectLevel(this)">
+                            <div>Senior</div>
+                            <small>+25-30 points</small>
+                        </div>
+                        <div class="level-option" data-level="lead" data-bonus="35" onclick="selectLevel(this)">
+                            <div>Lead/Architect</div>
+                            <small>+35+ points</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Technology (Tier 1) -->
+                <div class="tech-category category-tier1">
+                    <div class="category-header">
+                        <span class="category-title">🔥 Primary Technology (Choose 1)</span>
+                        <span class="category-points">30 points</span>
+                    </div>
+                    <div class="tech-grid" id="tier1Tech">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Secondary Technologies (Tier 2) -->
+                <div class="tech-category category-tier2">
+                    <div class="category-header">
+                        <span class="category-title">💛 Advanced Technologies</span>
+                        <span class="category-points">4 points each</span>
+                    </div>
+                    <div class="tech-grid" id="tier2Tech">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Supporting Technologies (Tier 3) -->
+                <div class="tech-category category-tier3">
+                    <div class="category-header">
+                        <span class="category-title">💚 Supporting Technologies</span>
+                        <span class="category-points">2 points each</span>
+                    </div>
+                    <div class="tech-grid" id="tier3Tech">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Additional Skills -->
+                <div class="tech-category" style="border-left-color: #667eea;">
+                    <div class="category-header">
+                        <span class="category-title">🛠️ Additional Skills</span>
+                        <span class="category-points">2 points each</span>
+                    </div>
+                    <div class="tech-grid" id="additionalSkills">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="example-box">
+                    <div class="example-title">📝 Example Calculation:</div>
+                    <div style="font-size: 14px; color: #4a5568;">
+                        <strong>Senior React Developer with 8 years:</strong><br>
+                        • Primary: React (30 points)<br>
+                        • Advanced: TypeScript, Node.js, GraphQL (4 × 3 = 12 points)<br>
+                        • Supporting: HTML5, CSS3, Git, etc. (2 × 8 = 16 points)<br>
+                        • Additional: Agile, Leadership, etc. (2 × 8 = 16 points)<br>
+                        • Experience: 8 years (8 × 4 = 32 points)<br>
+                        • Senior level: +25 bonus<br>
+                        <strong>Total: 131 Tech Level ⚡ (Top 10% globally)</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-section">
+                <h2 class="section-title">🏆 Tech Level Result</h2>
+                
+                <div class="rating-display" id="finalRating">0</div>
+                
+                <div class="rating-badge" id="levelBadge">Enter data to calculate</div>
+                
+                <div class="market-comparison">
+                    <div class="comparison-text" id="marketPosition">
+                        Calculate your global market position
+                    </div>
+                </div>
+
+                <div class="breakdown">
+                    <div class="breakdown-item">
+                        <span>Primary Technology:</span>
+                        <span id="primaryPoints">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Advanced Technologies:</span>
+                        <span id="tier2Points">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Supporting Technologies:</span>
+                        <span id="tier3Points">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Additional Skills:</span>
+                        <span id="additionalPoints">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Experience Bonus:</span>
+                        <span id="experiencePoints">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Seniority Bonus:</span>
+                        <span id="seniorityPoints">0</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span><strong>Total Tech Level:</strong></span>
+                        <span id="totalPoints"><strong>0</strong></span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
+                    <div id="ratingDescription">Enter developer information to see market positioning</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Technology categories based on complexity and demand
+        const technologies = {
+            tier1: [
+                'React', 'Angular', 'Vue.js', 'Node.js', 'Python', 'Java', 'C#/.NET', 
+                'Go', 'Rust', 'Swift (iOS)', 'Kotlin (Android)', 'React Native', 
+                'Flutter', 'Machine Learning', 'AI/Deep Learning', 'Blockchain', 
+                'DevOps/Cloud Architecture', 'System Architecture'
+            ],
+            tier2: [
+                'TypeScript', 'JavaScript (ES6+)', 'PHP', 'Ruby', 'Scala', 'C++', 
+                'PostgreSQL', 'MongoDB', 'Redis', 'GraphQL', 'microservices', 
+                'Docker', 'Kubernetes', 'AWS', 'Azure', 'GCP', 'Terraform', 
+                'Jenkins', 'Next.js', 'NestJS', 'Laravel', 'Django', 'Spring Boot'
+            ],
+            tier3: [
+                'HTML5', 'CSS3', 'SASS/SCSS', 'Bootstrap', 'Tailwind CSS', 
+                'jQuery', 'MySQL', 'SQLite', 'REST API', 'Git', 'GitHub', 
+                'Jira', 'Figma', 'Webpack', 'Vite', 'npm/yarn', 'Jest', 
+                'Cypress', 'Linux', 'Nginx', 'Apache'
+            ],
+            additional: [
+                'Agile/Scrum', 'Team Leadership', 'Mentoring', 'Code Review', 
+                'Technical Writing', 'Project Management', 'UI/UX Design', 
+                'SEO', 'Analytics', 'Performance Optimization', 'Security', 
+                'Testing', 'CI/CD', 'Database Design', 'API Design', 
+                'Mobile Development', 'Web Development', 'Game Development',
+                'E-commerce', 'Fintech', 'Healthcare', 'Education', 'Enterprise'
+            ]
+        };
+
+        let selectedLevel = null;
+        let selectedTechnologies = {
+            tier1: [],
+            tier2: [],
+            tier3: [],
+            additional: []
+        };
+
+        // Initialize the form
+        function initializeForm() {
+            populateTechCategories();
+            calculateRating();
+        }
+
+        function populateTechCategories() {
+            Object.keys(technologies).forEach(tier => {
+                const container = document.getElementById(tier === 'additional' ? 'additionalSkills' : `${tier}Tech`);
+                container.innerHTML = '';
+                
+                technologies[tier].forEach(tech => {
+                    const checkbox = document.createElement('div');
+                    checkbox.className = 'tech-checkbox';
+                    checkbox.innerHTML = `
+                        <input type="checkbox" id="${tier}_${tech}" data-tier="${tier}" data-tech="${tech}">
+                        <span>${tech}</span>
+                    `;
+                    
+                    checkbox.onclick = () => toggleTechnology(checkbox, tier, tech);
+                    container.appendChild(checkbox);
+                });
+            });
+        }
+
+        function toggleTechnology(element, tier, tech) {
+            const checkbox = element.querySelector('input');
+            const isSelected = element.classList.contains('selected');
+            
+            // Check if this technology is already selected in another tier
+            const isInOtherTier = Object.keys(selectedTechnologies).some(otherTier => 
+                otherTier !== tier && selectedTechnologies[otherTier].includes(tech)
+            );
+            
+            if (isInOtherTier && !isSelected) {
+                alert(`⚠️ "${tech}" is already selected in another category. Please remove it from there first.`);
+                return;
+            }
+            
+            if (tier === 'tier1') {
+                // Only one primary technology allowed
+                document.querySelectorAll('#tier1Tech .tech-checkbox').forEach(el => {
+                    el.classList.remove('selected');
+                    el.querySelector('input').checked = false;
+                });
+                selectedTechnologies.tier1 = [];
+                
+                if (!isSelected) {
+                    element.classList.add('selected');
+                    checkbox.checked = true;
+                    selectedTechnologies.tier1.push(tech);
+                }
+            } else {
+                if (isSelected) {
+                    element.classList.remove('selected');
+                    checkbox.checked = false;
+                    selectedTechnologies[tier] = selectedTechnologies[tier].filter(t => t !== tech);
+                } else {
+                    element.classList.add('selected');
+                    checkbox.checked = true;
+                    selectedTechnologies[tier].push(tech);
+                }
+            }
+            
+            calculateRating();
+        }
+
+        function selectLevel(element) {
+            document.querySelectorAll('.level-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedLevel = {
+                level: element.dataset.level,
+                bonus: parseInt(element.dataset.bonus)
+            };
+            calculateRating();
+        }
+
+        function calculateRating() {
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+            
+            // Calculate points with new scale (20x higher)
+            const primaryPoints = selectedTechnologies.tier1.length * 30;
+            const tier2Points = selectedTechnologies.tier2.length * 4;
+            const tier3Points = selectedTechnologies.tier3.length * 2;
+            const additionalPoints = selectedTechnologies.additional.length * 2;
+            const experiencePoints = experience * 4;
+            const seniorityPoints = selectedLevel ? selectedLevel.bonus : 0;
+            
+            // No cap on total rating - Tech Level is unlimited!
+            const totalRating = primaryPoints + tier2Points + tier3Points + 
+                              additionalPoints + experiencePoints + seniorityPoints;
+            
+            updateDisplay(totalRating, {
+                primary: primaryPoints,
+                tier2: tier2Points,
+                tier3: tier3Points,
+                additional: additionalPoints,
+                experience: experiencePoints,
+                seniority: seniorityPoints
+            });
+        }
+
+        function updateDisplay(rating, breakdown) {
+            document.getElementById('finalRating').textContent = Math.round(rating);
+            document.getElementById('primaryPoints').textContent = breakdown.primary;
+            document.getElementById('tier2Points').textContent = breakdown.tier2;
+            document.getElementById('tier3Points').textContent = breakdown.tier3;
+            document.getElementById('additionalPoints').textContent = breakdown.additional;
+            document.getElementById('experiencePoints').textContent = breakdown.experience;
+            document.getElementById('seniorityPoints').textContent = breakdown.seniority;
+            document.getElementById('totalPoints').innerHTML = `<strong>${Math.round(rating)}</strong>`;
+            
+            // Update level badge and market position
+            let levelBadge = '';
+            let marketPosition = '';
+            let ratingDescription = '';
+            
+            if (rating >= 150) {
+                levelBadge = '🚀 World-Class Expert';
+                marketPosition = 'Top 1% globally • Architect level';
+                ratingDescription = 'Elite developer - leads teams, designs systems';
+            } else if (rating >= 120) {
+                levelBadge = '⭐ Senior Expert';
+                marketPosition = 'Top 5% globally • Senior level';
+                ratingDescription = 'Highly skilled - mentors others, complex projects';
+            } else if (rating >= 90) {
+                levelBadge = '💪 Strong Professional';
+                marketPosition = 'Top 15% globally • Mid-Senior level';
+                ratingDescription = 'Solid developer - independent, reliable delivery';
+            } else if (rating >= 60) {
+                levelBadge = '👍 Good Developer';
+                marketPosition = 'Top 30% globally • Mid level';
+                ratingDescription = 'Competent developer - needs some guidance';
+            } else if (rating >= 30) {
+                levelBadge = '📈 Growing Skills';
+                marketPosition = 'Entry-Mid level • Learning fast';
+                ratingDescription = 'Junior-Mid developer - good potential';
+            } else {
+                levelBadge = '🌱 Entry Level';
+                marketPosition = 'Entry level • Building skills';
+                ratingDescription = 'Junior developer - needs mentoring';
+            }
+            
+            document.getElementById('levelBadge').textContent = levelBadge;
+            document.getElementById('marketPosition').textContent = marketPosition;
+            document.getElementById('ratingDescription').textContent = ratingDescription;
+        }
+
+        // Initialize form when page loads
+        document.addEventListener('DOMContentLoaded', initializeForm);
+    </script>
+</body>
+</html>
