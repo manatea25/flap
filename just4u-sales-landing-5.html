@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>just🔗4u — Hire Verified Developers in 24h</title>
+	<style>
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		:root {
+			--bg-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #111827 100%);
+			--primary: #8b5cf6; /* violet-500 */
+			--primary-2: #6366f1; /* indigo-500 */
+			--accent: #22c55e; /* green-500 */
+			--text: #e5e7eb; /* gray-200 */
+			--muted: #9ca3af; /* gray-400 */
+			--card-bg: rgba(255,255,255,0.06);
+			--card-stroke: rgba(255,255,255,0.12);
+		}
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: var(--bg-grad);
+			color: var(--text);
+			line-height: 1.6;
+			min-height: 100vh;
+		}
+		.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+		/* Header */
+		.header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(2,6,23,0.4); border-bottom: 1px solid var(--card-stroke); }
+		.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; max-width: 1200px; margin: 0 auto; }
+		.logo { font-size: 1.34rem; font-weight: 900; letter-spacing: 0.2px; background: linear-gradient(135deg, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+		.header-ctas { display: flex; gap: 10px; }
+		.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--card-stroke); background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(99,102,241,0.18)); color: #fff; font-weight: 800; cursor: pointer; text-decoration: none; transition: all .25s ease; }
+		.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99,102,241,.35); }
+		.btn--accent { background: linear-gradient(135deg, #22c55e, #10b981); border-color: transparent; }
+		.btn--accent:hover { box-shadow: 0 10px 30px rgba(34,197,94,.35); }
+
+		/* Hero */
+		.hero { padding: 56px 24px 28px; text-align: center; }
+		.hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; line-height: 1.15; margin-bottom: 10px; }
+		.hero p { color: var(--muted); font-size: clamp(.98rem, 1.8vw, 1.1rem); margin: 0 auto 18px; max-width: 740px; }
+		.hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+		.badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 22px; }
+		.badge { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 12px; padding: 10px 12px; text-align: center; font-weight: 700; color: #cbd5e1; }
+
+		/* Section title */
+		.section { padding: 28px 0 12px; }
+		.section-title { text-align: center; font-size: 1.8rem; font-weight: 900; margin-bottom: 8px; }
+		.section-sub { text-align: center; color: var(--muted); margin-bottom: 18px; }
+
+		/* Cards */
+		.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+		.card { position: relative; background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; overflow: hidden; transition: all .25s ease; }
+		.card:hover { transform: translateY(-4px); box-shadow: 0 18px 60px rgba(0,0,0,.35); border-color: rgba(139,92,246,0.45); }
+		.card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(1200px 200px at 20% -20%, rgba(139,92,246,.16), transparent 40%), radial-gradient(1200px 200px at 80% -20%, rgba(99,102,241,.14), transparent 40%); pointer-events: none; }
+		.card-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 16px 16px 10px; }
+		.title { font-size: 1.08rem; font-weight: 800; color: #e7e5ff; line-height: 1.25; padding-right: 8px; }
+		.devid { background: #4f46e5; color: #fff; font-weight: 900; padding: 6px 10px; border-radius: 10px; font-size: 12px; }
+		.meta { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 16px 8px; }
+		.meta .chip { background: rgba(255,255,255,0.08); color: #d1d5db; padding: 4px 8px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+		.metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; padding: 10px 16px; background: rgba(2,6,23,0.3); border-top: 1px solid var(--card-stroke); border-bottom: 1px solid var(--card-stroke); }
+		.metric { text-align: center; }
+		.metric-label { font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 900; letter-spacing: .4px; }
+		.metric-value { font-weight: 900; }
+		.metric--rating { color: #fbbf24; }
+		.metric--tech { color: #60a5fa; }
+		.metric--cat { color: #fb7185; }
+		.techs { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; max-height: 60px; overflow: hidden; }
+		.tag { background: rgba(255,255,255,0.08); color: #cbd5e1; padding: 4px 8px; border-radius: 8px; font-size: 12px; }
+		.tag.primary { background: linear-gradient(135deg, #fecaca, #fca5a5); color: #7f1d1d; font-weight: 700; }
+		.desc { color: #9ca3af; font-size: 14px; padding: 0 16px 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 58px; }
+		.card-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--card-stroke); }
+		.salary { color: var(--accent); font-weight: 900; }
+		.hire { background: linear-gradient(135deg, #8b5cf6, #6366f1); color: #fff; border: 0; border-radius: 12px; padding: 10px 12px; font-weight: 900; cursor: pointer; }
+		.hire:hover { filter: brightness(1.1); }
+
+		/* CTA band */
+		.cta-band { margin: 26px 0 8px; background: linear-gradient(135deg, rgba(99,102,241,.25), rgba(139,92,246,.25)); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 20px; text-align: center; }
+		.cta-band h3 { font-size: 1.4rem; font-weight: 900; margin-bottom: 6px; }
+		.cta-band p { color: var(--muted); margin-bottom: 10px; }
+
+		footer { padding: 20px 0 40px; text-align: center; color: #94a3b8; font-size: 13px; }
+
+		/* Filters */
+		.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 14px; padding: 12px; margin: 12px 0 10px; }
+		.filter { display: grid; gap: 6px; }
+		.filter label { font-size: 12px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: .3px; }
+		.filter input[type="range"] { width: 100%; }
+		.filter input[type="number"], .filter select, .filter input[type="text"] { background: rgba(255,255,255,0.06); color: #e5e7eb; border: 1px solid var(--card-stroke); border-radius: 10px; padding: 8px 10px; font-weight: 700; }
+		.filters-actions { display: flex; gap: 10px; align-items: center; justify-content: flex-end; }
+		.btn--ghost { background: rgba(255,255,255,0.06); border: 1px solid var(--card-stroke); }
+		.results-hint { color: var(--muted); font-weight: 700; padding: 4px 2px; }
+
+		/* Pricing */
+		.plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+		.plan { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 18px; position: relative; overflow: hidden; }
+		.plan h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+		.plan .price { font-size: 1.6rem; font-weight: 900; margin: 4px 0 8px; }
+		.plan ul { list-style: none; color: #cbd5e1; display: grid; gap: 6px; margin: 8px 0 10px; }
+		.plan ul li::before { content: "✔"; color: #22c55e; margin-right: 6px; }
+		.plan.badge::after { content: "POPULAR"; position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg,#22c55e,#10b981); color: #0b2416; font-weight: 900; font-size: 10px; padding: 4px 8px; border-radius: 999px; }
+		.guarantee { margin-top: 10px; color: #94a3b8; font-weight: 700; }
+
+		/* Testimonials */
+		.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+		.testi { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 16px; }
+		.testi .who { margin-top: 10px; color: #cbd5e1; font-weight: 900; }
+		.testi .role { color: #94a3b8; font-size: 12px; font-weight: 800; }
+
+		/* Case Study */
+		.case { background: var(--card-bg); border: 1px solid var(--card-stroke); border-radius: 16px; padding: 18px; display: grid; gap: 10px; }
+		.case .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+		.case .pill { background: rgba(255,255,255,0.06); border: 1px solid var(--card-stroke); color: #cbd5e1; font-weight: 800; border-radius: 999px; padding: 6px 10px; display: inline-block; }
+		.case .stat { background: linear-gradient(135deg, rgba(99,102,241,.2), rgba(139,92,246,.2)); border: 1px solid var(--card-stroke); border-radius: 14px; padding: 12px; text-align: center; }
+		.case .stat .label { color: #94a3b8; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+		.case .stat .value { font-weight: 900; font-size: 1.4rem; }
+
+		@media (max-width: 640px) {
+			.header-inner { padding: 12px 16px; }
+			.hero { padding: 40px 16px 20px; }
+			.container { padding: 16px; }
+		}
+	</style>
+</head>
+<body>
+	<header class="header">
+		<div class="header-inner">
+			<div class="logo">just🔗4u</div>
+			<div class="header-ctas">
+				<a class="btn" href="#candidates">See Candidates</a>
+				<a class="btn btn--accent" href="mailto:stant1605@gmail.com?subject=just4u%3A%20Shortlist%20Request&body=Hi%20Stas%2C%0APlease%20send%20me%20a%20shortlist%20of%203%20best%20matches%20in%2024h.%0AStack%3A%20%5Byour%20stack%5D%0ABudget%3A%20%5Bmonth%20USD%5D%0ATimeline%3A%20%5Bwhen%5D%0AThanks!">Get My Shortlist</a>
+			</div>
+		</div>
+	</header>
+
+	<section class="hero">
+		<div class="container">
+			<h1>Hire Verified Developers in 24h — Pay Only If You Hire</h1>
+			<p>We pre‑match top candidates (rating ≥ 4.5★) and score technical strength (Tech Level, uncapped). Get 3 best fits in 24h with a 60‑day replacement guarantee.</p>
+			<div class="hero-ctas">
+				<a class="btn btn--accent" href="mailto:stant1605@gmail.com?subject=just4u%3A%20Shortlist%20Request&body=Hi%20Stas%2C%0AWe%20need%20a%20%5Brole%5D%20for%20%5Bproject%5D.%0AStack%3A%20%5Bstack%5D%0ABudget%3A%20%5BUSD%2Fmo%5D%0ATimeline%3A%20%5Bwhen%5D%0AThanks!">📩 Request Shortlist</a>
+				<a class="btn" href="#how">How it works</a>
+			</div>
+			<div class="badges">
+				<div class="badge">✅ Pay‑on‑hire • No retainers</div>
+				<div class="badge">⏱️ 24h Shortlist</div>
+				<div class="badge">🛡️ 60‑day Replacement</div>
+				<div class="badge">🔍 Verified Candidates</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="candidates" class="section">
+		<div class="container">
+			<h2 class="section-title">Featured Developers</h2>
+			<p class="section-sub">5 hand‑picked profiles (rating ≥ 4.5★) — ask for the full list of 179</p>
+			<div class="filters">
+				<div class="filter">
+					<label>Salary / month (USD)</label>
+					<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+						<input id="f-salary-min" type="number" min="1000" max="15000" step="100" value="2000">
+						<input id="f-salary-max" type="number" min="1000" max="15000" step="100" value="6000">
+					</div>
+				</div>
+				<div class="filter">
+					<label>Experience (years)</label>
+					<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+						<input id="f-exp-min" type="number" min="0" max="20" step="1" value="2">
+						<input id="f-exp-max" type="number" min="0" max="20" step="1" value="10">
+					</div>
+				</div>
+				<div class="filter">
+					<label>Min Tech Level</label>
+					<input id="f-tech-min" type="number" min="0" step="1" value="0">
+				</div>
+				<div class="filter">
+					<label>Category</label>
+					<select id="f-category">
+						<option value="any">Any</option>
+						<option>JavaScript/React</option>
+						<option>Angular</option>
+					</select>
+				</div>
+				<div class="filter">
+					<label>Tech contains</label>
+					<input id="f-tech-query" type="text" placeholder="e.g. React, Next.js">
+				</div>
+				<div class="filter">
+					<label>Min Rating</label>
+					<input id="f-rating-min" type="number" min="4.5" max="5" step="0.1" value="4.5">
+				</div>
+				<div class="filters-actions">
+					<button class="btn btn--ghost" id="f-reset">Reset</button>
+					<button class="btn btn--accent" id="f-apply">Apply</button>
+				</div>
+			</div>
+			<div class="results-hint" id="resultsHint"></div>
+			<div id="cards" class="grid"></div>
+		</div>
+	</section>
+
+	<section id="how" class="section">
+		<div class="container">
+			<h2 class="section-title">How It Works</h2>
+			<p class="section-sub">Brief → 24h shortlist → intro → test sprint → hire (pay on success)</p>
+			<div class="grid">
+				<div class="badge">1) Share your stack & budget</div>
+				<div class="badge">2) Get 3 matches in 24h</div>
+				<div class="badge">3) Meet candidates (we intro)</div>
+				<div class="badge">4) Optional 20h test sprint</div>
+				<div class="badge">5) Hire with 60‑day guarantee</div>
+			</div>
+			<div class="cta-band">
+				<h3>Ready to see your shortlist?</h3>
+				<p>Reply with your stack and we’ll send 3 best options within 24h.</p>
+				<a class="btn btn--accent" href="mailto:stant1605@gmail.com?subject=just4u%3A%20Shortlist%20Request&body=Hi%20Stas%2C%0AStack%3A%20%5BReact%2FNode%2F%5D%0ABudget%3A%20%5BUSD%2Fmo%5D%0ATimeline%3A%20%5Bwhen%5D%0AThanks!">📩 Get My Shortlist</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="pricing" class="section">
+		<div class="container">
+			<h2 class="section-title">Pricing</h2>
+			<p class="section-sub">Transparent. No hourly markups. Pay only if you hire.</p>
+			<div class="plan-grid">
+				<div class="plan">
+					<h3>One‑time (Promo)</h3>
+					<div class="price">50% of 1st month salary</div>
+					<ul>
+						<li>Direct hire • You pay dev directly</li>
+						<li>60‑day free replacement or full credit</li>
+						<li>Invoice after start (Net 14)</li>
+					</ul>
+					<div class="guarantee">If dev leaves in 30 days → full refund/credit.</div>
+				</div>
+				<div class="plan badge">
+					<h3>Monthly</h3>
+					<div class="price">10% per month × 6 months (cap)</div>
+					<ul>
+						<li>Cancel any time • fee stops</li>
+						<li>Free replacement within 60 days</li>
+						<li>Min fee: $800 • Cap: $5,000</li>
+					</ul>
+					<div class="guarantee">No retainers • Pay‑on‑success only.</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="testimonials" class="section">
+		<div class="container">
+			<h2 class="section-title">What Clients Say</h2>
+			<p class="section-sub">Fast shortlists, strong candidates, fair pricing.</p>
+			<div class="testi-grid">
+				<div class="testi">
+					<div>“Got 3 excellent React options in 24 hours. Hired one in a week. Love the no‑markup policy.”</div>
+					<div class="who">CTO, SaaS (US)</div>
+					<div class="role">Team of 12 • React/Node</div>
+				</div>
+				<div class="testi">
+					<div>“Transparent Tech Level helped us justify the hire to the board. Replacement guarantee = zero stress.”</div>
+					<div class="who">Head of Eng, Fintech (EU)</div>
+					<div class="role">PCI/DSS • Mobile</div>
+				</div>
+				<div class="testi">
+					<div>“Compared to agencies we saved >$8k in the first months alone. Will use again.”</div>
+					<div class="who">Founder, Marketplace (UK)</div>
+					<div class="role">Scale‑up • Full‑stack</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="case" class="section">
+		<div class="container">
+			<h2 class="section-title">Case Study — From Search to Hire</h2>
+			<p class="section-sub">A short story of a direct hire with clear savings vs agency markup.</p>
+			<div class="case">
+				<div class="row">
+					<div>
+						<span class="pill">Client</span>
+						<h3 style="margin-top:6px;">Series‑A SaaS, US</h3>
+						<p style="color:#94a3b8;">Needed Senior React (7y) for dashboard revamp.</p>
+					</div>
+					<div>
+						<span class="pill">Match</span>
+						<h3 style="margin-top:6px;">#0003 Senior React Dev</h3>
+						<p style="color:#94a3b8;">Rating 4.9★ • Tech Level 127 • $5,000/mo • UE</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="stat"><div class="label">Timeline</div><div class="value">24h shortlist → 7d hire</div></div>
+					<div class="stat"><div class="label">Process</div><div class="value">Brief → 24h shortlist → 2 calls → offer</div></div>
+					<div class="stat"><div class="label">Guarantee</div><div class="value">60‑day replacement</div></div>
+				</div>
+				<div class="row">
+					<div class="stat"><div class="label">Agency model</div><div class="value">~30% markup → ~$1,500/mo</div></div>
+					<div class="stat"><div class="label">Our monthly</div><div class="value">10% → $500/mo × 6</div></div>
+					<div class="stat"><div class="label">Our one‑time</div><div class="value">50% of 1st mo → $2,500</div></div>
+				</div>
+				<p style="margin-top:6px;">Savings vs agency (first 6 months): <strong>$4,000–$7,000+</strong> depending on model. Plus no hourly markups — client pays developer directly.</p>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container">© just🔗4u — Verified Developers • 24h Shortlists • Pay‑on‑Hire</div>
+	</footer>
+
+	<script>
+		const candidates = [
+			{
+				developerId: '0003',
+				position: 'Senior React Developer',
+				category: 'JavaScript/React',
+				technologies: ['React','TypeScript','Redux','Next.js','Node.js','GraphQL','Tailwind'],
+				experienceYears: 7,
+				salaryUSD: 5000,
+				englishLevel: 'Upper-Intermediate',
+				rating: 4.9,
+				techLevel: 127,
+				availability: 'As needed',
+				description: 'Led FE for fintech app 100k+ MAU • Cut TTI by 30%'
+			},
+			{
+				developerId: '0013',
+				position: 'Frontend Tech Lead',
+				category: 'JavaScript/React',
+				technologies: ['React','TypeScript','Storybook','Jest','Microfrontends','Webpack'],
+				experienceYears: 9,
+				salaryUSD: 6200,
+				englishLevel: 'Advanced',
+				rating: 5.0,
+				techLevel: 132,
+				availability: 'As needed',
+				description: 'Led microfrontends migration • -40% build time'
+			},
+			{
+				developerId: '0025',
+				position: 'Senior Angular Developer',
+				category: 'Angular',
+				technologies: ['Angular','RxJS','NgRx','TypeScript','REST','Jest'],
+				experienceYears: 7,
+				salaryUSD: 4800,
+				englishLevel: 'Upper-Intermediate',
+				rating: 4.9,
+				techLevel: 124,
+				availability: 'As needed',
+				description: 'Healthcare/CRM/SaaS • Senior FE leadership'
+			},
+			{
+				developerId: '0019',
+				position: 'React/Next.js Engineer',
+				category: 'JavaScript/React',
+				technologies: ['Next.js','React','TypeScript','SWR','Vercel','Prisma'],
+				experienceYears: 5,
+				salaryUSD: 3600,
+				englishLevel: 'Upper-Intermediate',
+				rating: 4.8,
+				techLevel: 77,
+				availability: 'As needed',
+				description: 'SaaS/Marketplace • Modern full‑stack React'
+			},
+			{
+				developerId: '0005',
+				position: 'Mid React Developer',
+				category: 'JavaScript/React',
+				technologies: ['React','JavaScript','Redux Toolkit','REST','Cypress','Figma'],
+				experienceYears: 4,
+				salaryUSD: 2800,
+				englishLevel: 'Intermediate',
+				rating: 4.7,
+				techLevel: 76,
+				availability: 'As needed',
+				description: 'Corporate/EduTech/Dashboards • Solid mid‑level FE'
+			}
+		];
+
+		function stars(r) { const full = Math.floor(r); const half = (r % 1) >= 0.5; return '★'.repeat(full) + (half?'☆':'') + '☆'.repeat(5 - full - (half?1:0)); }
+		function mailtoFor(c) {
+			const subject = encodeURIComponent(`just4u: Intro Request • ${c.developerId} ${c.position}`);
+			const body = encodeURIComponent(`Please introduce me to:\n\n`+
+				`ID: ${c.developerId}\nRole: ${c.position}\nCategory: ${c.category}\n`+
+				`Tech Level: ${c.techLevel}\nRating: ${c.rating}★\n`+
+				`Experience: ${c.experienceYears}y\nSalary: $${c.salaryUSD}/mo\nEnglish: ${c.englishLevel}\n\n`+
+				`Notes: [your use‑case, timeline]\n`);
+			return `mailto:stant1605@gmail.com?subject=${subject}&body=${body}`;
+		}
+
+		function render() {
+			const wrap = document.getElementById('cards');
+			wrap.innerHTML = candidates.map(c => `
+				<div class="card">
+					<div class="card-head">
+						<div class="title">${c.position}</div>
+						<div class="devid">#${c.developerId}</div>
+					</div>
+					<div class="meta">
+						<div class="chip">${c.experienceYears} yrs</div>
+						<div class="chip">${c.englishLevel}</div>
+						<div class="chip">$${c.salaryUSD.toLocaleString()}/mo</div>
+					</div>
+					<div class="metrics">
+						<div class="metric">
+							<div class="metric-label">Rating</div>
+							<div class="metric-value metric--rating">${c.rating.toFixed(1)}★</div>
+						</div>
+						<div class="metric">
+							<div class="metric-label">Tech Level</div>
+							<div class="metric-value metric--tech">${Number(c.techLevel).toFixed(0)}</div>
+						</div>
+						<div class="metric">
+							<div class="metric-label">Category</div>
+							<div class="metric-value metric--cat">${c.category}</div>
+						</div>
+					</div>
+					<div class="techs">
+						${c.technologies.slice(0,6).map((t,i)=>`<span class="tag ${i<2?'primary':''}">${t}</span>`).join('')}
+						${c.technologies.length>6?`<span class="tag">+${c.technologies.length-6}</span>`:''}
+					</div>
+					<div class="desc">${c.description}</div>
+					<div class="card-foot">
+						<div class="salary">$${c.salaryUSD.toLocaleString()} / mo</div>
+						<a class="hire" href="${mailtoFor(c)}">💎 Request Intro</a>
+					</div>
+				</div>
+			`).join('');
+		}
+		document.addEventListener('DOMContentLoaded', render);
+
+		// Filtering logic
+		function applyFilters() {
+			const sMin = Number(document.getElementById('f-salary-min').value||0);
+			const sMax = Number(document.getElementById('f-salary-max').value||999999);
+			const eMin = Number(document.getElementById('f-exp-min').value||0);
+			const eMax = Number(document.getElementById('f-exp-max').value||99);
+			const tMin = Number(document.getElementById('f-tech-min').value||0);
+			const cat = document.getElementById('f-category').value||'any';
+			const q = (document.getElementById('f-tech-query').value||'').toLowerCase();
+			const rMin = Number(document.getElementById('f-rating-min').value||4.5);
+
+			const list = candidates.filter(c => {
+				const salaryOk = c.salaryUSD >= sMin && c.salaryUSD <= sMax;
+				const expOk = c.experienceYears >= eMin && c.experienceYears <= eMax;
+				const techOk = c.techLevel >= tMin;
+				const catOk = (cat==='any') || c.category===cat;
+				const ratingOk = c.rating >= rMin;
+				const qOk = !q || c.technologies.some(t=> t.toLowerCase().includes(q));
+				return salaryOk && expOk && techOk && catOk && ratingOk && qOk;
+			});
+
+			const wrap = document.getElementById('cards');
+			wrap.innerHTML = list.map(c => `
+				<div class="card">
+					<div class="card-head">
+						<div class="title">${c.position}</div>
+						<div class="devid">#${c.developerId}</div>
+					</div>
+					<div class="meta">
+						<div class="chip">${c.experienceYears} yrs</div>
+						<div class="chip">${c.englishLevel}</div>
+						<div class="chip">$${c.salaryUSD.toLocaleString()}/mo</div>
+					</div>
+					<div class="metrics">
+						<div class="metric">
+							<div class="metric-label">Rating</div>
+							<div class="metric-value metric--rating">${c.rating.toFixed(1)}★</div>
+						</div>
+						<div class="metric">
+							<div class="metric-label">Tech Level</div>
+							<div class="metric-value metric--tech">${Number(c.techLevel).toFixed(0)}</div>
+						</div>
+						<div class="metric">
+							<div class="metric-label">Category</div>
+							<div class="metric-value metric--cat">${c.category}</div>
+						</div>
+					</div>
+					<div class="techs">
+						${c.technologies.slice(0,6).map((t,i)=>`<span class="tag ${i<2?'primary':''}">${t}</span>`).join('')}
+						${c.technologies.length>6?`<span class="tag">+${c.technologies.length-6}</span>`:''}
+					</div>
+					<div class="desc">${c.description}</div>
+					<div class="card-foot">
+						<div class="salary">$${c.salaryUSD.toLocaleString()} / mo</div>
+						<a class="hire" href="${mailtoFor(c)}">💎 Request Intro</a>
+					</div>
+				</div>
+			`).join('');
+
+			document.getElementById('resultsHint').textContent = `Found ${list.length} of ${candidates.length}`;
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const ids = ['f-salary-min','f-salary-max','f-exp-min','f-exp-max','f-tech-min','f-category','f-tech-query','f-rating-min'];
+			ids.forEach(id => document.getElementById(id).addEventListener('input', (e)=>{ /* live typing */ }));
+			document.getElementById('f-apply').addEventListener('click', applyFilters);
+			document.getElementById('f-reset').addEventListener('click', ()=>{
+				document.getElementById('f-salary-min').value = 2000;
+				document.getElementById('f-salary-max').value = 6000;
+				document.getElementById('f-exp-min').value = 2;
+				document.getElementById('f-exp-max').value = 10;
+				document.getElementById('f-tech-min').value = 0;
+				document.getElementById('f-category').value = 'any';
+				document.getElementById('f-tech-query').value = '';
+				document.getElementById('f-rating-min').value = 4.5;
+				applyFilters();
+			});
+			applyFilters();
+		});
+	</script>
+</body>
+</html>
